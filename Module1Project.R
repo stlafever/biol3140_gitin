@@ -1,6 +1,5 @@
 library(ggplot2)
 library(tidyverse)
-setwd("C:\\Users\\lafev\\Desktop\\Organismal Biology\\scales\\biol3140_gitin_scales")
 #line creating dat variable with scales info
 dat <- read.csv("scales.csv")
 head(dat)
