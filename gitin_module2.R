@@ -1,9 +1,11 @@
+#Load data sets
 library(ggplot2)
 library(tidyverse)
 setwd("~/Desktop/bwangSeed")
 pseed <- read_csv("pseed.fin.amps.csv")
 pseed.bl <- read_csv("pseed.lengths.csv")
 speeds <- read_csv("pseed.calibration.csv")
+#Merging data
 pseed2 <- pseed%>%
   left_join(speeds,by=c("speed"="vol"))%>%
   print()
@@ -18,6 +20,7 @@ pseed2 <- pseed2%>%
 pseed2 <- pseed2%>%
   mutate(bl.s=cm.s/bl)%>%
   print()
+#Plots
 pseed2%>%
   ggplot(aes(x=bl.s,y=amp.bl))+geom_point()
 pseed2%>%
@@ -25,6 +28,7 @@ pseed2%>%
 pseed2%>%
   filter(date=="2019-06-17-151149", fin=="L")%>%
   ggplot(aes(x=frame,y=amp.bl))+geom_point()
+#Writing function to find max amplitude
 library(features)
 exp1 <- pseed2%>%
   filter(date=="2019-06-17-151149", fin=="L")
