@@ -127,17 +127,21 @@ pseed.sum.max <- pseed.sum.max%>%
   #group based on fish and speed and save as an object
   #run sd on that object
   #find number of observations for each speed and fish
-  #divide by sqroot of #obs
-find.sem <- function(){
-  set <- pseed.sum.max%>%
-    group_by(fish, bl.s)
-  st.dev <- sd(set)
-#number of observations for each mean
-  pseed.sum.max%>%
-    group_by(fish, bl.s)%>%
-    summarize(n.obs=n())%>%
-    print()
-  
-  
+  #divide by sqrt of number of obs
+
+#idk wtf is going on:)
+find.sem <- function(s, n){
+  sem <- s/sqrt(n)
 }
 
+#these add columns for sample size and standard deviation - is the function supposed to skip these steps like huh
+#number of observations for each mean
+test.n2 <- pseed.sum.max%>%
+  group_by(fish, bl.s)%>%
+  mutate(n.obs=n())
+#standard deviation for each mean
+test.n2 <- test.n2%>%
+  group_by(fish, bl.s)%>%
+  mutate(st.dev=sd(amp.sum))
+
+  
