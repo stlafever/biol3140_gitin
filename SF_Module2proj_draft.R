@@ -1,4 +1,4 @@
-
+setwd("~/Documents/Org Bio/biol3140_gitin/Module_2")
 library(tidyverse)
 library(ggplot2)
 
@@ -22,17 +22,18 @@ pseed2 <- pseed2%>%
   print()
 
 #plot of amp.bl at different bl.s for one fin of one exp
-#DELETE? dont think we need this
+pseed2%>%
+  ggplot(aes(x=bl.s,y=amp.bl))+geom_point(alpha=0.01)
 pseed2%>%
   filter(date=="2019-06-17-151149", fin=="L")%>%
   ggplot(aes(x=frame,y=amp.bl))+geom_point()
 
-exp1 <- pseed2%>%
-  filter(date=="2019-06-17-151149", fin=="L")
-
 library(features)
 
-#Pretty sure f1 was just an example of what not to do (doesnt show the negative values due to rounding)
+exp1 <- pseed2%>%
+  filter(date=="2019-06-17-151149", fin=="L")
+f1 <-  features(x = exp1$frame,y=exp1$amp.bl)->f1
+
 pseed2%>%
   filter(date=="2019-06-17-151149", fin=="L")%>%
   ggplot(aes(x=frame,y=amp.bl))+geom_point()+geom_vline(xintercept = fget(f1)$crit.pts)
@@ -70,7 +71,6 @@ pseed2%>%
   filter(date%in%unique(date)[1:3])%>%
   group_by(date,fin)%>%
   mutate(peak=frame %in% find.peaks(frame,amp.bl))%>%
-  #I dont think this bit is working ^^ all of the "peak"s come out false
   ggplot(aes(x=frame,y=amp.bl, alpha=peak, col=peak))+geom_point()+facet_grid(date~fin)
 
 #create tibble with max amplitude of each oscillation
@@ -91,24 +91,53 @@ summary(amp.aov)
 pseed.max %>%
   group_by(fish, bl.s) %>%
   summarize(mean.max=mean(amp.bl)) %>%
-  ggplot(aes(x=bl.s,y=mean.max,col=fish))+geom_point()+geom_smooth(method="lm")
+  ggplot(aes(x=bl.s, y=mean.max,col=fish))+geom_point()+geom_smooth(method="lm")
 
+#make separate columns for left and right fin
 pseed.wide <- pseed2 %>%
   select(-amp)%>%
   pivot_wider(names_from = fin,values_from = amp.bl) %>%
   mutate(amp.sum=L+R)%>%
   print() 
 
-pseed.wide.max <- pseed.wide%>%
+#make new tibble w only frames that have max sum amplitude and plot
+pseed.sum.max <- pseed.wide%>%
   group_by(fish, date)%>%
   mutate(peak=frame %in% find.peaks(frame,amp.sum))%>%
   filter(peak==T)
-pseed.wide.max%>%
+pseed.sum.max%>%
   ggplot(aes(x=bl.s,y=amp.sum))+geom_point()+geom_smooth(method="lm")
-SEdata <- summarySE(pseed.wide.max, measurevar="mean.sum", groupvars=c("fish","date"))
-pseed.wide.max %>%
+
+#plot mean sum of max fin amplitudes for each speed for each fish
+pseed.sum.max %>%
   group_by(fish, bl.s) %>%
-  summarize(mean.sum=mean(amp.sum)) %>%
-  ggplot(aes(x=bl.s,y=mean.sum,col=fish))+geom_point()+geom_smooth(method="lm")+geom_errorbar(aes(ymin=mean.sum-se, ymax=mean.sum+se), width=.1)
-amp.sum.aov <-  aov(amp.sum~bl.s,pseed.wide.max)
+  summarize(amp.sum.mean=mean(amp.sum)) %>%
+  ggplot(aes(x=bl.s,y=amp.sum.mean,col=fish))+geom_point()+geom_smooth(method="lm")
+amp.sum.aov <-  aov(amp.sum~bl.s,pseed.sum.max)
 summary(amp.sum.aov)
+
+#add new column with the mean maximum for each speed for each fish
+pseed.sum.max <- pseed.sum.max%>%
+  group_by(fish, bl.s)%>%
+  mutate(amp.sum.mean=mean(amp.sum))
+
+
+
+#computing SEM
+  #group based on fish and speed and save as an object
+  #run sd on that object
+  #find number of observations for each speed and fish
+  #divide by sqroot of #obs
+find.sem <- function(){
+  set <- pseed.sum.max%>%
+    group_by(fish, bl.s)
+  st.dev <- sd(set)
+#number of observations for each mean
+  pseed.sum.max%>%
+    group_by(fish, bl.s)%>%
+    summarize(n.obs=n())%>%
+    print()
+  
+  
+}
+
