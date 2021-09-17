@@ -138,6 +138,6 @@ pseed.sum.max <- pseed.sum.max%>%
 
 #plot metabolic data
 pseed.sum.max%>%
-  ggplot(aes(x=amp.sum.mean,y=met.rate, col=fish))+geom_point()+geom_smooth(method="lm")
+  ggplot(aes(x=amp.sum.mean,y=met.rate, col=fish))+geom_errorbar(aes(ymin=met.rate-amp.sum.se, ymax=met.rate+amp.sum.se), width=.1)+geom_point()+geom_smooth(method="lm")
 
        
