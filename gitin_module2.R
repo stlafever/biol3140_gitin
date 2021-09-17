@@ -1,3 +1,4 @@
+###pseed.wide data tibble
 #Load data sets
 library(ggplot2)
 library(tidyverse)
@@ -17,6 +18,7 @@ pseed2%>%
 pseed2 <- pseed2%>%
   left_join(pseed.bl,by="fish")%>%
   print()
+#Mutating to specific speed
 pseed2 <- pseed2%>%
   mutate(bl.s=cm.s/bl)%>%
   print()
@@ -85,3 +87,17 @@ pseed.wide <- pseed2 %>%
   pivot_wider(names_from = fin,values_from = amp.bl) %>%
   mutate(amp.sum=L+R)%>%
   print() 
+###Compute mean maximum
+pseed.sum.max <- pseed.wide %>%
+  group_by(date,fish)%>%
+  mutate(peak=frame %in% find.peaks(frame,amp.sum))%>%
+  filter(peak==T)
+pseed.sum.max%>%
+  ggplot(aes(x=bl.s,y=amp.sum))+geom_point()+geom_smooth(method="lm")
+pseed.sum.max %>%
+  group_by(fish, bl.s) %>%
+  summarize(amp.sum.mean=mean(amp.sum)) %>%
+  ggplot(aes(x=bl.s,y=amp.sum.mean,col=fish))+geom_point()+geom_smooth(method="lm")
+amp.sum.aov <- aov(amp.sum~bl.s,pseed.sum.max)
+summary(amp.sum.aov)
+getwd()
