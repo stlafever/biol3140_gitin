@@ -18,15 +18,6 @@ pseed2 <- pseed2%>%
 pseed2 <- pseed2%>%
   mutate(bl.s=cm.s/bl)
 
-f1 <-  features(x = exp1$frame,y=exp1$amp.bl)->f1
-f2 <-  features(x = exp1$frame,y=exp1$amp.bl*100)
-fget(f2)
-f.tib <- fget(f2)[2:3]%>%
-  as_tibble()%>%
-  filter(curvature<0)%>%
-  mutate(peaks=round(crit.pts,0))%>%
-  print()
-
 #create custom function to find max amplitude for each fin during each oscillation
 find.peaks <- function(x,y,mult=100){ 
   f <- fget(features(x = x,y=y*mult))[2:3]%>% 
