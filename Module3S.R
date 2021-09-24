@@ -51,12 +51,13 @@ anole.log %>% head()
 
 #plot perch height residuals vs Ecomorphs
 anole.log%>%
-  ggplot(aes(x=Ecomorph2,y=res.ph)) +geom_boxplot()
+  ggplot(aes(x=PH,y=res.ph)) +geom_point()#+geom_smooth(method="lm")
 
 #plot perch diameter residuals vs Ecomorphs
 anole.log%>%
-  ggplot(aes(x=Ecomorph2,y=res.pd)) +geom_boxplot()
+  ggplot(aes(x=ArbPD,y=res.pd)) + geom_point()#+geom_smooth(method="lm")
 
+pgls.BM0 <- gls(HTotal~SVL, correlation=corBrownian(1,phy=anole.tree, form=~Species),data=anole.log, method="ML")
 #PGLS under BM, w perchh height
 pgls.BM1 <- gls(HTotal~SVL+PH, correlation = corBrownian(1,phy = anole.tree,form=~Species),data = anole.log, method = "ML")
 
@@ -66,8 +67,23 @@ pgls.BM2 <- gls(HTotal~SVL+ArbPD, correlation = corBrownian(1,phy = anole.tree,f
 #PGLS under BM, w perch height and diameter
 pgls.BM3 <- gls(HTotal~SVL+PH+ArbPD, correlation = corBrownian(0,phy = anole.tree,form=~Species),data = anole.log, method = "ML")
 
-anole.aic <- AICc(pgls.BM1, pgls.BM2, pgls.BM3) %>% print()
+anole.aic <- AICc(pgls.BM0,pgls.BM1, pgls.BM2, pgls.BM3) %>% print()
 
 anole.aicw <- aicw(anole.aic$AICc)
 print(anole.aicw)
-#perch diameter is a significant predictor of hindlimb length
+#perch diameter is a significant predictor of hindlimb length (delta AIC ~ 10)
+
+anole.log <- anole.log %>% mutate(phylo.res1=residuals(pgls.BM1))
+anole.log <- anole.log %>% mutate(phylo.res2=residuals(pgls.BM2))
+anole.log <- anole.log %>% mutate(phylo.res3=residuals(pgls.BM3))
+anole.log %>% head()
+
+anole.log%>%
+ ggplot(aes(x=ArbPD,y=phylo.res2)) + geom_point()
+
+
+anole.log%>%
+  dplyr::select(ArbPD,res.pd,phylo.res2)%>%
+  pivot_longer(cols=c("res.pd","phylo.res2"))%>%
+  print%>%
+  ggplot(aes(x=ArbPD,y=value)) +geom_point() +stat_summary(fun=mean, geom="point", size=3)+facet_grid(name~.,scales = "free_y")+ylab("residual")
