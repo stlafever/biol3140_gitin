@@ -1,4 +1,4 @@
-library(tidyverse) # Rember to load your libraries!
+library(tidyverse) 
 library(ape)
 library(nlme)
 library(geiger)
@@ -26,9 +26,9 @@ anole.log <- anole2%>%
 
 
 anole.log.lm  <- lm(HTotal~SVL,anole.log)
+#Q1: establish anole.log
 anole.log <- anole.log %>%
   mutate(res=residuals(anole.log.lm))
-anole.log %>% head()
 
 #read in anole.tree
 anole.tree <- read.tree("anole.tre")
@@ -39,49 +39,44 @@ anole.log.lm.ph  <- lm(HTotal~SVL+PH,anole.log)
 #lm accounting for perch diameter
 anole.log.lm.pd <- lm(HTotal~SVL+ArbPD, anole.log)
 
+
+#Q2: Construct two simple linear models
 #add column with anole.log.lm.ph residuals
 anole.log <- anole.log %>%
   mutate(res.ph=residuals(anole.log.lm.ph))
-
 #add column with anole.log.lm.pd residuals
 anole.log <- anole.log %>%
   mutate(res.pd=residuals(anole.log.lm.pd))
 
-anole.log %>% head()
-
+#Q3: Plot residuals of linear models against covariates
 #plot perch height residuals vs Ecomorphs
 anole.log%>%
   ggplot(aes(x=PH,y=res.ph)) +geom_point()#+geom_smooth(method="lm")
-
 #plot perch diameter residuals vs Ecomorphs
 anole.log%>%
   ggplot(aes(x=ArbPD,y=res.pd)) + geom_point()#+geom_smooth(method="lm")
 
-pgls.BM0 <- gls(HTotal~SVL, correlation=corBrownian(1,phy=anole.tree, form=~Species),data=anole.log, method="ML")
+#Q4: Construct phylogenetic least squares models of the relationships
 #PGLS under BM, w perchh height
 pgls.BM1 <- gls(HTotal~SVL+PH, correlation = corBrownian(1,phy = anole.tree,form=~Species),data = anole.log, method = "ML")
-
 #PGLS under BM, w perch diameter
 pgls.BM2 <- gls(HTotal~SVL+ArbPD, correlation = corBrownian(1,phy = anole.tree,form=~Species),data = anole.log, method = "ML")
-
 #PGLS under BM, w perch height and diameter
 pgls.BM3 <- gls(HTotal~SVL+PH+ArbPD, correlation = corBrownian(0,phy = anole.tree,form=~Species),data = anole.log, method = "ML")
 
+#Q5: Assess the three models using AICc and AICw
 anole.aic <- AICc(pgls.BM0,pgls.BM1, pgls.BM2, pgls.BM3) %>% print()
-
 anole.aicw <- aicw(anole.aic$AICc)
 print(anole.aicw)
 #perch diameter is a significant predictor of hindlimb length (delta AIC ~ 10)
 
+#Add phylogenetic residuals to anole.log
 anole.log <- anole.log %>% mutate(phylo.res1=residuals(pgls.BM1))
 anole.log <- anole.log %>% mutate(phylo.res2=residuals(pgls.BM2))
 anole.log <- anole.log %>% mutate(phylo.res3=residuals(pgls.BM3))
 anole.log %>% head()
 
-anole.log%>%
- ggplot(aes(x=ArbPD,y=phylo.res2)) + geom_point()
-
-
+#Q6: Plot effect of perch diameter of effect perch diameter on hindlimb residuals
 anole.log%>%
   dplyr::select(ArbPD,res.pd,phylo.res2)%>%
   pivot_longer(cols=c("res.pd","phylo.res2"))%>%
