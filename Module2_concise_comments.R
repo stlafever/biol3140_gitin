@@ -98,5 +98,5 @@ pseed.sum.max <- pseed.sum.max%>%
 pseed.sum.max%>%
   ggplot(aes(x=amp.sum.mean,y=met.mean, col=fish))+geom_errorbar(aes(ymin=met.mean-met.se, ymax=met.mean+met.se), width=.05)+geom_point()+geom_smooth(method="lm")
 
-#[CPK] good work, just think more about the goal of the operations.
+#[CPK] good work, just think more about the goal of the operations. 10/10
 
