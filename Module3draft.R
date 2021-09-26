@@ -48,7 +48,7 @@ summary(anole.allo)
 #AICc from the MuMIn package
 anole.aic <- AICc(anole.lm,anole.allo)
 
-#aicw from the geiger package
+#AICw from the geiger package
 anole.aicw <- aicw(anole.aic$AICc)
 print(anole.aicw) #lower value indicates better fit
 
