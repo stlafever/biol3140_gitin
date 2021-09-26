@@ -121,23 +121,27 @@ pseed.sum.max <- pseed.sum.max%>%
   group_by(fish, bl.s)%>%
   mutate(amp.sum.mean=mean(amp.sum))
 
-#standard error of the mean function
-find.sem <- function(x){
-  sd(x)/sqrt(length(x))
+
+
+#computing SEM
+  #group based on fish and speed and save as an object
+  #run sd on that object
+  #find number of observations for each speed and fish
+  #divide by sqrt of number of obs
+
+#idk wtf is going on:)
+find.sem <- function(s, n){
+  sem <- s/sqrt(n)
 }
 
-#add new column for sem
-pseed.sum.max <- pseed.sum.max%>%
+#these add columns for sample size and standard deviation - is the function supposed to skip these steps like huh
+#number of observations for each mean
+test.n2 <- pseed.sum.max%>%
   group_by(fish, bl.s)%>%
-  mutate(amp.sum.se=find.sem(amp.sum))
+  mutate(n.obs=n())
+#standard deviation for each mean
+test.n2 <- test.n2%>%
+  group_by(fish, bl.s)%>%
+  mutate(st.dev=sd(amp.sum))
 
-#load and merge metabolic data
-pseed.met.rate <- read_csv("pseed.met.rate.csv")
-pseed.sum.max <- pseed.sum.max%>%
-  left_join(pseed.met.rate)
-
-#plot metabolic data
-pseed.sum.max%>%
-  ggplot(aes(x=amp.sum.mean,y=met.rate, col=fish))+geom_errorbar(aes(ymin=met.rate-amp.sum.se, ymax=met.rate+amp.sum.se), width=.1)+geom_point()+geom_smooth(method="lm")
-
-       
+  
