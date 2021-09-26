@@ -24,7 +24,6 @@ anole.log <- anole2%>%
   mutate_at(c("SVL", "HTotal","PH","ArbPD"),log)
 #we use log to see data as proportions
 
-
 anole.log.lm  <- lm(HTotal~SVL,anole.log)
 #Q1: establish anole.log
 anole.log <- anole.log %>%
