@@ -15,8 +15,7 @@ anole.eco <- read_csv("anole.eco.csv")
 anole2 <- anole%>%
   left_join(anole.eco)%>%
   filter(!Ecomorph%in%c("U","CH"))%>%
-  na.omit()%>%
-  print()
+  na.omit()
 #na.omit() omits rows where there are missing values
 
 #remove any unique or close to unique values
