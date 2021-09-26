@@ -16,7 +16,6 @@ anole2 <- anole%>%
   left_join(anole.eco)%>%
   filter(!Ecomorph%in%c("U","CH"))%>%
   na.omit()%>%
-  print()
 #na.omit() omits rows where there are missing values
 
 #remove any unique or close to unique values
@@ -65,7 +64,7 @@ pgls.BM2 <- gls(HTotal~SVL+ArbPD, correlation = corBrownian(1,phy = anole.tree,f
 pgls.BM3 <- gls(HTotal~SVL+PH+ArbPD, correlation = corBrownian(0,phy = anole.tree,form=~Species),data = anole.log, method = "ML")
 
 #Q5: Assess the three models using AICc and AICw
-anole.aic <- AICc(pgls.BM0,pgls.BM1, pgls.BM2, pgls.BM3) %>% print()
+anole.aic <- AICc(pgls.BM1, pgls.BM2, pgls.BM3) %>% print()
 anole.aicw <- aicw(anole.aic$AICc)
 print(anole.aicw)
 #perch diameter is a significant predictor of hindlimb length (delta AIC ~ 10) but perch height is not
@@ -74,7 +73,6 @@ print(anole.aicw)
 anole.log <- anole.log %>% mutate(phylo.res1=residuals(pgls.BM1))
 anole.log <- anole.log %>% mutate(phylo.res2=residuals(pgls.BM2))
 anole.log <- anole.log %>% mutate(phylo.res3=residuals(pgls.BM3))
-anole.log %>% head()
 
 #Q6: Plot effect of perch diameter of effect perch diameter on hindlimb residuals
 #I used the residual of the model that just took into account perch diameter because
