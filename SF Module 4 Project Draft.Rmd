@@ -67,7 +67,7 @@ anole.phylo.aic <- AICc(pgls.BM1,pgls.BM2,pgls.OU1,pgls.OU2)
 anole.phylow.aicw <- aicw(anole.phylo.aic$AICc)
 ```
 
-```{r, AIC table}
+```{r, AIC table, echo= FALSE}
 anole.phylow.aicw%>%
   kable(caption= "AIC and AIC<sub>W</sub> values for PGLS models")
 ```
