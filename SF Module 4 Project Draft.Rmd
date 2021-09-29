@@ -79,8 +79,9 @@ anole.log <- anole.log%>%
   mutate(phylo.res=residuals(pgls.BM2))
 ```
 
-```{r, plot log transformed data}
-
+```{r, plot log transformed data, fig.cap="Linear regression plot of log-transformed HTotal vs SVL grouped by ecomorph"}
+anole.log%>%
+  ggplot(aes(HTotal,SVL,col=Ecomorph2))+geom_point()+geom_smooth(method="lm")
 ```
 
 
