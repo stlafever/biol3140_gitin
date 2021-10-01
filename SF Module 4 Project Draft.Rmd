@@ -18,7 +18,7 @@ library(knitr)
 
 # Introduction
 
-*Anolis* is a well studied genus of iguanian reptiles that exists in many different ecomorphs, which are defines by groups of species with similar ecological niches and behaviors. Here, we aim to asses the relationship between hind limb length, size, and ecomorph using morphological and ecomorphological data from @Hagey2017 and phylogenetic data from @Poe2017. 
+*Anolis* is a well studied genus of iguanian reptiles that exists in many different ecomorphs, which are defined by groups of species with similar ecological niches and behaviors. Here, we aim to asses the relationship between hind limb length, snout vent length, and ecomorph using morphological and ecomorphological data from @Hagey2017 and phylogenetic data from @Poe2017. 
 
 <center>
 [![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Anolis_carolinensis_%28male%26female%29_by_Robert_Michniewicz.jpg/220px-Anolis_carolinensis_%28male%26female%29_by_Robert_Michniewicz.jpg)
@@ -26,7 +26,7 @@ library(knitr)
 
 # Methods
 
-Phylogenetic generalized least squared models of log-transformed hind limb length versus snout vent length were constructed with and without the inclusion of ecomorph as a covariate of SVL, and using a Brownian or an Ornstein-Uhlenbeck model. An Aic<sub>W</sub> operation was used to find the best-fitting model which was plotted along with a visualization of the residuals of this model. 
+Phylogenetic generalized least squared models of log-transformed hind limb length versus snout vent length were constructed with and without the inclusion of ecomorph as a covariate of SVL, and using a Brownian or an Ornstein-Uhlenbeck model. Phylogenetic information was obtained from @Poe2017. An Aic<sub>W</sub> operation was used to find the best-fitting model which was plotted along with a visualization of the residuals of this model. 
 
 # Results
 ```{r, "load data"}
@@ -93,7 +93,7 @@ ggplot(aes(x=Ecomorph2,y=phylo.res)) +geom_boxplot() +stat_summary(fun=mean, geo
 print(p.eco.phylo)
 ```
 
-An Aic<sub>W</sub> evaluation determined the Brownian motion model of character evolution including ecomorph as a covariate of snout vent length to be the best model for predicting the total hind limb length of anoles from the snout vent length. 
+An Aic<sub>W</sub> evaluation determined the Brownian motion model of character evolution including ecomorph as a covariate of snout vent length to be the best model for predicting the total hind limb length of anoles based on the snout vent length. 
 
 # Discussion
 
