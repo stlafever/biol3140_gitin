@@ -21,7 +21,7 @@ library(knitr)
 *Anolis* is a well studied genus of iguanian reptiles that exists in many different ecomorphs, which are defined by groups of species with similar ecological niches and behaviors. Here, we aim to asses the relationship between hind limb length, snout vent length, and ecomorph using morphological and ecomorphological data from @Hagey2017 and phylogenetic data from @Poe2017. 
 
 <center>
-[![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Anolis_carolinensis_%28male%26female%29_by_Robert_Michniewicz.jpg/220px-Anolis_carolinensis_%28male%26female%29_by_Robert_Michniewicz.jpg)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Anolis_carolinensis_%28male%26female%29_by_Robert_Michniewicz.jpg/220px-Anolis_carolinensis_%28male%26female%29_by_Robert_Michniewicz.jpg)
 </center>
 
 # Methods
@@ -100,5 +100,6 @@ An Aic<sub>W</sub> evaluation determined the Brownian motion model of character 
 The results show that the anole traits studied, snout vent length and hind limb length, evolved randomly within each species according to a Brownian model. The rejection of the model following Ornstein-Uhlenbeck evolution implies that these traits have not been pulled to a global optimum. The inclusion of ecomorph in the best fitting model of the phylogenetically corrected data proves that the ecomorph that each species of anole occupies does have an evolutionary effect on the hind limb length and snout vent length relationship. 
 
 # Author Contributions
+Section headers, all chunks from the "adding code with chunks" section, and *anolis* picture were added by Steven LaFever. Additional code chunks for the AIC value table and HTotal vs SVL plot were added by Emma Oss. Written descriptions under each section were added by Sarah Figueroa and Belinda Wang. Citations and the bibliography were done by Sarah Figueroa.
 
 # References
