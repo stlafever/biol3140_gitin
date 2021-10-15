@@ -6,7 +6,12 @@ output: html_document
 bibliography: BIOL3140.bib
 ---
 
-
+<!-- for comments -->
+<style>
+div.comment pre { background-color:#ffbbbb; }
+div.comment pre.r { background-color:#ffbbbb; }
+div.comment {color: red;}
+</style>
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
@@ -102,5 +107,9 @@ The results show that the anole traits studied, snout vent length and hind limb 
 
 # Author Contributions
 Section headers, all chunks from the "adding code with chunks" section, and *anolis* picture were added by Steven LaFever. Additional code chunks for the AIC value table and HTotal vs SVL plot were added by Emma Oss. Written descriptions under each section were added by Sarah Figueroa and Belinda Wang. Citations and the bibliography were done by Sarah Figueroa.
+
+<div class="comment">
+Wow, team!! Perfect! 10/10
+</div>
 
 # References
