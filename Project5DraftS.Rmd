@@ -1,0 +1,40 @@
+---
+title: "Project5DraftS"
+author: "Steven LaFever"
+date: "10/13/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r echo=FALSE}
+library(tidyverse)
+dat.f <- list.files(pattern = "couch|active.csv") #find the files
+
+dat.l <- list() #make an empty list
+
+for(i in dat.f){
+  met.dat<- unlist(strsplit(i,"_")) #split of the filename string
+  who <- met.dat[1] #store the first element
+  activity <- gsub(".csv","",met.dat[2]) #store second element, dropping CSV with gsub()
+  dat.l[[i]]<- read_csv(i)%>%
+    mutate(who=who,activity=activity) #read, then store data with additional columns of metada in list as position unique to i
+  
+}
+dat <- do.call(rbind,dat.l) #combine the list into table
+dat.l %>% head()
+dat %>% head()
+
+dat%>% group_by(who) %>%
+  ggplot()+geom_boxplot(aes(x=activity,y=degC))+facet_grid(.~who)
+```
+
+
