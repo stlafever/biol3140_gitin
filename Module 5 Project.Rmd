@@ -15,7 +15,7 @@ The regulation of temperature on the inside and surface of the body is essential
 
 ### Data
 
-[insert data]
+[insert data here]
 
 ```{r echo=FALSE}
 library(tidyverse)
