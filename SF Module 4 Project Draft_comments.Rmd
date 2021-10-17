@@ -1,0 +1,115 @@
+---
+title: "Module 4 Project"
+author: "Git In"
+date: "9/27/2021"
+output: html_document
+bibliography: BIOL3140.bib
+---
+
+<!-- for comments -->
+<style>
+div.comment pre { background-color:#ffbbbb; }
+div.comment pre.r { background-color:#ffbbbb; }
+div.comment {color: red;}
+</style>
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ape)
+library(nlme)
+library(MuMIn)
+library(geiger)
+library(knitr)
+```
+
+# Introduction
+
+*Anolis* is a well studied genus of iguanian reptiles that exists in many different ecomorphs, which are defined by groups of species with similar ecological niches and behaviors. Here, we aim to asses the relationship between hind limb length, snout vent length, and ecomorph using morphological and ecomorphological data from @Hagey2017 and phylogenetic data from @Poe2017. 
+
+<center>
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Anolis_carolinensis_%28male%26female%29_by_Robert_Michniewicz.jpg/220px-Anolis_carolinensis_%28male%26female%29_by_Robert_Michniewicz.jpg)
+</center>
+
+# Methods
+
+Phylogenetic generalized least squared models of log-transformed hind limb length versus snout vent length were constructed with and without the inclusion of ecomorph as a covariate of SVL, and using a Brownian or an Ornstein-Uhlenbeck model. Phylogenetic information was obtained from @Poe2017. An Aic<sub>W</sub> operation was used to find the best-fitting model which was plotted along with a visualization of the residuals of this model. 
+
+# Results
+```{r, "load data"}
+anole <- read_csv("anole.dat.csv")
+anole.eco <- read_csv("anole.eco.csv")
+anole.tree <- read.tree("anole.tre")
+```
+
+```{r, "join, filter, mutate to log", message=FALSE}
+anole2 <- anole%>%
+left_join(anole.eco)%>%
+  filter(!Ecomorph%in%c("U","CH"))%>%
+  na.omit()
+
+anole.log <- anole2%>%
+  mutate_at(c("SVL", "HTotal","PH","ArbPD"),log)
+```
+
+```{r, "PGLS models"}
+### phylogenetic GLS models
+
+#PGLS under BM, no ecomorph
+pgls.BM1 <- gls(HTotal ~SVL, correlation = corBrownian(1,phy = anole.tree,form=~Species),data = anole.log, method = "ML")
+
+#PGLS under BM, w ecomorph
+pgls.BM2 <- gls(HTotal ~SVL * Ecomorph2, correlation = corBrownian(1,phy = anole.tree,form=~Species),data = anole.log, method = "ML")
+
+#PGLS under OU, no ecomorph
+pgls.OU1 <- gls(HTotal ~SVL, correlation = corMartins(0,phy = anole.tree,form=~Species),data = anole.log, method = "ML")
+
+#PGLS under OU, w, ecomorph
+pgls.OU2 <- gls(HTotal ~SVL * Ecomorph2, correlation = corMartins(0,phy = anole.tree,form=~Species),data = anole.log, method = "ML")
+```
+
+```{r, AIC}
+#AIC operations
+anole.phylo.aic <- AICc(pgls.BM1,pgls.BM2,pgls.OU1,pgls.OU2)
+anole.phylow.aicw <- aicw(anole.phylo.aic$AICc)
+```
+
+```{r, AIC table, echo= FALSE}
+anole.phylow.aicw%>%
+  kable(caption= "AIC and AIC<sub>W</sub> values for PGLS models")
+```
+
+
+```{r, "add residuals"}
+#add phylo-corrected residuals
+anole.log <- anole.log%>%
+  mutate(phylo.res=residuals(pgls.BM2))
+```
+
+```{r, plot log transformed data, fig.cap="Linear regression plot of log-transformed HTotal vs SVL grouped by ecomorph"}
+anole.log%>%
+  ggplot(aes(HTotal,SVL,col=Ecomorph2))+geom_point()+geom_smooth(method="lm")
+```
+
+
+```{r, "plot residuals", fig.cap="Boxplot of phylogenetically corrected hindlimb residuals versus anole ecomorph"}
+#plot residuals
+p.eco.phylo <- anole.log%>%
+ggplot(aes(x=Ecomorph2,y=phylo.res)) +geom_boxplot() +stat_summary(fun=mean, geom="point", size=3)
+
+print(p.eco.phylo)
+```
+
+An Aic<sub>W</sub> evaluation determined the Brownian motion model of character evolution including ecomorph as a covariate of snout vent length to be the best model for predicting the total hind limb length of anoles based on the snout vent length. 
+
+# Discussion
+
+The results show that the anole traits studied, snout vent length and hind limb length, evolved randomly within each species according to a Brownian model. The rejection of the model following Ornstein-Uhlenbeck evolution implies that these traits have not been pulled to a global optimum. The inclusion of ecomorph in the best fitting model of the phylogenetically corrected data proves that the ecomorph that each species of anole occupies does have an evolutionary effect on the hind limb length and snout vent length relationship. 
+
+# Author Contributions
+Section headers, all chunks from the "adding code with chunks" section, and *anolis* picture were added by Steven LaFever. Additional code chunks for the AIC value table and HTotal vs SVL plot were added by Emma Oss. Written descriptions under each section were added by Sarah Figueroa and Belinda Wang. Citations and the bibliography were done by Sarah Figueroa.
+
+<div class="comment">
+Wow, team!! Perfect! 10/10
+</div>
+
+# References

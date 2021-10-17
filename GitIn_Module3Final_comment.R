@@ -8,7 +8,7 @@ library(viridis)
 library(MuMIn)
 
 #load data
-anole <- read_csv("anole.dat.csv")
+anole <- read_csv("anole.dat.csv") #CPK, this file had some weird text in it. Don't open in R or excel---you could (and likely did) edit and currupt it.
 anole.eco <- read_csv("anole.eco.csv")
 
 #left join so we know which ecomorph data was taken from
@@ -22,6 +22,8 @@ anole2 <- anole%>%
 anole.log <- anole2%>%
   mutate_at(c("SVL", "HTotal","PH","ArbPD"),log)
 #we use log to see data as proportions
+
+#CPK: Great job only including what you need!!
 
 anole.log.lm  <- lm(HTotal~SVL,anole.log)
 #Q1: establish anole.log
@@ -54,6 +56,21 @@ anole.log%>%
 anole.log%>%
   ggplot(aes(x=ArbPD,y=res.pd)) + geom_point()+geom_smooth(method="lm")
 
+#CPK didn't we need to plot the the HL against the residuals of the covariates (PH and PD). No mention of ecomorph. Prompt #3: Explore how both perch diameter and height effect the hindlimb-SVL relationship by plotting the residuals of your simple linear models against these covariates. This will require mutating a data tibble to include residuals from both models. Please produce two separate plots. Code to do so below. -1 pt for not including the right regression plots. 
+
+#CPK If you wanted to plot and account for ecomorph, you should have included it in your model. But, for the prompt, it was as simple as this . . .
+
+
+anole.log%>%
+  ggplot(aes(x=res.ph,y=HTotal))+geom_point()+geom_smooth(method="lm")
+
+
+anole.log%>%
+  ggplot(aes(x=res.pd,y=HTotal))+geom_point()+geom_smooth(method="lm")
+
+
+
+
 #Q4: Construct phylogenetic least squares models of the relationships
 #PGLS under BM, w perchh height
 pgls.BM1 <- gls(HTotal~SVL+PH, correlation = corBrownian(1,phy = anole.tree,form=~Species),data = anole.log, method = "ML")
@@ -76,9 +93,19 @@ anole.log <- anole.log %>% mutate(phylo.res3=residuals(pgls.BM3))
 #Q6: Plot effect of perch diameter of effect perch diameter on hindlimb residuals
 #I used the residual of the model that just took into account perch diameter because
 #while the model that took both into account was slightly better, the difference was small
+
+#CPK: very good! There was a difference in score, but it was slight!
+
 #and it used more parameters
 anole.log%>%
   dplyr::select(ArbPD,res.pd,phylo.res2)%>%
   pivot_longer(cols=c("res.pd","phylo.res2"))%>%
   print%>%
   ggplot(aes(x=ArbPD,y=value)) +geom_point() +stat_summary(fun=mean, geom="point", size=3)+facet_grid(name~.,scales = "free_y")+ylab("residual")+geom_smooth(method="lm")
+
+#CPK. This is odd.Your comparing residuals to the covariate that they come from. We want phyl residuals as a predictor of HTotal,right. As simple as this.
+
+anole.log%>%
+  ggplot(aes(x=phylo.res2,HTotal)) +geom_point() +geom_smooth(method="lm")
+
+#CPK. Very good work. Just be careful to address the prompts with the appropriate actions. [9/10]
