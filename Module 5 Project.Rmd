@@ -11,8 +11,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Introduction
 
-Find and cite a study in the introduction that frames the question, i.e., what is known about the effect of activity on body temperature.
-
 The regulation of temperature on the inside and surface of the body is essential to ensure proper functioning of bodily systems. Physical activity increases metabolism and blood flow in order to speed up the delivery of oxygen throughout the body and working muscles generate heat which leads to an increase in body temperature. In a study conducted on physical activity and sport, thermal imaging was used to evaluate the surface temperature of athletes. It was determined that a physiological advantage of training increases the ability to remove heat from the body, demonstrating a positive correlation between body temperature and physical activity.
 
 ### Data
