@@ -13,7 +13,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 The regulation of temperature on the inside and surface of the body is essential to ensure proper functioning of bodily systems. Physical activity increases metabolism and blood flow in order to speed up the delivery of oxygen throughout the body and working muscles generate heat which leads to an increase in body temperature. In a study conducted on physical activity and sport, thermal imaging was used to evaluate the surface temperature of athletes. It was determined that a physiological advantage of training increases the ability to remove heat from the body, demonstrating a positive correlation between body temperature and physical activity.
 
-### Data
+### Methods
+
+### Results
 
 [insert data here]
 
@@ -39,7 +41,7 @@ dat%>% group_by(who) %>%
   ggplot()+geom_boxplot(aes(x=activity,y=degC))+facet_grid(.~who)
 ```
 
-### Analysis
+### Discussion
 
 Qualitatively assess the effect of activity on body temperature with a single concise figure in the results section. Be sure to include a short narrative of the findings.
 
@@ -48,5 +50,5 @@ Find, cite, and comment on a study in the discussion that frames the results, i.
 
 ### Author Contributions
 
-### Citations
+### References
 Chudecka, Monika. "Use of thermal imaging in the evaluation of body surface temperature in various physiological states in patients with different body compositions and varying levels of physical activity." Central european journal of sport sciences and medicine 1.2 (2013).
