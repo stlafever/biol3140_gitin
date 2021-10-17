@@ -45,6 +45,8 @@ dat%>% group_by(who) %>%
 
 Qualitatively assess the effect of activity on body temperature with a single concise figure in the results section. Be sure to include a short narrative of the findings.
 
+The data findings did not agree with previous studies.
+
 Find, cite, and comment on a study in the discussion that frames the results, i.e., are your result congruent or not with previous findings and why?
 [insert study]
 
