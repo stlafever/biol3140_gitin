@@ -15,9 +15,9 @@ The regulation of temperature on the inside and surface of the body is essential
 
 ### Methods
 
-### Results
+Subjects axillary temperatures were recorded in two different scenarios. First, their temperature was recorded for one hundred seconds sitting on a couch. Next, the subjects performed jumping jacks for five minutes, and their temperature was recorded for another one hundred seconds.
 
-[insert data here]
+### Results
 
 ```{r echo=FALSE}
 library(tidyverse)
@@ -43,12 +43,7 @@ dat%>% group_by(who) %>%
 
 ### Discussion
 
-Qualitatively assess the effect of activity on body temperature with a single concise figure in the results section. Be sure to include a short narrative of the findings.
-
-The data findings did not agree with previous studies.
-
-Find, cite, and comment on a study in the discussion that frames the results, i.e., are your result congruent or not with previous findings and why?
-[insert study]
+While the axillary body temperatures of the subjects did differ from resting to activity, the data did not reflect other research. For all of the subjects, the axillary body temperature dropped after performing jumping jacks for five minutes.
 
 ### Author Contributions
 
