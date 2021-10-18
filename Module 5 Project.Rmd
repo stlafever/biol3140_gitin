@@ -41,6 +41,8 @@ dat%>% group_by(who) %>%
   ggplot()+geom_boxplot(aes(x=activity,y=degC))+facet_grid(.~who)
 ```
 
+Boxplot of axillary temperature versus the activity performed. 
+
 ### Discussion
 
 While the axillary body temperatures of the subjects did differ from resting to activity, the data did not reflect other research. For all of the subjects, the axillary body temperature dropped after performing jumping jacks for five minutes.
