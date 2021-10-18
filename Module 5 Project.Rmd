@@ -9,13 +9,16 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
 ### Introduction
 
 The regulation of temperature on the inside and surface of the body is essential to ensure proper functioning of bodily systems. Physical activity increases metabolism and blood flow in order to speed up the delivery of oxygen throughout the body and working muscles generate heat which leads to an increase in body temperature. In a study conducted on physical activity and sport, thermal imaging was used to evaluate the surface temperature of athletes. It was determined that a physiological advantage of training increases the ability to remove heat from the body, demonstrating a positive correlation between body temperature and physical activity.
 
+
 ### Methods
 
 Subjects axillary temperatures were recorded in two different scenarios. First, their temperature was recorded for one hundred seconds sitting on a couch. Next, the subjects performed jumping jacks for five minutes, and their temperature was recorded for another one hundred seconds.
+
 
 ### Results
 
@@ -43,12 +46,16 @@ dat%>% group_by(who) %>%
 
 Boxplot of axillary temperature versus the activity performed. 
 
+
 ### Discussion
 
 While the axillary body temperatures of the subjects did differ from resting to activity, the data did not reflect other research. For all of the subjects, the axillary body temperature dropped after performing jumping jacks for five minutes.
 
+
 ### Author Contributions
 
-### References
-Chudecka, Monika. "Use of thermal imaging in the evaluation of body surface temperature in various physiological states in patients with different body compositions and varying levels of physical activity." Central european journal of sport sciences and medicine 1.2 (2013).
 
+
+### References
+
+Chudecka, Monika. "Use of thermal imaging in the evaluation of body surface temperature in various physiological states in patients with different body compositions and varying levels of physical activity." Central european journal of sport sciences and medicine 1.2 (2013).
