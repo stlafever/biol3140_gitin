@@ -1,0 +1,72 @@
+---
+title: "Project6_Draft_2"
+author: "Git In"
+date: "10/18/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Introduction
+
+### Methods
+
+### Results
+
+[insert data here]
+
+```{r echo=FALSE}
+library(tidyverse)
+dat.f <- list.files(pattern = "night|day") #find the files
+print(dat.f)
+dat.l <- list() #make an empty list
+mass.l <- list() #make list for masses
+for(i in dat.f){
+  met.dat<- unlist(strsplit(i,"_")) #split of the filename string
+  class <- met.dat[1] #store the first element (class name&year)
+  subject <- met.dat[2] #store second element (subject number)
+  tod <- met.dat[3] #store third element (day or night)
+  mass <- as.double(gsub(".csv","",met.dat[4])) #store fourth element (mass), dropping .csv with gsub
+  dat.l[[i]]<- read_csv(i)%>%
+    mutate(class=class,subject=subject,tod=tod,mass=mass) #read, then store data with additional columns of metada in list as position unique to i
+}
+dat <- do.call(rbind,dat.l) #combine the list into table
+#dat.l %>% head()
+dat %>% print()
+
+dat2 <- dat %>% group_by(subject,tod)
+
+dat3 <- dat2 %>% summarise(
+ temp_mean = mean(Temp),
+ mass = mean(mass),
+)
+print(dat3)
+i<- 1
+j<- 2
+dat3 <- dat3 %>% add_column(deltaT = 0.00)
+while (i <= 30){
+  dat3$deltaT[i] <-  dat3$temp_mean[i]-dat3$temp_mean[j]
+  dat3$deltaT[j] <- dat3$temp_mean[i]-dat3$temp_mean[j]
+  i <- i+2
+  j <- j+2
+}
+print(dat3)
+dat4 <- dat3 %>% select(-tod,-temp_mean) %>% group_by(subject)
+dat4 <- dat4 %>% mutate(delta_over_mass = deltaT/mass)
+print(dat4)
+
+
+
+#dat%>% group_by(who) %>%
+ # ggplot()+geom_boxplot(aes(x=activity,y=degC))+facet_grid(.~who)
+```
+
+### Discussion
+
+### Author Contributions
+
+### References
+Chudecka, Monika. "Use of thermal imaging in the evaluation of body surface temperature in various physiological states in patients with different body compositions and varying levels of physical activity." Central european journal of sport sciences and medicine 1.2 (2013).
+
