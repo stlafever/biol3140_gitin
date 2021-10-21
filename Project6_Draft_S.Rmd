@@ -3,6 +3,7 @@ title: "Project6_Draft_2"
 author: "Git In"
 date: "10/18/2021"
 output: html_document
+bibliography: BIOL3140.bib
 ---
 
 ```{r setup, include=FALSE}
