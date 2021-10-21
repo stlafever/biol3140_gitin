@@ -38,6 +38,14 @@ dat <- do.call(rbind,dat.l) #combine the list into table
 #dat.l %>% head()
 dat %>% print()
 
+#read in mammal data and process
+mammal <- read_csv("mammal.temp.csv")
+mammal <- mammal %>% mutate(deltaT = T.high - T.low)
+mammal <- rename(mammal, mass = mass.g)
+mammal %>% head()
+
+
+
 dat2 <- dat %>% group_by(subject,tod)
 
 dat3 <- dat2 %>% summarise(
