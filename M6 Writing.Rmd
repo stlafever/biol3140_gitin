@@ -1,0 +1,20 @@
+---
+title: "Module 6 Draft SF"
+author: "Sarah Figueroa"
+date: "10/20/2021"
+output: html_document
+bibliography: BIOL3140.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Introduction
+
+Humans are included in a class of organisms called endotherms, which are able to maintain their body temperature at a relatively constant level even when ambient temperatures are low. This was an important evolutionary development for mammals and fish since it allows for higher metabolic outputs @Ivanov2005. Mammals also engage in some level of heterothermy where temperature can vary across the body (regionally) or over time (temporally) @Hetem2014. Body temperature in mammals and many other animals varies in temporal self-sustaining oscillations typically dependent on the sleep cycle @Aschoff1983. Humans have temporal heterothermy where internal body temperature dips slightly when sleeping. This study aims to asses whether body mass affects the level of heterothermy as measured by the difference in the maximum and minimum body temperature in an oscillation. In a previous study, it has been shown that average body temperature through a 24 hour period decreases by about 1.3 degrees celcius for every 10-fold increase in body mass. Additionally, it was found that the amplitude between the maximum body temperature and minimum body temperature in a 24 hour period was independent of body mass even when phylogeny was taken into account @Hetem2014.  
+
+#Methods
+Temperature data was obtained with a DDHT11 precision linear analog temperature sensor with a Elegoo Arduino Uno clone. Axilliary temperatures were recorded every one or two seconds for fifteen minutes during the day and fifteen minutes during immediately upon waking up for each subject. 
+
+
