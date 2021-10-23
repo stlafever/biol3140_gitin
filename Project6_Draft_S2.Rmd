@@ -91,6 +91,9 @@ print(mass.aicw)
 
 ### Discussion
 
+The results showed that the relationship between body mass and temperature change in humans is non linear. 
+The results also showed that the relationship between body temperature change and body mass is an allometric function. The higher the body mass of the organism, the smaller the temperature change between sleep and awake states. With the class data not showing as a linear function in relation to the mammal data, it proves that there were some issues with the data collection. 
+
 ### Author Contributions
 
 ### References
