@@ -1,0 +1,166 @@
+---
+title: "Project 6 Report"
+author: "Git In"
+date: "10/18/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(geiger)
+library(MuMIn)
+```
+
+### Introduction
+### Methods
+Before constructing any models or graphs, the data was log-transformed in order to investigate the percentage changes seen in the data rather than the absolute differences. To investigate whether Delta T varied with mass, linear and allometric models were constructed both for the human data only, and for the combined human and mammal data. These models were compared by calculating AIC scores for them and comparing the AIC scores using AICw. The model with the lower AIC is a better predictor; however, if the difference is less than 4, the models are roughly equivalent. Graphs of Delta T vs Mass were also constructed in order to visually see the relationship between the variables.
+
+### Results
+```{r results, include=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+f <- list.files(pattern = "night|day") 
+f.l <- list()
+for(i in f){
+  f.i <- read_csv(i)
+  met.dat<- unlist(strsplit(i,"_")) #split of the filename string
+  class <- met.dat[1] #store the first element (class name&year)
+  sub <- met.dat[2] %>% tolower()#store second element (subject number)
+  t <- met.dat[3] %>% tolower()#store third element (day or night)
+  mass <- as.double(gsub(".csv","",met.dat[4])) #store fourth element (mass), dropping .csv with gsub
+ f.i <- f.i[,ncol(f.i)]# take only one column
+ colnames(f.i) <- "Temp"
+ f.l[[i]] <- f.i%>%
+   mutate(N=1:n(),Temp=as.numeric(Temp),subject=sub,tod=t,mass=mass)
+}
+dat <- do.call(rbind,f.l) 
+
+#read in mammal data and process
+mammal <- read_csv("mammal.temp.csv")
+#add column with deltaT
+mammal <- mammal %>% mutate(deltaT = abs(T.high - T.low))
+#rename mass.g to mass to be consistent with human data
+mammal <- rename(mammal, mass = mass.g)
+
+#group dat by subject, tod, mass and save as dat2
+dat2 <- dat %>% group_by(subject,tod,mass)
+
+#create tibble dat3 that is dat2 with a mean temp column and mass column
+dat3 <- dat2 %>% summarise(
+ temp_mean = mean(Temp),
+ mass = mean(mass),
+)
+```
+```{r loop, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+
+
+#create loop that calculates deltaT for each subject by taking the difference of day and night temps 
+i<- 1
+j<- 2
+n <- 1
+l <- nrow(dat3)
+dat3 <- dat3 %>% add_column(deltaT = 0.00)
+while (n < l){
+    dat3$deltaT[n] <-  abs(dat3$temp_mean[i]-dat3$temp_mean[j])
+    dat3$deltaT[n+1] <-  abs(dat3$temp_mean[i]-dat3$temp_mean[j])
+    i <- i+2
+    j <- j+2
+    n <- n+2
+}
+
+#create tibble dat4 that is dat3 without tod or mean_temp
+dat4 <- dat3 %>% select(-tod,-temp_mean) 
+#add delta_over_mas
+dat4 <- dat4 %>% mutate(delta_over_mass = deltaT/mass)
+
+#log transform dat3
+dat3 <- dat3 %>% mutate_at(c('temp_mean', 'mass','deltaT'),log)
+#create linear model of temp_mean ~ mass with dat3 log-transformed data
+mass.lm <- lm(temp_mean~mass,dat3)
+#create allometric model
+mass.allo <- nls(temp_mean~a*mass^b, start=list(b=1, a=1),data = dat3)
+```
+A plot was created showing the relationship between deltaT and mass for humans. Since the data is log-transformed and the linear model has a slight negative slope, for each increase in percent mass, there is an decrease in percent deltaT.
+```{r,"plot deltaT ~ mass", fig.cap="Plot of delta T vs mass for humans",echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+deltaT_vs_mass_humans_plot <- dat3 %>% ggplot(aes(x=mass,y=deltaT))+geom_point()+geom_smooth(method="lm")+labs(x="log mass",y="log Delta T")
+print(deltaT_vs_mass_humans_plot)
+```
+A linear model of the human data was created as well as a least squares model to evaluate whether the data was isometric or allometric. An AIC was calculated for both models and AICw calculated to determine how the models compared. The AIC value for the allometric model was lower but the AIC scores were nearly equal.
+```{r,"summary of human lm and allo models", echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+summary(mass.lm)
+summary(mass.allo)
+```
+```{r, "AIC for humans", echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+#AICc from the MuMIn package
+mass.aic <- AICc(mass.lm,mass.allo)
+
+#aicw from the geiger package
+mass.aicw <- aicw(mass.aic$AICc)
+print(mass.aicw)
+
+
+#create tibble for human data ungrouped by subject and without subject or delta_over_mass column
+dat_human <- dat4 %>% ungroup(subject) %>% select(-subject, -delta_over_mass)
+#create mammal data tibble with only mass and deltaT columns
+dat_mammal <- mammal %>% select(-Order,-species,-T.high,-T.low)
+#find max and min of all human data
+h_max <- max(dat3$temp_mean)
+h_min <- min(dat3$temp_mean)
+#find mean human mass
+h_mass <- mean(dat3$mass)
+
+#add row with overall human deltaT and mean mass to tibble with mammal data
+dat_combined <- dat_mammal %>% add_row(mass = h_mass, deltaT = h_max - h_min)
+#log transform dat_combined data
+dat_combined_log <- dat_combined %>% mutate_at(c("mass","deltaT"),log)
+```
+We created a plot of combined human and mammal data of Delta T vs Mass which shows that for the combined data set, an increase in mass corresponds to a decrease in Delta T.
+```{r, "graph of human deltaT ~ mass", fig.cap="Combined Mammal and Human Delta T vs Mass",echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+#plot graph of log transformed data from dat_combined_log
+dat_combined_log %>% ggplot(aes(mass,deltaT))+geom_point()+geom_smooth(method="lm")+labs(x="log mass",y="log Delta T")
+```
+
+A linear model of the combined human and mammal data was created as well as a least squares model to evaluate whether the data was isometric or allometric. An AIC was calculated for both models and AICw calculated to determine how the models compared. The AIC value for the linear model was much lower so that is the better model and the data can be thought of as isometric.
+```{r echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+#create a linear model of deltaT ~ mass from dat_combined_log
+both_mass.lm <- lm(deltaT~mass,dat_combined_log)
+#create least squares model estimating b = 1 because data fit linear model well
+both_mass.allo <- nls(deltaT~a*mass^b, start=list(b=1, a=1),data = dat_combined_log)
+#print a summary of linear (isometric) and allometric models
+summary(both_mass.lm)
+summary(both_mass.allo)
+#AIC analysis of two models
+both_mass.aic <- AICc(both_mass.lm,both_mass.allo)
+#aicw to compare the two models
+both_mass.aicw <- aicw(both_mass.aic$AICc)
+print(both_mass.aicw)
+#dat%>% group_by(who) %>%
+ # ggplot()+geom_boxplot(aes(x=activity,y=degC))+facet_grid(.~who)
+
+```
+We created a plot of Delta T vs Mass by Taxonomic Group (Order) to evaluate if Order effectively predicted differences.
+```{r taxonomy, echo=FALSE, warning=FALSE,message=FALSE,error=FALSE,fig.cap="Delta T vs Mass by Order"}
+#log transform mammal data
+mammal <- mammal %>% mutate_at(c('mass', 'deltaT'),log)
+#plot
+order_plot <- mammal %>% ggplot(aes(mass,deltaT,col=Order))+geom_point()+geom_smooth(method="lm")
+print(order_plot)
+```
+We created a linear model that incorporated Order (lm(deltaT~mass*Order)) and performed an anova analysis on it. From the anova analysis, we can see that Order is a signficant predictor of the relationship between mass and Delta T (p = 5.224e-05 < 0.05). This means that taxonomic group with respect to order effectively predicts differences in the Delta T ~ Mass relationship across mammals. 
+```{r order_anova, echo=FALSE, warning=FALSE,message=FALSE,error=FALSE}
+mammal.order.lm <- lm(deltaT~mass*Order,mammal)
+anova(mammal.order.lm)
+```
+Although we can see that Order is a significant predictor of the Delta T ~ Mass relationship, we want to see if it actually fits the data better. To see this, we created two models, one with order taken into account and one without it, and ran an AIC analysis on both models. The one that took order into account had an AIC score more than ten points lower. Therefore, taking Order into account in the linear model results in a better model.
+```{r order_anova_aic, echo=FALSE, warning=FALSE,message=FALSE,error=FALSE}
+mammal.lm <- lm(deltaT~mass,mammal)
+mammal.aic <- AICc(mammal.lm, mammal.order.lm)
+aicw(mammal.aic$AICc)
+```
+
+### Discussion
+
+### Author Contributions
+
+### References
+Chudecka, Monika. "Use of thermal imaging in the evaluation of body surface temperature in various physiological states in patients with different body compositions and varying levels of physical activity." Central european journal of sport sciences and medicine 1.2 (2013).
+
