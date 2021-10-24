@@ -13,6 +13,12 @@ library(MuMIn)
 ```
 
 ### Introduction
+Birds and Mammals must maintain a consistent and elevated body temperature to permit higher metabolic output. Heterothermy in endothermic species is used to modulate metabolic demands and reduce evaporative water loss (Ostrowski, Williams, and Ismael 2003), allowing for energy conservating mechanisms such as hibernation. 
+
+Fluctuations and oscillations of body temperature ($T_b$) in mammals allow for the storing of heat during the day and loss of heat at night. Because larger animals have a greater capacitance to store energy than smaller counterparts, they require a smaller proportion of stored heat release to achieve water-loss savings. Therefore, it is expected that there will be a scaling relationship between the body temperature of humans with differing mass as well as among species with differing mass.
+
+To investigate the scaling relationship of humans with respect to the difference between max daily $T_b$ ($T_{max}$) and minimum daily $T_b$ ($T_{min}$, or TΔ) and mass (W) as well as whether human and other mammals' mean TΔ values scale according to mass, graphs of Delta T vs Mass were constructed in order to visualize the relationship between the variables.
+
 ### Methods
 Before constructing any models or graphs, the data was log-transformed in order to investigate the percentage changes seen in the data rather than the absolute differences. To investigate whether Delta T varied with mass, linear and allometric models were constructed both for the human data only, and for the combined human and mammal data. These models were compared by calculating AIC scores for them and comparing the AIC scores using AICw. The model with the lower AIC is a better predictor; however, if the difference is less than 4, the models are roughly equivalent. Graphs of Delta T vs Mass were also constructed in order to visually see the relationship between the variables.
 
@@ -162,6 +168,7 @@ aicw(mammal.aic$AICc)
 ### Author Contributions
 
 ### References
+
 @article{chudecka2013use,
   title={Use of thermal imaging in the evaluation of body surface temperature in various physiological states in patients with different body compositions and varying levels of physical activity},
   author={Chudecka, Monika},
@@ -171,3 +178,20 @@ aicw(mammal.aic$AICc)
   year={2013},
   publisher={-}
 }
+
+
+Chudecka, M., 2013. Use of thermal imaging in the evaluation of body surface temperature in various physiological states in patients with different body compositions and varying levels of physical activity. Central european journal of sport sciences and medicine, 1(2).
+
+@article{ostrowski2003heterothermy,
+  title={Heterothermy and the water economy of free-living Arabian oryx (Oryx leucoryx)},
+  author={Ostrowski, St{\'e}phane and Williams, Joseph B and Ismael, Khairi},
+  journal={Journal of Experimental Biology},
+  volume={206},
+  number={9},
+  pages={1471--1478},
+  year={2003},
+  publisher={Company of Biologists}
+}
+
+
+Ostrowski, S., Williams, J.B. and Ismael, K., 2003. Heterothermy and the water economy of free-living Arabian oryx (Oryx leucoryx). Journal of Experimental Biology, 206(9), pp.1471-1478.
