@@ -167,5 +167,6 @@ aicw(mammal.aic$AICc)
 ### Discussion
 
 ### Author Contributions
+Subject headings and coding chunks were added by Steven LaFever. Data collection and references were added by Belinda Wang. Data and methods were added by Sarah Figueroa. The introduction was written by Sarah Figueroa and Belinda Wang. The discussion was written by Emma Oss.
 
 ### References
