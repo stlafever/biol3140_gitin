@@ -3,6 +3,7 @@ title: "Project 6 Report"
 author: "Git In"
 date: "10/18/2021"
 output: html_document
+bibliography: BIOL3140_M6.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -13,6 +14,12 @@ library(MuMIn)
 ```
 
 ### Introduction
+Birds and Mammals must maintain a consistent and elevated body temperature to permit higher metabolic output. Heterothermy in endothermic species is used to modulate metabolic demands and reduce evaporative water loss [@ostrowski2003heterothermy], allowing for energy conservating mechanisms such as hibernation. 
+
+Fluctuations and oscillations of body temperature ($T_b$) in mammals allow for the storing of heat during the day and loss of heat at night. Because larger animals have a greater capacitance to store energy than smaller counterparts, they require a smaller proportion of stored heat release to achieve water-loss savings. Therefore, it is expected that there will be a scaling relationship between the body temperature of humans with differing mass as well as among species with differing mass.
+
+To investigate the scaling relationship of humans with respect to the difference between max daily $T_b$ ($T_{max}$) and minimum daily $T_b$ ($T_{min}$, or TΔ) and mass (W) as well as whether human and other mammals' mean TΔ values scale according to mass, graphs of Delta T vs Mass were constructed in order to visualize the relationship between the variables.
+
 ### Methods
 Before constructing any models or graphs, the data was log-transformed in order to investigate the percentage changes seen in the data rather than the absolute differences. To investigate whether Delta T varied with mass, linear and allometric models were constructed both for the human data only, and for the combined human and mammal data. These models were compared by calculating AIC scores for them and comparing the AIC scores using AICw. The model with the lower AIC is a better predictor; however, if the difference is less than 4, the models are roughly equivalent. Graphs of Delta T vs Mass were also constructed in order to visually see the relationship between the variables.
 
@@ -160,7 +167,6 @@ aicw(mammal.aic$AICc)
 ### Discussion
 
 ### Author Contributions
+Subject headings and coding chunks were added by Steven LaFever. Data collection and references were added by Belinda Wang. Data and methods were added by Sarah Figueroa. The introduction was written by Sarah Figueroa and Belinda Wang. The discussion was written by Emma Oss.
 
 ### References
-Chudecka, Monika. "Use of thermal imaging in the evaluation of body surface temperature in various physiological states in patients with different body compositions and varying levels of physical activity." Central european journal of sport sciences and medicine 1.2 (2013).
-

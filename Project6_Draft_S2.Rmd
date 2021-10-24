@@ -94,5 +94,16 @@ print(mass.aicw)
 ### Author Contributions
 
 ### References
-Chudecka, Monika. "Use of thermal imaging in the evaluation of body surface temperature in various physiological states in patients with different body compositions and varying levels of physical activity." Central european journal of sport sciences and medicine 1.2 (2013).
+@article{chudecka2013use,
+  title={Use of thermal imaging in the evaluation of body surface temperature in various physiological states in patients with different body compositions and varying levels of physical activity},
+  author={Chudecka, Monika},
+  journal={Central european journal of sport sciences and medicine},
+  volume={1},
+  number={2},
+  year={2013},
+  publisher={-}
+}
+
+git stash
+Saved working directory and index state WIP on master; d7435644 Feat: configure graphql endpoint
 
