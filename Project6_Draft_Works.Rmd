@@ -3,6 +3,7 @@ title: "Project 6 Report"
 author: "Git In"
 date: "10/18/2021"
 output: html_document
+bibliography: BIOL3140_M6.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -13,7 +14,7 @@ library(MuMIn)
 ```
 
 ### Introduction
-Birds and Mammals must maintain a consistent and elevated body temperature to permit higher metabolic output. Heterothermy in endothermic species is used to modulate metabolic demands and reduce evaporative water loss (Ostrowski, Williams, and Ismael 2003), allowing for energy conservating mechanisms such as hibernation. 
+Birds and Mammals must maintain a consistent and elevated body temperature to permit higher metabolic output. Heterothermy in endothermic species is used to modulate metabolic demands and reduce evaporative water loss [@ostrowski2003heterothermy], allowing for energy conservating mechanisms such as hibernation. 
 
 Fluctuations and oscillations of body temperature ($T_b$) in mammals allow for the storing of heat during the day and loss of heat at night. Because larger animals have a greater capacitance to store energy than smaller counterparts, they require a smaller proportion of stored heat release to achieve water-loss savings. Therefore, it is expected that there will be a scaling relationship between the body temperature of humans with differing mass as well as among species with differing mass.
 
@@ -169,19 +170,6 @@ aicw(mammal.aic$AICc)
 
 ### References
 
-@article{chudecka2013use,
-  title={Use of thermal imaging in the evaluation of body surface temperature in various physiological states in patients with different body compositions and varying levels of physical activity},
-  author={Chudecka, Monika},
-  journal={Central european journal of sport sciences and medicine},
-  volume={1},
-  number={2},
-  year={2013},
-  publisher={-}
-}
-
-
-Chudecka, M., 2013. Use of thermal imaging in the evaluation of body surface temperature in various physiological states in patients with different body compositions and varying levels of physical activity. Central european journal of sport sciences and medicine, 1(2).
-
 @article{ostrowski2003heterothermy,
   title={Heterothermy and the water economy of free-living Arabian oryx (Oryx leucoryx)},
   author={Ostrowski, St{\'e}phane and Williams, Joseph B and Ismael, Khairi},
@@ -193,5 +181,3 @@ Chudecka, M., 2013. Use of thermal imaging in the evaluation of body surface tem
   publisher={Company of Biologists}
 }
 
-
-Ostrowski, S., Williams, J.B. and Ismael, K., 2003. Heterothermy and the water economy of free-living Arabian oryx (Oryx leucoryx). Journal of Experimental Biology, 206(9), pp.1471-1478.
