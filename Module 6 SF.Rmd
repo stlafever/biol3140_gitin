@@ -173,7 +173,7 @@ The relationship between Delta T and mass for a variety of mammals was better pr
 
 ### Author Contributions
 
-The introduction was written by Sarah Figueroa and Belinda Wang. Coding chunks and results were added by Steven LaFever and Emma Oss. Data collection and references were added by Belinda Wang. Methods were written by Steven LaFever. The discussion was written by Emma Oss.
+The introduction was written by Sarah Figueroa and Belinda Wang. Coding chunks and results were added by Steven LaFever and Emma Oss. Data collection and references were added by Belinda Wang. Methods were written by Steven LaFever. The discussion was written by Sarah Figueroa and Emma Oss.
 
 ### References
 
