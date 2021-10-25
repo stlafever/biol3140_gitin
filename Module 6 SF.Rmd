@@ -169,6 +169,7 @@ aicw(mammal.aic$AICc)
 
 This investigation showed that an allometric model was slightly better model for the relationship between Delta T and mass for the human subjects. The allometric model predicts that Delta T decreases slightly based on mass. In Previous studies, it was found that environmental factors limiting energy and water supplies were a better predictor for differences in Delta T than mass [@Hetem2014]. Our data contradict this finding slightly. However, the model is a very weak predictor of the delta t to mass relationship. The estimated response of Delta T to mass, the slope, is not a significant value with a P value of .267. So, the relationship of Delta T to mass for humans in this study has a weak negative correlation. 
 
+The relationship between Delta T and mass for a variety of mammals was better predicted by an isometric model. This linear model has a more dramatic negative slope than when only humans were analyzed. Additionally, the slope of this model is a significant term at p<5.53e-5. However, the R squared value of 0.28 means the prediction is relatively weak. This also goes against some prior studies as stated previously. To ensure that the decrease in Delta T is predicted by mass alone, additional studies would need to be done on other factors that can affect Delta T. 
 
 ### Author Contributions
 
