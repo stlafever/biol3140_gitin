@@ -1,0 +1,159 @@
+---
+title: "Project7_draft"
+author: "GitIn"
+date: "10/24/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse) #always
+library(ape) #for evo analysis
+library(nlme) #ditto
+library(MuMIn) #for AIC
+library(geiger) #for eco analysis
+library(knitr) #for knitting options
+```
+
+### Introduction
+
+### Methods
+
+### Results
+
+```{r echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+
+
+#read in mammal data and process
+mammal <- read_csv("mammal.temp2.csv")
+#add column with deltaT
+mammal <- mammal %>% mutate(deltaT = abs(T.high - T.low))
+#rename mass.g to mass 
+mammal <- rename(mammal, mass = mass.g)
+#log-transform data
+mammal <- mammal %>% mutate_at(c('T.high', 'T.low','deltaT','mass'),log)
+
+
+
+#create plot of T.high vs mass
+T.high_plot <- mammal %>% ggplot(aes(mass,T.high))+geom_point()+geom_smooth(method="lm")
+print(T.high_plot)
+
+#create linear model based on non-phylogenetically corrected data
+T.high.reg <- lm(T.high ~ mass,mammal)
+print(summary(T.high.reg))
+
+
+#create plot of T.low vs mass
+T.low_plot <- mammal %>% ggplot(aes(mass,T.low))+geom_point()+geom_smooth(method="lm")
+print(T.low_plot)
+
+#create linear model based on non-phylogenetically corrected data
+T.low.reg <- lm(T.low ~ mass,mammal)
+print(summary(T.low.reg))
+
+
+#create plot of deltaT vs mass
+deltaT_plot <- mammal %>% ggplot(aes(mass,deltaT))+geom_point()+geom_smooth(method="lm")
+print(deltaT_plot)
+
+#create linear model based on non-phylogenetically corrected data
+deltaT.reg <- lm(deltaT ~ mass,mammal)
+print(summary(deltaT.reg))
+```
+
+```{r tree, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+library(ape)
+library(phytools)
+
+#read in phylogenetic tree
+m.phy <- read.tree("mammal.tree.pruned.txt")
+m.phy$tip.label <- gsub("(\\w+)_(\\w+)","\\1 \\2",m.phy$tip.label)
+
+## Run Pagel's lambda for mass
+mass.data <- mammal$mass
+names(mass.data) <- mammal$species
+print(mass.data)
+mass_lambda <- phylosig(m.phy,mass.data,method="lambda",test=T)
+print(mass_lambda)
+
+## run Pagel's lambda for T.high
+T.high.data <- mammal$T.high
+names(T.high.data) <- mammal$species
+T.high.lambda <- phylosig(m.phy,T.high.data,method="lambda",test=T)
+print(T.high.lambda)
+
+
+## run Pagel's lambda for T.low
+T.low.data <- mammal$T.low
+names(T.low.data) <- mammal$species
+T.low.lambda <- phylosig(m.phy,T.low.data,method="lambda",test=T)
+print(T.low.lambda)
+
+
+## Run Pagel's lambda for deltaT
+deltaT.data <- mammal$deltaT
+names(deltaT.data) <- mammal$species
+deltaT_lambda <- phylosig(m.phy,deltaT.data,method="lambda",test=T)
+print(deltaT_lambda)
+
+
+#Run linear models on for each trait
+```
+Significant phylogenetic signal was found for all traits.
+
+Brownian Motion and Martins models were run on T.low, T.high, and deltaT (T.low BM is line one and T.low OU is line 2). The Martins models were better fits for each parameter.
+```{r phy.models, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+#Run Brownian Motion and OU Models
+#T.low
+T.low.BM.lm <- gls(T.low ~ mass, correlation = corBrownian(1,phy = m.phy,form=~species),data = mammal, method = "ML")
+
+#T.high
+T.high.BM.lm <- gls(T.high ~ mass, correlation = corBrownian(1,phy = m.phy,form=~species),data = mammal, method = "ML")
+
+#deltaT
+deltaT.BM.lm <- gls(deltaT ~ mass, correlation = corBrownian(1,phy = m.phy,form=~species),data = mammal, method = "ML")
+
+#T.low
+T.low.OU.lm <- gls(T.low ~ mass, correlation = corMartins(0.00000001,phy = m.phy,form=~species),data = mammal, method = "ML")
+
+#T.high
+T.high.OU.lm <- gls(T.high ~ mass, correlation = corMartins(0.00000001,phy = m.phy,form=~species),data = mammal, method = "ML")
+
+#deltaT
+deltaT.OU.lm <- gls(deltaT ~ mass, correlation = corMartins(0.00000001,phy = m.phy,form=~species),data = mammal, method = "ML")
+
+Bm.aic <- AICc(T.low.BM.lm,T.low.OU.lm,T.high.BM.lm,T.high.OU.lm,deltaT.BM.lm,deltaT.OU.lm)
+Bm.aicw <- aicw(Bm.aic$AICc)
+print(Bm.aicw)
+
+
+```
+The results from the phylogenetically-corrected models shows that there is not a significant relationship between T high and mass, and T low and mass, when phylogeny is taken into account.
+```{r T.high.coef, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+print("T.low")
+print(coef(T.low.reg))
+print(coef(T.low.OU.lm))
+
+print("T.high")
+print(coef(T.high.reg))
+print(coef(T.high.OU.lm))
+
+print("deltaT")
+print(coef(deltaT.reg))
+print(coef(deltaT.OU.lm))
+
+#print summaries of all OU models since they are the better fits
+print(summary(T.low.OU.lm))
+print(summary(T.high.OU.lm))
+print(summary(deltaT.OU.lm))
+
+```
+## Including Plots
+
+
+## Discussion
+
+## Author Contributions
+
+## References
