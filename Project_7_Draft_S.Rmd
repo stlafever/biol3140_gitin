@@ -1,0 +1,98 @@
+---
+title: "Project7_draft"
+author: "GitIn"
+date: "10/24/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Introduction
+
+### Methods
+
+### Results
+
+```{r echo=FALSE}
+library(geiger)
+library(tidyverse)
+
+#read in mammal data and process
+mammal <- read_csv("mammal.temp2.csv")
+#add column with deltaT
+mammal <- mammal %>% mutate(deltaT = abs(T.high - T.low))
+#rename mass.g to mass 
+mammal <- rename(mammal, mass = mass.g)
+#log-transform data
+mammal <- mammal %>% mutate_at(c('T.high', 'T.low','deltaT','mass'),log)
+
+
+
+#create plot of T.high vs mass
+T.high_plot <- mammal %>% ggplot(aes(mass,T.high))+geom_point()+geom_smooth(method="lm")
+print(T.high_plot)
+
+
+#create plot of T.low vs mass
+T.low_plot <- mammal %>% ggplot(aes(mass,T.low))+geom_point()+geom_smooth(method="lm")
+print(T.low_plot)
+
+
+#create plot of deltaT vs mass
+deltaT_plot <- mammal %>% ggplot(aes(mass,deltaT))+geom_point()+geom_smooth(method="lm")
+print(deltaT_plot)
+```
+
+```{r tree, echo=FALSE}
+library(ape)
+library(phytools)
+
+#read in phylogenetic tree
+m.phy <- read.tree("mammal.tree.pruned.txt")
+m.phy$tip.label <- gsub("(\\w+)_(\\w+)","\\1 \\2",m.phy$tip.label)
+
+## Run Pagel's lambda for mass
+mass.data <- mammal$mass
+names(mass.data) <- mammal$species
+print(mass.data)
+mass_lambda <- phylosig(m.phy,mass.data,method="lambda",test=T)
+print(mass_lambda)
+
+## run Pagel's lambda for T.high
+T.high.data <- mammal$T.high
+names(T.high.data) <- mammal$species
+print(T.high.data)
+T.high.lambda <- phylosig(m.phy,T.high.data,method="lambda",test=T)
+print(T.high.lambda)
+
+
+## run Pagel's lambda for T.low
+T.low.data <- mammal$T.low
+names(T.low.data) <- mammal$species
+print(T.low.data)
+T.low.lambda <- phylosig(m.phy,T.low.data,method="lambda",test=T)
+print(T.low.lambda)
+
+
+## Run Pagel's lambda for deltaT
+deltaT.data <- mammal$deltaT
+names(deltaT.data) <- mammal$species
+print(deltaT.data)
+deltaT_lambda <- phylosig(m.phy,deltaT.data,method="lambda",test=T)
+print(deltaT_lambda)
+
+
+
+```
+
+
+## Including Plots
+
+
+## Discussion
+
+## Author Contributions
+
+## References
