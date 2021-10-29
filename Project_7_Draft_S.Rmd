@@ -17,7 +17,7 @@ Organismal biologists have a tendency to, in great error, forgo including phylog
 
 Data was collected from Mortola and Lanthier [@Mortola2004]. To consider phylogeny, a trimmed down phylogenetic tree of the taxa included in the study was used [@Upham2019]. Log-log regression models were made to compare Tb values as a function of mass. Secondly, to determine the phylogenetic signal of the four variables in the study, Pagel's lambda analysis was used.
 
-##Results 
+###Results 
 
 ```{r echo=FALSE}
 library(geiger)
@@ -90,10 +90,6 @@ print(deltaT_lambda)
 
 
 ```
-
-
-## Including Plots
-
 
 ## Discussion
 
