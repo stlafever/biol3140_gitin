@@ -11,9 +11,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Introduction
 
+Organismal biologists have a tendency to, in great error, forgo including phylogenetic structure in their research analyses [@Freckleton2002]. When discussing traits and how they vary in the context of another, it is important to include some phylogenetic data. This study aims to assess the scaling relationship of maximum and minimum daily body temperature between human and 52 species of non-human mammals [@Mortola2004].
+
 ### Methods
 
-### Results
+Data was collected from Mortola and Lanthier [@Mortola2004]. To consider phylogeny, a trimmed down phylogenetic tree of the taxa included in the study was used [@Upham2019]. Log-log regression models were made to compare Tb values as a function of mass. Secondly, to determine the phylogenetic signal of the four variables in the study, Pagel's lambda analysis was used.
+
+##Results 
 
 ```{r echo=FALSE}
 library(geiger)
