@@ -10,44 +10,92 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### Introduction
-Organismal biologists have a tendency to, in great error, forgo including phylogenetic structure in their research analyses [@Freckleton2002]. When discussing traits and how they vary in the context of another, it is important to include some phylogenetic data. This study aims to assess the scaling relationship of maximum and minimum daily body temperature between human and 52 species of non-human mammals [@Mortola2004]. 
+
+Organismal biologists have a tendency to, in great error, forgo including phylogenetic structure in their research analyses [@Freckleton2002]. When discussing traits and how they vary in the context of another, it is important to include some phylogenetic data. This study aims to assess the scaling relationship of maximum and minimum daily body temperature between human and 52 species of non-human mammals [@Mortola2004].
 
 ### Methods
 
-### Results
+Data was collected from Mortola and Lanthier [@Mortola2004]. To consider phylogeny, a trimmed down phylogenetic tree of the taxa included in the study was used [@Upham2019]. Log-log regression models were made to compare Tb values as a function of mass. Secondly, to determine the phylogenetic signal of the four variables in the study, Pagel's lambda analysis was used.
+
+###Results 
 
 ```{r echo=FALSE}
 library(geiger)
+library(tidyverse)
 
-## Loading required package: ape
+#read in mammal data and process
+mammal <- read_csv("mammal.temp2.csv")
+#add column with deltaT
+mammal <- mammal %>% mutate(deltaT = abs(T.high - T.low))
+#rename mass.g to mass 
+mammal <- rename(mammal, mass = mass.g)
+#log-transform data
+mammal <- mammal %>% mutate_at(c('T.high', 'T.low','deltaT','mass'),log)
+
+
+
+#create plot of T.high vs mass
+T.high_plot <- mammal %>% ggplot(aes(mass,T.high))+geom_point()+geom_smooth(method="lm")
+print(T.high_plot)
+
+
+#create plot of T.low vs mass
+T.low_plot <- mammal %>% ggplot(aes(mass,T.low))+geom_point()+geom_smooth(method="lm")
+print(T.low_plot)
+
+
+#create plot of deltaT vs mass
+deltaT_plot <- mammal %>% ggplot(aes(mass,deltaT))+geom_point()+geom_smooth(method="lm")
+print(deltaT_plot)
+```
+
+```{r tree, echo=FALSE}
+library(ape)
+library(phytools)
+
+#read in phylogenetic tree
 m.phy <- read.tree("mammal.tree.pruned.txt")
 m.phy$tip.label <- gsub("(\\w+)_(\\w+)","\\1 \\2",m.phy$tip.label)
 m.phy0<- rescale(m.phy, model = "lambda", 0)
 m.phy5 <- rescale(m.phy, model = "lambda", 0.5)
+
 par(mfcol = c(1, 3))
 plot(m.phy)
 plot(m.phy5)
 plot(m.phy0)
 
-library(ape)
-library(phytools)
+## Run Pagel's lambda for mass
+mass.data <- mammal$mass
+names(mass.data) <- mammal$species
+print(mass.data)
+mass_lambda <- phylosig(m.phy,mass.data,method="lambda",test=T)
+print(mass_lambda)
 
-## Loading required package: maps
-sim.trait <- runif(Ntip(m.phy))
-names(sim.trait) <- m.phy$tip.label
-print(sim.trait)
-sim.sig <- phylosig(m.phy,sim.trait,method="lambda",test=T)
-print(sim.sig)
-
-```
+## run Pagel's lambda for T.high
+T.high.data <- mammal$T.high
+names(T.high.data) <- mammal$species
+print(T.high.data)
+T.high.lambda <- phylosig(m.phy,T.high.data,method="lambda",test=T)
+print(T.high.lambda)
 
 
-## Including Plots
+## run Pagel's lambda for T.low
+T.low.data <- mammal$T.low
+names(T.low.data) <- mammal$species
+print(T.low.data)
+T.low.lambda <- phylosig(m.phy,T.low.data,method="lambda",test=T)
+print(T.low.lambda)
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+## Run Pagel's lambda for deltaT
+deltaT.data <- mammal$deltaT
+names(deltaT.data) <- mammal$species
+print(deltaT.data)
+deltaT_lambda <- phylosig(m.phy,deltaT.data,method="lambda",test=T)
+print(deltaT_lambda)
+
+
+
 ```
 
 ## Discussion
