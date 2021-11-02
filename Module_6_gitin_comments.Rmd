@@ -1,0 +1,272 @@
+---
+title: "Module 6 Report"
+author: "Git In"
+date: "10/18/2021"
+output: html_document
+bibliography: BIOL3140.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(geiger)
+library(MuMIn)
+```
+
+<!-- for comments -->
+<style>
+div.comment pre { background-color:#ffbbbb; }
+div.comment pre.r { background-color:#ffbbbb; }
+div.comment {color: red;}
+</style>
+
+### Introduction
+
+Humans are included in a class of organisms called endotherms, which are able to maintain their body temperature at a relatively constant level even when ambient temperatures are low. This was an important evolutionary development for mammals and fish since it allows for higher metabolic outputs [@Ivanov2005]. Mammals also engage in some level of heterothermy where temperature can vary across the body (regionally) or over time (temporally) [@Hetem2014]. Heterothermy in endothermic species is used to modulate metabolic demands and reduce evaporative water loss [@ostrowski2003heterothermy], allowing for energy conservation mechanisms such as hibernation. 
+
+To allow for the storing of heat during the day and loss of heat at night, body temperature in mammals and many other animals varies in temporal self-sustaining oscillations typically dependent on the sleep cycle [@Aschoff1983]. Because larger animals have a greater capacitance to store energy than smaller counterparts, it would follow that they require a smaller proportion of stored heat release to achieve water-loss savings. Therefore, it is expected that there will be a scaling relationship between the body temperature of humans with differing mass as well as among species with differing mass. However, some studies have shown that variations in Delta T across species is more closely related to environmental factors limiting water and energy supply as opposed to body mass. In a previous study, that the amplitude between the maximum body temperature and minimum body temperature in a 24 hour period was independent of body mass even when phylogeny was taken into account [@Hetem2014]. 
+
+This study aims to asses whether body mass affects the level of heterothermy as measured by the difference in the maximum and minimum body temperature in a daily oscillation. To investigate this, graphs of Delta T vs Mass were constructed in order to visualize the relationship between the variables.
+
+<div class="comment">
+Great intro!!
+</div>
+### Methods
+Before constructing any models or graphs, the data was log-transformed in order to investigate the percentage changes seen in the data rather than the absolute differences. To investigate whether Delta T varied with mass, linear and allometric models were constructed both for the human data only, and for the combined human and mammal data. These models were compared by calculating AIC scores for them and comparing the AIC scores using AICw. The model with the lower AIC is a better predictor; however, if the difference is less than 4, the models are roughly equivalent. Graphs of Delta T vs Mass were also constructed in order to visually see the relationship between the variables.
+
+<div class="comment">
+What about the phylogenectic models?
+</div>
+
+### Results
+```{r results, include=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+f <- list.files(pattern = "night|day") 
+f.l <- list()
+for(i in f){
+  f.i <- read_csv(i)
+  met.dat<- unlist(strsplit(i,"_")) #split of the filename string
+  class <- met.dat[1] #store the first element (class name&year)
+  sub <- met.dat[2] %>% tolower()#store second element (subject number)
+  t <- met.dat[3] %>% tolower()#store third element (day or night)
+  mass <- as.double(gsub(".csv","",met.dat[4])) #store fourth element (mass), dropping .csv with gsub
+ f.i <- f.i[,ncol(f.i)]# take only one column
+ colnames(f.i) <- "Temp"
+ f.l[[i]] <- f.i%>%
+   mutate(N=1:n(),Temp=as.numeric(Temp),subject=sub,tod=t,mass=mass)
+}
+dat <- do.call(rbind,f.l) 
+
+#read in mammal data and process
+mammal <- read_csv("mammal.temp.csv")
+#add column with deltaT
+mammal <- mammal %>% mutate(deltaT = abs(T.high - T.low))
+#rename mass.g to mass to be consistent with human data
+mammal <- rename(mammal, mass = mass.g)
+
+#group dat by subject, tod, mass and save as dat2
+dat2 <- dat %>% group_by(subject,tod,mass)
+
+#create tibble dat3 that is dat2 with a mean temp column and mass column
+dat3 <- dat2 %>% summarise(
+ temp_mean = mean(Temp),
+ mass = mean(mass),
+)
+```
+
+
+
+```{r loop, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+
+
+#create loop that calculates deltaT for each subject by taking the difference of day and night temps 
+i<- 1
+j<- 2
+n <- 1
+l <- nrow(dat3)
+dat3 <- dat3 %>% add_column(deltaT = 0.00)
+while (n < l){
+    dat3$deltaT[n] <-  abs(dat3$temp_mean[i]-dat3$temp_mean[j])
+    dat3$deltaT[n+1] <-  abs(dat3$temp_mean[i]-dat3$temp_mean[j])
+    i <- i+2
+    j <- j+2
+    n <- n+2
+}
+
+#create tibble dat4 that is dat3 without tod or mean_temp
+dat4 <- dat3 %>% select(-tod,-temp_mean) 
+#add delta_over_mas
+dat4 <- dat4 %>% mutate(delta_over_mass = deltaT/mass)
+
+#log transform dat3
+dat3 <- dat3 %>% mutate_at(c('temp_mean', 'mass','deltaT'),log)
+#create linear model of temp_mean ~ mass with dat3 log-transformed data
+mass.lm <- lm(temp_mean~mass,dat3)
+#create allometric model
+mass.allo <- nls(temp_mean~a*mass^b, start=list(b=1, a=1),data = dat3)
+```
+
+
+<div class="comment">
+Wow, that's some nifty work with the loop.
+
+But, we could have used the piping operations we learned about to get deltaT. You're missing the importance of `pivot_wider()`.
+
+```{r}
+#dat3 to keep your naming convention
+dat3 <- dat%>%
+  group_by(subject,tod,mass)%>%
+  na.omit()%>%
+  filter(N>0.5*max(N))%>%
+  summarize(m.temp=mean(Temp),n=n())%>%
+  pivot_wider(names_from=tod,values_from = c(m.temp,n))%>%
+  mutate(deltaT=abs(m.temp_day-m.temp_night))
+
+```
+</div>
+
+
+A plot was created showing the relationship between deltaT and mass for humans. Since the data is log-transformed and the linear model has a slight negative slope, for each increase in percent mass, there is an decrease in percent deltaT.
+
+```{r,"plot deltaT ~ mass", fig.cap="Plot of delta T vs mass for humans",echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+deltaT_vs_mass_humans_plot <- dat3 %>% ggplot(aes(x=mass,y=deltaT))+geom_point()+geom_smooth(method="lm")+labs(x="log mass",y="log Delta T")
+print(deltaT_vs_mass_humans_plot)
+```
+
+A linear model of the human data was created as well as a least squares model to evaluate whether the data was isometric or allometric. An AIC was calculated for both models and AICw calculated to determine how the models compared. The AIC value for the allometric model was lower but the AIC scores were nearly equal.
+
+<div class="comment">
+Much of this paragraph above belongs in the methods.
+
+</div>
+```{r,"summary of human lm and allo models", echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+summary(mass.lm)
+summary(mass.allo)
+```
+
+<div class="comment">
+These model tables are ugly to print and they don't have a caption. Try the `broom` package which tidys model output and use `kable`
+
+```{r}
+require(broom)
+mass.lm%>%tidy%>%
+  knitr::kable(caption="some informative caption")
+```
+
+</div>
+
+```{r, "AIC for humans", echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+#AICc from the MuMIn package
+mass.aic <- AICc(mass.lm,mass.allo)
+
+#aicw from the geiger package
+mass.aicw <- aicw(mass.aic$AICc)
+print(mass.aicw)
+
+
+#create tibble for human data ungrouped by subject and without subject or delta_over_mass column
+dat_human <- dat4 %>% ungroup(subject) %>% select(-subject, -delta_over_mass)
+#create mammal data tibble with only mass and deltaT columns
+dat_mammal <- mammal %>% select(-Order,-species,-T.high,-T.low)
+#find max and min of all human data
+h_max <- max(dat3$temp_mean)
+h_min <- min(dat3$temp_mean)
+#find mean human mass
+h_mass <- mean(dat3$mass)
+
+#add row with overall human deltaT and mean mass to tibble with mammal data
+dat_combined <- dat_mammal %>% add_row(mass = h_mass, deltaT = h_max - h_min)
+#log transform dat_combined data
+dat_combined_log <- dat_combined %>% mutate_at(c("mass","deltaT"),log)
+```
+
+<div class="comment">
+Again, I like the effort here to combine data, but it woulda been much easier with the pipe.
+
+Using my dat3 to start....
+
+
+```{r}
+human.dat <- dat3%>%
+  ungroup()%>%
+  summarize(deltaT=mean(deltaT,na.rm = TRUE),mass=mean(mass*1000,na.rm = TRUE),species="Homo sapians",Order="Primata")%>%
+  dplyr::select(Order,species,mass,deltaT)
+
+dat_combined <- mammal%>%
+  dplyr::select(Order,species,mass,deltaT)%>%
+  add_row(human.dat)
+
+#log transform dat_combined data
+dat_combined_log <- dat_combined %>% mutate_at(c("mass","deltaT"),log)
+```
+
+</div>
+
+We created a plot of combined human and mammal data of Delta T vs Mass which shows that for the combined data set, an increase in mass corresponds to a decrease in Delta T.
+```{r, "graph of human deltaT ~ mass", fig.cap="Combined Mammal and Human Delta T vs Mass",echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+#plot graph of log transformed data from dat_combined_log
+dat_combined_log %>% ggplot(aes(mass,deltaT))+geom_point()+geom_smooth(method="lm")+labs(x="log mass",y="log Delta T")
+```
+
+A linear model of the combined human and mammal data was created as well as a least squares model to evaluate whether the data was isometric or allometric. An AIC was calculated for both models and AICw calculated to determine how the models compared. The AIC value for the linear model was much lower so that is the better model and the data can be thought of as isometric.
+```{r echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+#create a linear model of deltaT ~ mass from dat_combined_log
+both_mass.lm <- lm(deltaT~mass,dat_combined_log)
+#create least squares model estimating b = 1 because data fit linear model well
+both_mass.allo <- nls(deltaT~a*mass^b, start=list(b=1, a=1),data = dat_combined_log)
+#print a summary of linear (isometric) and allometric models
+summary(both_mass.lm)
+summary(both_mass.allo)
+#AIC analysis of two models
+both_mass.aic <- AICc(both_mass.lm,both_mass.allo)
+#aicw to compare the two models
+both_mass.aicw <- aicw(both_mass.aic$AICc)
+print(both_mass.aicw)
+#dat%>% group_by(who) %>%
+ # ggplot()+geom_boxplot(aes(x=activity,y=degC))+facet_grid(.~who)
+
+```
+
+<div class="comment">
+Again, we need a nice table with a caption. Use `kable`.
+</div>
+
+We created a plot of Delta T vs Mass by Taxonomic Group (Order) to evaluate if Order effectively predicted differences.
+```{r taxonomy, echo=FALSE, warning=FALSE,message=FALSE,error=FALSE,fig.cap="Delta T vs Mass by Order"}
+#log transform mammal data
+mammal <- mammal %>% mutate_at(c('mass', 'deltaT'),log)
+#plot
+order_plot <- mammal %>% ggplot(aes(mass,deltaT,col=Order))+geom_point()+geom_smooth(method="lm")
+print(order_plot)
+```
+We created a linear model that incorporated Order (lm(deltaT~mass*Order)) and performed an anova analysis on it. From the anova analysis, we can see that Order is a signficant predictor of the relationship between mass and Delta T (p = 5.224e-05 < 0.05). This means that taxonomic group with respect to order effectively predicts differences in the Delta T ~ Mass relationship across mammals. 
+
+```{r order_anova, echo=FALSE, warning=FALSE,message=FALSE,error=FALSE}
+mammal.order.lm <- lm(deltaT~mass*Order,mammal)
+anova(mammal.order.lm)
+```
+
+Although we can see that Order is a significant predictor of the Delta T ~ Mass relationship, we want to see if it actually fits the data better. To see this, we created two models, one with order taken into account and one without it, and ran an AIC analysis on both models. The one that took order into account had an AIC score more than ten points lower. Therefore, taking Order into account in the linear model results in a better model.
+
+<div class="comment">
+Well done using AIC in this context!
+</div>
+```{r order_anova_aic, echo=FALSE, warning=FALSE,message=FALSE,error=FALSE}
+mammal.lm <- lm(deltaT~mass,mammal)
+mammal.aic <- AICc(mammal.lm, mammal.order.lm)
+aicw(mammal.aic$AICc)
+```
+
+### Discussion
+
+This investigation showed that an allometric model was slightly better model for the relationship between Delta T and mass for the human subjects. The allometric model predicts that Delta T decreases slightly based on mass. In Previous studies, it was found that environmental factors limiting energy and water supplies were a better predictor for differences in Delta T than mass [@Hetem2014]. Our data contradict this finding slightly. However, the model is a very weak predictor of the delta t to mass relationship. The estimated response of Delta T to mass, the slope, is not a significant value with a P value of .267. So, the relationship of Delta T to mass for humans in this study has a weak negative correlation. 
+
+The relationship between Delta T and mass for a variety of mammals was better predicted by an isometric model. This linear model has a more dramatic negative slope than when only humans were analyzed. Additionally, the slope of this model is a significant term at p<5.53e-5. However, the R squared value of 0.28 means the prediction is relatively weak. This also goes against some prior studies as stated previously. To ensure that the decrease in Delta T is predicted by mass alone, additional studies would need to be done on other factors that can affect Delta T. 
+
+One of these factors can be phylogenetic information. When the mammals were grouped by order, anova analysis showed that order was a significant factor in predicting the Delta T to mass relationship since p = 5.224e-05 < 0.05. This means that there are more factors that effect Delta T in mammals than just mass. In further studies, factors such as climate and water supply of mammals could be investigated to further understand what predicts the level of heterothermy. 
+
+### Author Contributions
+
+The introduction was written by Sarah Figueroa and Belinda Wang. Coding chunks and results were added by Steven LaFever and Emma Oss. Data collection and references were added by Belinda Wang. Methods were written by Steven LaFever. The discussion was written by Sarah Figueroa and Emma Oss.
+
+### References
+
