@@ -17,7 +17,7 @@ library(knitr) #for knitting options
 ```
 
 ### Introduction
-Organismal biologists have a tendency to, in great error, forgo including phylogenetic structure in their research analyses [@Freckleton2002]. When discussing traits and how they vary in the context of another, it is important to include some phylogenetic data. This study aims to assess the scaling relationship of maximum and minimum daily body temperature between human and 52 species of non-human mammals [@MortolaLanthier2004].
+Organismal biologists have a tendency to, in great error, forgo including phylogenetic structure in their research analyses [@Freckleton2002]. When discussing traits and how they vary in the context of another, it is important to include some phylogenetic data. Species cannot be considered to be statistically independent since they are interrelated in a structured phylogeny  [@Felsenstein1985]. This isn't always possible depending on the availability of phylogenetic data, but with advances in evolutionary biology, this issue is becoming less prevalent. This study aims to assess the scaling relationship of maximum and minimum daily body temperature between human and 52 species of non-human mammals [@MortolaLanthier2004].Then, this relationship can be assessed in a phylogenetic context using phylogenetic least squares under Brownian and Ornstein-Uhlenbeck models. The phylogenetic signal is assessed using Pagel's lamba, a way to measure how much correlations in traits reflect their shared evolutionary history [@Pagel1999]. 
 
 ### Methods
 
@@ -36,8 +36,7 @@ mammal <- rename(mammal, mass = mass.g)
 #log-transform data
 mammal <- mammal %>% mutate_at(c('T.high', 'T.low','deltaT','mass'),log)
 ```
-
-We were able to reproduce the scaling relationships of Mortola and Lanthier (2004) for Tmin, Tmax, and T delta. For T.high, the intercept estimate was 3.648 and the slope estimate was -0.00103. The model had a significant relationship between intercept and T.high but the slope was not signficant.
+We were able to reproduce the scaling relationships of Mortola and Lanthier (2004) for Tmin, Tmax, and T delta. For T.high, the intercept estimate was 3.648 and the slope estimate was -0.00103. The model had a significant relationship between intercept and T.high but the slope was not signficant (Tables 3 & 4, Row 1).
 
 ```{r t.high,echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
 
@@ -47,10 +46,11 @@ print(T.high_plot)
 
 #create linear model based on non-phylogenetically corrected data
 T.high.reg <- lm(T.high ~ mass,mammal)
-print(summary(T.high.reg))
 ```
 
-For T low, the intercept estimate was 3.577 and the slope estimate was 0.00309. Both the intercept and slope (mass) varied significantly with respect to T low.
+Figure 1: Linear model of T high vs mass on non-phylogenetically corrected log-transformed data
+
+For T low, the intercept estimate was 3.577 and the slope estimate was 0.00309. Both the intercept and slope (mass) varied significantly with respect to T low. (Tables 3 & 4, Row 3).
 
 ```{r t.low,echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
 
@@ -60,10 +60,11 @@ print(T.low_plot)
 
 #create linear model based on non-phylogenetically corrected data
 T.low.reg <- lm(T.low ~ mass,mammal)
-print(summary(T.low.reg))
 ```
 
-For T delta, the intercept estimate was 1.071 and the slope estimate was -0.115. Both the intercept and slope (mass) varied significantly with T delta.
+Figure 2: Linear model of T low vs mass on non-phylogenetically corrected log-transformed data
+
+For T delta, the intercept estimate was 1.071 and the slope estimate was -0.115. Both the intercept and slope (mass) varied significantly with T delta. (Tables 3 & 4, Row 5).
 
 ```{r deltaT.section,echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
 
@@ -73,10 +74,13 @@ print(deltaT_plot)
 
 #create linear model based on non-phylogenetically corrected data
 deltaT.reg <- lm(deltaT ~ mass,mammal)
-print(summary(deltaT.reg))
 ```
 
+Figure 3: Linear model of T delta vs mass on non-phylogenetically corrected log-transformed data
+
 Significant phylogenetic signal was found for all traits by running Pagel's Lambda. 
+
+Table 1: Pagel's Lambda Values
 
 ```{r tree, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
 library(ape)
@@ -121,7 +125,10 @@ print(lambda_tibble)
 #Run linear models on for each trait
 ```
 
-Brownian Motion and Martins models were run on T low, T high, and T delta. The Martins models were better fits for each parameter.
+Brownian Motion (BM) and Ornstein-Uhlenbeck (OU) models were run on T low, T high, and T delta. The OU models were better fits for each parameter.
+
+
+Table 2: AIC Scores of BM and OU Models
 
 ```{r phy.models, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
 #Run Brownian Motion and OU Models
@@ -151,7 +158,9 @@ print(Bm.aicw)
 
 ```
 
-The results from the phylogenetically-corrected models shows that there is not a significant relationship between T high and mass, and T low and mass, when phylogeny is taken into account.
+We created linear regressions for both the non-phylogentically-informed (NPI) and phylogenetically-informed (OU) models and calculated the estimated intercepts and slope coefficiencts. The table below shows the data for the intercepts. The values for intercepts were equal in the NPI and OU model for T low and T high and the intercepts were significant. For T delta, the intercepts were different and the relationship was significant for the NPI model but not the OU model.
+
+Table 3: Intercept data for NPI vs OU models
 
 ```{r T.high.coef, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
 T.low.coef <- coef(T.low.reg)
@@ -165,20 +174,27 @@ deltaT.coef <- coef(deltaT.reg)
 deltaT.OU.coef <- coef(deltaT.OU.lm)
 
 #print summaries of all OU models since they are the better fits
-print(anova(T.low.OU.lm))
-print(anova(T.high.OU.lm))
-print(anova(deltaT.OU.lm))
-a <- anova(deltaT.OU.lm)
-b <- a %>% select(c('p-value'))
-c <- b[[1]][[1]]
-print(c)
+la <- anova(T.low.OU.lm)[, c('p-value')]
+ha <- anova(T.high.OU.lm)[, c('p-value')]
+da <- anova(deltaT.OU.lm)[, c('p-value')]
+la2 <- summary(T.low.reg)$coefficients[, c('Pr(>|t|)')]
+ha2 <- summary(T.high.reg)$coefficients[, c('Pr(>|t|)')]
+da2 <- summary(deltaT.reg)$coefficients[, c('Pr(>|t|)')]
 
 #create table with values for intercept in both models and their p values
-i_tibble <- tibble('Variable' = c('T low', 'T low', 'T high', 'T high', 'T delta', 'T delta'), 'Model' = c('NPI', 'OU', 'NPI', 'OU', 'NPI', 'OU'), 'Value' = c(T.low.coef[1], T.low.OU.coef[1], T.high.coef[1], T.high.OU.coef[1], deltaT.coef[1], deltaT.OU.coef[1]))
-print(i_tibble)
+i_tibble <- tibble('Variable' = c('T low', 'T low', 'T high', 'T high', 'T delta', 'T delta'), 'Model' = c('NPI', 'OU', 'NPI', 'OU', 'NPI', 'OU'), 'Intercept' = c(T.low.coef[1], T.low.OU.coef[1], T.high.coef[1], T.high.OU.coef[1], deltaT.coef[1], deltaT.OU.coef[1]), 'P-value' = c(la2[[1]],la[[1]],ha2[[1]],ha[[1]],da2[[1]],da[[1]]), 'Signficant'=c('Yes','Yes','Yes','Yes','Yes','No'))
 
+print(i_tibble)
+```
+
+The table below summarizes the slope coefficient data from the non-phylogentically-informed (NPI) and phylogenetically-informed (OU) models. The values for slope coefficient were different in the NPI and OU model for all three variables and for T low, the phylogenetically-informed model showed no significance where the NPI model showed significance. In other words, when you consider phylogeny, the significant correlation between T low and mass that Mortola and Lanthier found does not exist.
+
+
+Table 4: Slope Coefficients for NPI vs OU Models
+
+```{r mass_tibble, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
 #create table with values for mass in both models and their p values
-m_tibble <- tibble('Variable' = c('T low', 'T low', 'T high', 'T high', 'T delta', 'T delta'), 'Model' = c('NPI', 'OU', 'NPI', 'OU', 'NPI', 'OU'), 'Value' = c(T.low.coef[2], T.low.OU.coef[2], T.high.coef[2], T.high.OU.coef[2], deltaT.coef[2], deltaT.OU.coef[2]), 'P-value' = c())
+m_tibble <- tibble('Variable' = c('T low', 'T low', 'T high', 'T high', 'T delta', 'T delta'), 'Model' = c('NPI', 'OU', 'NPI', 'OU', 'NPI', 'OU'), 'Slope' = c(T.low.coef[2], T.low.OU.coef[2], T.high.coef[2], T.high.OU.coef[2], deltaT.coef[2], deltaT.OU.coef[2]), 'P-value' = c(la2[[2]],la[[2]],ha2[[2]],ha[[2]],da2[[2]],da[[2]]), 'Signficant'=c('Yes','No','No','No','Yes','Yes'))
 print(m_tibble)
 
 ```
