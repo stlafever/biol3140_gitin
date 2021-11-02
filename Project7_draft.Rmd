@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Introduction
 
-Organismal biologists have a tendency to, in great error, forgo including phylogenetic structure in their research analyses [@Freckleton2002]. When discussing traits and how they vary in the context of another, it is important to include some phylogenetic data. This study aims to assess the scaling relationship of maximum and minimum daily body temperature between human and 52 species of non-human mammals [@Mortola2004].
+Organismal biologists have a tendency to, in great error, forget to include phylogenetic structure in their research analyses [@Freckleton2002]. When discussing traits and how they vary in the context of another, it is important to include some phylogenetic data. This study aims to assess the scaling relationship of maximum and minimum daily body temperature between human and 52 species of non-human mammals [@Mortola2004].
 
 ### Methods
 
