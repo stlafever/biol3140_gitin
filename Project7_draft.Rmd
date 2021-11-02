@@ -1,27 +1,39 @@
 ---
-title: "Project7_draft"
-author: "GitIn"
-date: "10/24/2021"
+title: "Project 7"
+author: "Git In"
+date: "11/02/2021"
 output: html_document
+bibliography: BIOL3140.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse) #always
+library(ape) #for evo analysis
+library(nlme) #ditto
+library(MuMIn) #for AIC
+library(geiger) #for eco analysis
+library(knitr) #for knitting options
+require(broom)
 ```
 
 ### Introduction
 
-Organismal biologists have a tendency to, in great error, forget to include phylogenetic structure in their research analyses [@Freckleton2002]. When discussing traits and how they vary in the context of another, it is important to include some phylogenetic data. This study aims to assess the scaling relationship of maximum and minimum daily body temperature between human and 52 species of non-human mammals [@Mortola2004].
+Organismal biologists have a tendency to, in great error, forget to include phylogenetic structure in their research analyses [@Freckleton2002]. When discussing traits and how they vary in the context of another, it is important to include some phylogenetic data. This study aims to assess the scaling relationship of maximum and minimum daily body temperature between human and 52 species of non-human mammals [@MortolaLanthier2004].
+
 
 ### Methods
 
-Data was collected from Mortola and Lanthier [@Mortola2004]. To consider phylogeny, a trimmed down phylogenetic tree of the taxa included in the study was used [@Upham2019]. Log-log regression models were made to compare Tb values as a function of mass. Secondly, to determine the phylogenetic signal of the four variables in the study, Pagel's lambda analysis was used.
+Data was collected from Mortola and Lanthier [@MortolaLanthier2004]. To consider phylogeny, a trimmed down phylogenetic tree of the taxa included in the study was used [@Upham2019]. Log-log regression models were made to compare Tb values (T low, T high, and T delta) as a function of mass. We also reproduced the graphs from the [@MortolaLanthier2004] paper.
 
-### Results 
+Secondly, to determine the phylogenetic signal of the four variables in the study, Pagel's lambda analysis was used. Pagel's lambda is a method that mutes phylogenetic signal by lengthening branch tips to determine how much of a trait is driven by phylogeny. A lambda value of zero means there is no phylogenetic signal and a lambda value of one means that the data conforms to a Brownian Motion Model.
 
-```{r echo=FALSE}
-library(geiger)
-library(tidyverse)
+After running the Pagel's lambda analysis. Brownian Motion (BM) and Ornstein-Uhlenbeck (OU) models were run on T low, T high, and T delta to see which phylogenetically-informed model fit the data better. The OU models were better fits for each parameter. Therefore, the OU models were used in further tests. We created linear regressions for both the non-phylogentically-informed (NPI) and phylogenetically-informed (OU) models and calculated the estimated intercepts and slope coefficiencts (Tables 3&4).
+
+
+### Results
+
+```{r data, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
 
 #read in mammal data and process
 mammal <- read_csv("mammal.temp2.csv")
@@ -31,76 +43,164 @@ mammal <- mammal %>% mutate(deltaT = abs(T.high - T.low))
 mammal <- rename(mammal, mass = mass.g)
 #log-transform data
 mammal <- mammal %>% mutate_at(c('T.high', 'T.low','deltaT','mass'),log)
+```
+We were able to reproduce the scaling relationships of Mortola and Lanthier (2004) for Tmin, Tmax, and T delta. 
 
-
-
-#create plot of T.high vs mass
-T.high_plot <- mammal %>% ggplot(aes(mass,T.high))+geom_point()+geom_smooth(method="lm")
-print(T.high_plot)
-
+```{r t.low,echo=FALSE,warning=FALSE,message=FALSE,error=FALSE, fig.cap="Figure 1: Graph of T low vs mass"}
 
 #create plot of T.low vs mass
-T.low_plot <- mammal %>% ggplot(aes(mass,T.low))+geom_point()+geom_smooth(method="lm")
+T.low_plot <- mammal %>% ggplot(aes(mass,T.low))+geom_point()+geom_smooth(method="lm")+ggtitle("T low vs mass")+theme(plot.title=element_text(hjust=0.5))
 print(T.low_plot)
 
-
-#create plot of deltaT vs mass
-deltaT_plot <- mammal %>% ggplot(aes(mass,deltaT))+geom_point()+geom_smooth(method="lm")
-print(deltaT_plot)
+#create linear model based on non-phylogenetically corrected data
+T.low.reg <- lm(T.low ~ mass,mammal)
 ```
 
-```{r tree, echo=FALSE}
+```{r t.high,echo=FALSE,warning=FALSE,message=FALSE,error=FALSE, fig.cap="Figure 2: Graph of T high vs mass"}
+
+#create plot of T.high vs mass
+T.high_plot <- mammal %>% ggplot(aes(mass,T.high))+geom_point()+geom_smooth(method="lm")+ggtitle("T high vs mass")+theme(plot.title=element_text(hjust=0.5))
+print(T.high_plot)
+
+#create linear model based on non-phylogenetically corrected data
+T.high.reg <- lm(T.high ~ mass,mammal)
+```
+
+
+```{r deltaT.section,echo=FALSE,warning=FALSE,message=FALSE,error=FALSE,fig.cap="Figure 3: Graph of T delta vs mass"}
+
+#create plot of deltaT vs mass
+deltaT_plot <- mammal %>% ggplot(aes(mass,deltaT))+geom_point()+geom_smooth(method="lm")+ggtitle("T delta vs mass")+theme(plot.title=element_text(hjust=0.5))
+print(deltaT_plot)
+
+#create linear model based on non-phylogenetically corrected data
+deltaT.reg <- lm(deltaT ~ mass,mammal)
+```
+
+
+
+
+Significant phylogenetic signal was found for all traits by running Pagel's Lambda and phylogenetic signal was high (close to 1).
+
+
+```{r tree, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
 library(ape)
 library(phytools)
 
 #read in phylogenetic tree
 m.phy <- read.tree("mammal.tree.pruned.txt")
 m.phy$tip.label <- gsub("(\\w+)_(\\w+)","\\1 \\2",m.phy$tip.label)
-m.phy0<- rescale(m.phy, model = "lambda", 0)
-m.phy5 <- rescale(m.phy, model = "lambda", 0.5)
-
-par(mfcol = c(1, 3))
-plot(m.phy)
-plot(m.phy5)
-plot(m.phy0)
 
 ## Run Pagel's lambda for mass
 mass.data <- mammal$mass
 names(mass.data) <- mammal$species
-print(mass.data)
-mass_lambda <- phylosig(m.phy,mass.data,method="lambda",test=T)
-print(mass_lambda)
+mass.lambda <- phylosig(m.phy,mass.data,method="lambda",test=T)
+mass.lambda.p <- mass.lambda$P
+mass.lambda.lambda <- mass.lambda$lambda
+
 
 ## run Pagel's lambda for T.high
 T.high.data <- mammal$T.high
 names(T.high.data) <- mammal$species
-print(T.high.data)
 T.high.lambda <- phylosig(m.phy,T.high.data,method="lambda",test=T)
-print(T.high.lambda)
+T.high.lambda.p <- T.high.lambda$P
+T.high.lambda.lambda <- T.high.lambda$lambda
 
 
 ## run Pagel's lambda for T.low
 T.low.data <- mammal$T.low
 names(T.low.data) <- mammal$species
-print(T.low.data)
 T.low.lambda <- phylosig(m.phy,T.low.data,method="lambda",test=T)
-print(T.low.lambda)
-
+T.low.lambda.p <- T.low.lambda$P
+T.low.lambda.lambda <- T.low.lambda$lambda
 
 ## Run Pagel's lambda for deltaT
 deltaT.data <- mammal$deltaT
 names(deltaT.data) <- mammal$species
-print(deltaT.data)
-deltaT_lambda <- phylosig(m.phy,deltaT.data,method="lambda",test=T)
-print(deltaT_lambda)
+deltaT.lambda <- phylosig(m.phy,deltaT.data,method="lambda",test=T)
+deltaT.lambda.p <- deltaT.lambda$P
+deltaT.lambda.lambda <- deltaT.lambda$lambda
 
+lambda_tibble <- tibble('Variable' = c('Mass', 'T high', 'T low', 'T delta'),'Lambda' = c(mass.lambda.lambda, T.high.lambda.lambda, T.low.lambda.lambda, deltaT.lambda.lambda), 'P-value' = c(mass.lambda.p, T.high.lambda.p, T.low.lambda.p, deltaT.lambda.p))
+lambda_tibble_df <- as.data.frame(lambda_tibble)
+lambda_tibble_df%>%
+  knitr::kable(caption="Table 1: Pagel's Lambda Values")
+#Run linear models on for each trait
+```
+
+AIC scores were lower for the OU model for every trait.
+
+```{r phy.models, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+#Run Brownian Motion and OU Models
+#T.low
+T.low.BM.lm <- gls(T.low ~ mass, correlation = corBrownian(1,phy = m.phy,form=~species),data = mammal, method = "ML")
+
+#T.high
+T.high.BM.lm <- gls(T.high ~ mass, correlation = corBrownian(1,phy = m.phy,form=~species),data = mammal, method = "ML")
+
+#deltaT
+deltaT.BM.lm <- gls(deltaT ~ mass, correlation = corBrownian(1,phy = m.phy,form=~species),data = mammal, method = "ML")
+
+#T.low
+T.low.OU.lm <- gls(T.low ~ mass, correlation = corMartins(0.00000001,phy = m.phy,form=~species),data = mammal, method = "ML")
+
+#T.high
+T.high.OU.lm <- gls(T.high ~ mass, correlation = corMartins(0.00000001,phy = m.phy,form=~species),data = mammal, method = "ML")
+
+#deltaT
+deltaT.OU.lm <- gls(deltaT ~ mass, correlation = corMartins(0.00000001,phy = m.phy,form=~species),data = mammal, method = "ML")
+
+Bm.aic <- AICc(T.low.BM.lm,T.low.OU.lm,T.high.BM.lm,T.high.OU.lm,deltaT.BM.lm,deltaT.OU.lm)
+Bm.aicw <- aicw(Bm.aic$AICc)
+Bm.aicw <- Bm.aicw %>% add_column(Model = c('T low BM', 'T low OU', 'T high BM', 'T high OU', 'T delta BM', 'T delta OU'))
+Bm.aicw%>%dplyr::mutate_if(is.numeric, funs(as.character(signif(., 4))))%>%
+  knitr::kable(caption="Table 2: AIC Scores of BM and OU Models")
 
 
 ```
 
-### Discussion
+The values for intercept and slope coefficients from the graphs from [@MortolaLanthier2004] and the phylogenetically-informed OU models are below. The intercept varied signficantly with every variable for the NPI data. The intercept was significant for T low and T high for the OU data, but not for T delta. The values for intercepts were nearly equal in the NPI and OU models for T low and T high but were different for T delta.
+
+```{r T.high.coef, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+T.low.coef <- coef(T.low.reg)
+T.low.OU.coef <- coef(T.low.OU.lm)
 
 
-### Author Contributions
+T.high.coef <- coef(T.high.reg)
+T.high.OU.coef <- coef(T.high.OU.lm)
 
-### References
+deltaT.coef <- coef(deltaT.reg)
+deltaT.OU.coef <- coef(deltaT.OU.lm)
+
+#print summaries of all OU models since they are the better fits
+la <- anova(T.low.OU.lm)[, c('p-value')]
+ha <- anova(T.high.OU.lm)[, c('p-value')]
+da <- anova(deltaT.OU.lm)[, c('p-value')]
+la2 <- summary(T.low.reg)$coefficients[, c('Pr(>|t|)')]
+ha2 <- summary(T.high.reg)$coefficients[, c('Pr(>|t|)')]
+da2 <- summary(deltaT.reg)$coefficients[, c('Pr(>|t|)')]
+
+#create table with values for intercept in both models and their p values
+i_tibble <- tibble('Variable' = c('T low', 'T low', 'T high', 'T high', 'T delta', 'T delta'), 'Model' = c('NPI', 'OU', 'NPI', 'OU', 'NPI', 'OU'), 'Intercept' = c(T.low.coef[1], T.low.OU.coef[1], T.high.coef[1], T.high.OU.coef[1], deltaT.coef[1], deltaT.OU.coef[1]), 'P-value' = c(la2[[1]],la[[1]],ha2[[1]],ha[[1]],da2[[1]],da[[1]]), 'Signficant'=c('Yes','Yes','Yes','Yes','Yes','No'))
+i_tibble_df <- as.data.frame(i_tibble)
+i_tibble_df%>%
+  knitr::kable(caption="Table 3: Intercept data for NPI vs OU models")
+```
+
+The table below summarizes the slope coefficient data from the non-phylogentically-informed (NPI) and phylogenetically-informed (OU) models. The values for slope coefficient were different in the NPI and OU model for all three variables and for T low, the phylogenetically-informed model showed no significance where the NPI model showed significance. In other words, when you consider phylogeny, the significant correlation between T low and mass that Mortola and Lanthier found does not exist.
+
+```{r mass_tibble, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+#create table with values for mass in both models and their p values
+m_tibble <- tibble('Variable' = c('T low', 'T low', 'T high', 'T high', 'T delta', 'T delta'), 'Model' = c('NPI', 'OU', 'NPI', 'OU', 'NPI', 'OU'), 'Slope' = c(T.low.coef[2], T.low.OU.coef[2], T.high.coef[2], T.high.OU.coef[2], deltaT.coef[2], deltaT.OU.coef[2]), 'P-value' = c(la2[[2]],la[[2]],ha2[[2]],ha[[2]],da2[[2]],da[[2]]), 'Signficant'=c('Yes','No','No','No','Yes','Yes'))
+m_tibble_df <- as.data.frame(m_tibble)
+m_tibble_df%>%
+  knitr::kable(caption="Table 4: Slope Coefficients for NPI vs OU Models")
+
+```
+
+
+## Discussion
+
+## Author Contributions
+
+## References
