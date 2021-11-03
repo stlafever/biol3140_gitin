@@ -196,7 +196,7 @@ pre code {
 
 <div id="introduction" class="section level3">
 <h3>Introduction</h3>
-<p>Organismal biologists have a tendency to, in great error, forget to include phylogenetic structure in their research analyses <span class="citation">(Freckleton, Harvey, and Pagel 2002)</span>. When discussing traits and how they vary in the context of another, it is important to include some phylogenetic data. This study aims to assess the scaling relationship of maximum and minimum daily body temperature between human and 52 species of non-human mammals <span class="citation">(Mortola and Lanthier 2004)</span>.</p>
+<p>Organismal biologists have a tendency to, in great error, forgo including phylogenetic structure in their research analyses <span class="citation">(Freckleton, Harvey, and Pagel 2002)</span>. When discussing traits and how they vary in the context of another, it is important to include some phylogenetic data. Species cannot be considered to be statistically independent since they are interrelated in a structured phylogeny <span class="citation">(Felsenstein 1985)</span>. This isn’t always possible depending on the availability of phylogenetic data, but with advances in evolutionary biology, this issue is becoming less prevalent. This study aims to assess the scaling relationship of maximum and minimum daily body temperature between human and 52 species of non-human mammals <span class="citation">(Mortola and Lanthier 2004)</span>.Then, this relationship can be assessed in a phylogenetic context using phylogenetic least squares under Brownian and Ornstein-Uhlenbeck models. The phylogenetic signal is assessed using Pagel’s lamba, a way to measure how much correlations in traits reflect their shared evolutionary history <span class="citation">(Pagel 2019)</span>.</p>
 </div>
 <div id="methods" class="section level3">
 <h3>Methods</h3>
@@ -423,21 +423,27 @@ Figure 3: Graph of T delta vs mass
 </tbody>
 </table>
 </div>
-<div id="discussion" class="section level3">
-<h3>Discussion</h3>
-<p>After plotting the various models, it can be observed that the</p>
+<div id="discussion" class="section level2">
+<h2>Discussion</h2>
+<p>The analysis showed that the scaling relationships of the previous Mortola and Lanthier (2004) study for Tmin, Tmax, and T delta were able to be reproduced using log-log regression models. The four variables, mass, Tmin, Tmax, and TΔ, showed significant phylogenetic signals. Running Pagel’s Lambda, the signal for all of them was high and close to 1. For all of the traits, the AIC scores were lower for the OU model versus the BM model, so it fits best. However, when running the models, the intercepts of Tmin and Tmax were significant for the OU data. TΔ was not found to be significant. Tmin and Tmax intercept values were almost equal in the NPI and OU models, but the TΔ value was different. A very important result we found is that T low does not depend significantly on mass when phylogeny is taken into account. This an important result because it disputes the results in <span class="citation">(Mortola and Lanthier 2004)</span> and demonstrates that they may have erred when they did not take phylogeny into account and treated species as independent samples.</p>
 </div>
-<div id="author-contributions" class="section level3">
-<h3>Author Contributions</h3>
+<div id="author-contributions" class="section level2">
+<h2>Author Contributions</h2>
 </div>
-<div id="references" class="section level3 unnumbered">
-<h3 class="unnumbered">References</h3>
+<div id="references" class="section level2 unnumbered">
+<h2 class="unnumbered">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Felsenstein1985" class="csl-entry">
+Felsenstein, Joseph. 1985. <span>“Phylogenies and the Comparative Method.”</span> <em>The American Naturalist</em> 125 (1): 1–15. <a href="http://www.jstor.org/stable/2461605">http://www.jstor.org/stable/2461605</a>.
+</div>
 <div id="ref-Freckleton2002" class="csl-entry">
 Freckleton, R. P., P. H. Harvey, and M Pagel. 2002. <span>“Phylogenetic Analysis and Comparative Data: A Test and Review of Evidence.”</span> <em>The American Naturalist</em> 160 (6): 712–26.
 </div>
 <div id="ref-MortolaLanthier2004" class="csl-entry">
 Mortola, Jacopo, and Clement Lanthier. 2004. <span>“Scaling the Amplitudes of the Circadian Pattern of Resting Oxygen Consumption, Body Temperature and Heart Rate in Mammals.”</span> <em>Comparative Biochemistry and Physiology</em> 139 (1): 83–95.
+</div>
+<div id="ref-Pagel1999" class="csl-entry">
+Pagel, M. 2019. <span>“Inferring the Historical Patterns of Biological Evolution.”</span> <em>Nature</em> 401: 877–84.
 </div>
 <div id="ref-Upham2019" class="csl-entry">
 Upham, Nathan, Jacob Esselstyn, and Walter Jetz. 2019. <span>“Inferring the Mammal Tree: Species-Level Sets of Phylogenies for Questions in Ecology, Evolution, and Conservation.”</span> <em>PLOS Biology</em> 17 (12).
