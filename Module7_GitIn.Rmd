@@ -205,4 +205,6 @@ For all of the traits, the AIC scores were lower for the OU model versus the BM 
 
 ## Author Contributions
 
+The introduction was written by Sarah Figueroa and Emma Oss. Coding chunks and results were added by Steven LaFever. References were added by Sarah Figueroa. Methods were written by Steven LaFever and Belinda Wang. The discussion was written by Belinda Wang and Emma Oss.
+
 ## References
