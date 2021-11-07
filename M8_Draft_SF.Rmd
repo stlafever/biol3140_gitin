@@ -1,0 +1,26 @@
+---
+title: "M8_Draft_SF"
+author: "Sarah Figueroa"
+date: "11/3/2021"
+output: html_document
+bibliography: BIOL3140.bib
+---
+
+## Introduction
+
+The force that a vertebrae muscle can produce is governed by both length and velocity. This study will focus on the force-length relationship. 
+
+In order to produce muscle contractions, cross bridges in the actin-myosin overlap region of a sarcomere produce the force necessary for these actin and myosin filaments to slide past each other [@Rassier1999]. So, the overall force that a skeletal muscle can produce is related to the number of cross bridges present. Because cross bridges are only present in the actin-myosin overlap region, the maximum isometric force that can be produced is in turn related to the amount of actin-myosin overlap. 
+
+Another factor that affects the maximum isometric force produced by a muscle is the arrangement of the lever system of the muscle. In this experiment we will study the human upper limb. It has been shown that the the force measured at the hand as the muscle produces isometric force at various lengths reflects the force-length relationship at the fiber level relatively accurately, regardless of effective inlever changes during movement [@Rassier1999]. So, this factor can be reasonably ignored in this study. 
+
+It has been experimentally shown that with increasing lengths, isometric force increases, reaches a plateau, and then decreases [@Rassier1999]. This study will attempt to reproduce this result and further test whether eccentric fatigue has an effect on the force length relationship. In previous studies, researchers showed that eccentric exercises produced changes in the muscle that shifted the angle-torque relationship to longer muscle lengths without a significant decrease in maximum force [@Yeung2008]. 
+
+
+## Methods
+
+## Results
+
+## Discussion
+
+## References
