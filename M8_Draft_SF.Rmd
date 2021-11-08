@@ -20,6 +20,66 @@ It has been experimentally shown that with increasing lengths, isometric force i
 ## Methods
 
 ## Results
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse) #always
+library(nlme) #ditto
+library(MuMIn)
+library(knitr) #for knitting options
+require(broom)
+library(features)
+```
+
+```{r}
+dat.f <- list.files(pattern = "control|fatigue") #find the files
+print(dat.f)
+dat.l <- list() #make an empty list
+mass.l <- list() #make list for masses
+for(i in dat.f){
+  met.dat<- unlist(strsplit(i,"_"))
+  team <- met.dat[1]
+  subject <- met.dat[2]
+  angle <- met.dat[3]
+  cond <- as.double(gsub(".csv","",met.dat[4])) #dropping .csv with gsub
+  dat.l[[i]]<- read_csv(i)%>%
+    mutate(team=team,subject=subject,angle=angle, cond=cond)
+}
+dat <- do.call(rbind,dat.l) #combine the list into table
+```
+
+```{r}
+#find maximum force for each recording
+#idk what the label is for force?
+dat.max <- dat%>%
+  group_by(cond, subject, angle)%>%
+  summarize(maxf=max(f))
+
+#find maximum force over all angles for each person and condition
+dat.max2 <- dat.max%>%
+  group_by(cond, subject) %>%
+  summarize(maxf2=max(maxf))
+
+#normalize data to where max force is 1
+dat.normF%>%
+  left_join(dat.max2)%>%
+  mutate(normF=maxf/maxf2)
+  
+
+#find the angle of maximum force for each subject and type
+#this is just copy&paste - might have to change variables but this is general idea
+poly.m2 <- lm(normF~poly(ang,2)) #second order
+poly.m3 <- lm(normF~poly(ang,3)) #third order
+poly.m4 <- lm(normF~poly(ang,4)) #fourth order
+
+AICc(poly.m2,poly.m3,poly.m4)
+
+#use the best fitting model to find max value
+x.pred <- seq(45,157.5,length.out = 1000) #define 1000 angles from our range
+
+# use this but replace poly.m4 with whatever is best fit: normF.pred <- predict(poly.m4,newdata = data.frame(angle=x.pred)) #predict the force using 1000 angles
+
+#qplot(angle,normF)+geom_point(aes(x=x.pred,y=normF.pred),col="red")+geom_point(aes(x=x.pred[which.max(normF.pred)],y=normF.pred[which.max(normF.pred)]),size=5,col="blue")
+```
 
 ## Discussion
 
