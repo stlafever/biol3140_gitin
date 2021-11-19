@@ -18,7 +18,7 @@ It has been experimentally shown that with increasing lengths, isometric force i
 
 
 ## Methods
-In order to assess the affect of eccentric fatigue of elbow flexor muscles, the measurements of isometric force over the range of motion of the forearm produced by maximum voluntary contractions (MVCs) were taken with DAQ and analyzed. The isometric force data from MVCs were collected over 12 arm angles before and after fatiguing the forearm muscles. Isometric force-angle curves were produced to analyze at what angle maximum isometric force (Fmax) occurs (θmax). The angle of non-fatigued and eccesntrically fatigued forearm flexors at their maximum isometric force were compared in order to determine the shift of θmax between the two conditions.
+In order to assess the affect of eccentric fatigue of elbow flexor muscles, the measurements of isometric force over the range of motion of the forearm produced by maximum voluntary contractions (MVCs) were taken with DAQ and analyzed. The isometric force data from MVCs were collected over 12 arm angles before and after fatiguing the forearm muscles. Isometric force-angle curves were produced to analyze at what angle maximum isometric force (Fmax) occurs (θmax). The values were normalized by dividing the maximum force across all angles for each experiment by Fmax. The angle of non-fatigued and eccentrically fatigued forearm flexors at their maximum isometric force were compared in order to determine the shift of θmax between the two conditions. 
 
 ## Results
 ```{r setup, include=FALSE}
@@ -83,5 +83,7 @@ x.pred <- seq(45,157.5,length.out = 1000) #define 1000 angles from our range
 ```
 
 ## Discussion
+
+## Author Contributions
 
 ## References
