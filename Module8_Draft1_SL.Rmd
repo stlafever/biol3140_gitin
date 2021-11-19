@@ -42,25 +42,9 @@ library(features)
 f <- list.files(pattern = "control.csv|fatigue.csv") 
 f.l <- list()
 ang <- seq(45,157.5,length.out = 11)
-for(i in f){
-  #f.i <- read_csv(i)
-  #print(f.i)
-  met.dat<- unlist(strsplit(i,"_")) #split of the filename string
-  #class <- met.dat[1] #store the first element (class name&year)
-  sub <- met.dat[2] %>% tolower()#store second element (subject number)
-  a <- met.dat[3] %>% tolower()#store third element (angle)
-  a_num <- as.numeric(a)
-  a_correct <- ang[which.min(abs(ang-a_num))]
-  t <- gsub(".csv","",met.dat[4]) #store fourth element (control or fatigue), dropping .csv with gsub
-  f.i <- read_delim(i,delim = " ", col_names = c("reading","force","unit"))
-  f.i <- f.i[2]# take only one column
-  #colnames(f.i) <- "Force"
-  f.i <- as_tibble(f.i)
-  f.l[[i]] <- f.i %>%
-    mutate(force=as.numeric(force),subject=sub,angle=a_correct,exp=t)
-}
-dat <- do.call(rbind,f.l)
-dat <- dat %>% group_by(exp, angle, subject) %>% summarise(max_ang_force=max(force)) %>% ungroup()
+
+dat.file <- readRDS("Module8Data.RDS")
+dat <- dat.file%>% group_by(exp, angle, subject) %>% summarise(max_ang_force=max(force)) %>% ungroup()
 dat <- dat %>% group_by(exp, subject) %>% mutate(max_force=max(max_ang_force)) %>% mutate(normF = max_ang_force/max_force) 
 dat.means <- dat %>% ungroup() %>% group_by(exp, angle) %>% mutate(meanF = mean(normF))
 
