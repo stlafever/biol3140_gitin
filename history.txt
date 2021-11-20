@@ -1,0 +1,2253 @@
+commit 9026423d76795b36acdfc9ad1d839d90b1943849
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Fri Nov 19 10:42:26 2021 -0500
+
+    Module 8 Draft with RDS file
+
+ Module8_Draft1_SL.Rmd | 22 +++-------------------
+ 1 file changed, 3 insertions(+), 19 deletions(-)
+
+commit 0575985b79d1bb282aba3f31862ebb6e9a6bbcf2
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Fri Nov 19 10:41:11 2021 -0500
+
+    Module 8 Data RDS File
+
+ Module8Data.RDS | Bin 0 -> 472884 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 9661bfcb084ed762065db0afe86631125c283d16
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Fri Nov 19 10:37:41 2021 -0500
+
+    Module 8 Data File
+
+ Module8Data | Bin 0 -> 472884 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 913d9b980dabfca8a10e063f3f451d1bc7a9b0cb
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Fri Nov 19 10:27:12 2021 -0500
+
+    methods addition
+
+ M8_Draft_SF.Rmd | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit a9b980eb149124156c4e3e4c67eba9a1f8f24d05
+Merge: 5b87f3c 4262fee
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Fri Nov 19 10:26:53 2021 -0500
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+
+commit 5b87f3cfd099568781b2560c8f3c37329e374627
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Fri Nov 19 10:26:44 2021 -0500
+
+    methods addition
+
+ M8_Draft_SF.Rmd | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit bd0e830d23e121ebeb393076d88dfe341909f872
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Fri Nov 19 10:25:59 2021 -0500
+
+    no update
+
+ Module7_GitIn.html | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit 61062d2a200c5b235645d62a7db61635f1542aea
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Fri Nov 19 10:22:41 2021 -0500
+
+    Methods addition
+
+ M8_Draft_SF.Rmd | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 4262feec6815bac0af4aea79531ff4448f719cfc
+Author: emmaoss <osse@bc.edu>
+Date:   Fri Nov 19 10:16:57 2021 -0500
+
+    Organization
+
+ Belinda_couch.csv                                  |   52 -
+ .../belinda_active.csv                             |    0
+ .../belinda_couch.csv                              |    0
+ .../emma_active.csv                                |    0
+ .../emma_couch.csv                                 |    0
+ .../sarah_active.csv                               |    0
+ .../sarah_couch.csv                                |    0
+ .../steven_active.csv                              |    0
+ .../steven_couch.csv                               |    0
+ .../anole.dat.csv                                  |    0
+ .../anole.eco.csv                                  |    0
+ anole.tre => Miscellaneous Module Data/anole.tre   |    0
+ .../mammal.temp.csv                                |    0
+ .../mammal.temp2.csv                               |    0
+ .../mammal.tree.pruned.txt                         |    0
+ .../pseed.calibration.csv                          |  238 +--
+ .../pseed.fin.amps.csv                             |    0
+ .../pseed.lengths.csv                              |    0
+ .../pseed.met.rate.csv                             |    0
+ .../species.quadrant.pdf                           |  Bin
+ .../Draft4.Rmd                                     |    0
+ .../GitIn_Module3Final.R                           |    0
+ .../GitIn_Module3Final_comment.R                   |    0
+ .../M6 Writing.Rmd                                 |    0
+ .../M7_Draft_SF.Rmd                                |    0
+ Module Drafts and Comments/Mod3 Practice.Rmd       |   39 +
+ .../Mod3-Practice.html                             |  303 +---
+ .../Module 5 Project.Rmd                           |    0
+ .../Module 5 Project_comments.Rmd                  |    0
+ .../Module 6 SF.Rmd                                |    0
+ .../Module-5-Project.html                          |    0
+ .../Module1Project.R                               |    0
+ .../Module1Project_comments.R                      |    0
+ .../Module2S.R                                     |    0
+ .../Module2_concise.R                              |    0
+ .../Module2_concise_comments.R                     |    0
+ .../Module3S.R                                     |    0
+ .../Module3draft.R                                 |    0
+ .../Module7_GitIn.Rmd                              |    0
+ .../Module7_GitIn.html                             |    0
+ .../Module_6_gitin.Rmd                             |    0
+ .../Module_6_gitin.html                            |    0
+ .../Module_6_gitin_comments.Rmd                    |    0
+ .../Module_6_gitin_comments.html                   |    0
+ .../Project5DraftS.Rmd                             |    0
+ .../Project6_Draft_S.Rmd                           |    0
+ .../Project6_Draft_S2.Rmd                          |    0
+ .../Project6_Draft_Works.Rmd                       |    0
+ .../Project6_Draft_Works.html                      |    0
+ .../Project7_Steven_Draft.Rmd                      |    0
+ .../Project7_Steven_Draft2.Rmd                     |    0
+ .../Project7_draft.Rmd                             |    0
+ .../Project_7_Draft_S.Rmd                          |    0
+ .../SF Module 4 Project Draft.Rmd                  |    0
+ .../SF Module 4 Project Draft_comments.Rmd         |    0
+ .../SF-Module-4-Project-Draft_comments.html        |    0
+ .../SF_Module2proj_draft.R                         |    0
+ .../Test.SarahFig.R                                |    0
+ .../TestBelinda.R                                  |    0
+ .../TestSteven.R                                   |    0
+ .../collab_test.R                                  |    0
+ .../gitin_Module_6_Feedback.html                   |    0
+ .../BIOL314020_subject01_day_52.csv                |    0
+ .../BIOL314020_subject01_night_52.csv              |    0
+ .../BIOL314020_subject02_day_73.csv                |    0
+ .../BIOL314020_subject02_night_73.csv              |    0
+ .../BIOL314020_subject03_day_59.csv                |    0
+ .../BIOL314020_subject03_night_59.csv              |    0
+ .../BIOL314020_subject04_day_72.csv                |    0
+ .../BIOL314020_subject04_night_72.csv              |    0
+ .../BIOL314020_subject05_day_64.csv                |    0
+ .../BIOL314020_subject05_night_64.csv              |    0
+ .../BIOL314020_subject06_day_61.csv                |    0
+ .../BIOL314020_subject06_night_61.csv              |    0
+ .../BIOL314020_subject07_day_52.csv                |    0
+ .../BIOL314020_subject07_night_52.csv              |    0
+ .../BIOL314020_subject08_day_93.csv                |    0
+ .../BIOL314020_subject08_night_93.csv              |    0
+ .../BIOL314020_subject09_day_52.csv                |    0
+ .../BIOL314020_subject09_night_52.csv              |    0
+ .../BIOL314020_subject10_day_63.5.csv              |    0
+ .../BIOL314020_subject10_night_63.5.csv            |    0
+ .../BIOL314020_subject11_day_95.csv                |    0
+ .../BIOL314020_subject11_night_95.csv              |    0
+ .../BIOL314020_subject12_day_86.csv                |    0
+ .../BIOL314020_subject12_night_86.csv              |    0
+ .../BIOL314020_subject13_day_80.csv                |    0
+ .../BIOL314020_subject13_night_80.csv              |    0
+ .../BIOL314020_subject14_day_65.csv                |    0
+ .../BIOL314020_subject14_night_65.csv              |    0
+ .../BIOL314020_subject15_day_63.csv                |    0
+ .../BIOL314020_subject15_night_63.csv              |    0
+ .../BIOL314020_subject16_day_81.csv                |    0
+ .../BIOL314020_subject16_night_81.csv              |    0
+ .../BIOL314020_subject17_day_85.csv                |    0
+ .../BIOL314020_subject17_night_85.csv              |    0
+ .../BIOL314020_subject18_day_53.csv                |    0
+ .../BIOL314020_subject19_day_56.csv                |    0
+ .../BIOL314020_subject19_night_56.csv              |    0
+ .../BIOL314020_subject20_day_84.csv                |    0
+ .../BIOL314020_subject20_night_84.csv              |    0
+ .../BIOL314020_subject21_day_55.csv                |    0
+ .../BIOL314020_subject21_night_55.csv              |    0
+ .../BIOL314020_subject22_day_82.csv                |    0
+ .../BIOL314020_subject22_night_82.csv              |    0
+ .../BIOL314020_subject23_day_79.csv                |    0
+ .../BIOL314020_subject23_night_79.csv              |    0
+ .../BIOL314020_subject24_day_63.csv                |    0
+ .../BIOL314020_subject24_night_63.csv              |    0
+ .../BIOL314020_subject25_day_49.csv                |    0
+ .../BIOL314020_subject25_night_49.csv              |    0
+ .../BIOL314020_subject26_day_75.csv                |    0
+ .../BIOL314020_subject26_night_75.csv              |    0
+ .../BIOL314020_subject27_day_63.csv                |    0
+ .../BIOL314020_subject27_night_63.csv              |    0
+ .../BIOL314020_subject28_day_65.csv                |    0
+ .../BIOL314020_subject28_night_65.csv              |    0
+ .../BIOL314020_subject29_day_77.csv                |    0
+ .../BIOL314020_subject29_night_77.csv              |    0
+ .../BIOL314020_subject30_day_80.csv                |    0
+ .../BIOL314020_subject30_night_80.csv              |    0
+ .../BIOL314021_Subject31_Night_55.csv              |    0
+ .../BIOL314021_Subject32_day_82.csv                |  890 +++++-----
+ .../BIOL314021_Subject32_night_82.csv              |    0
+ .../BIOL314021_Subject33_Night_123.csv             |    0
+ .../BIOL314021_Subject33_day_123.csv               |    0
+ .../BIOL314021_Subject34_day_61.csv                |    0
+ .../BIOL314021_Subject34_night_61.csv              |    0
+ .../BIOL314021_Subject36_Day_60.csv                |    0
+ .../BIOL314021_Subject36_Night_60.csv              |    0
+ .../BIOL314021_Subject39_Night_50.csv              |    0
+ .../BIOL314021_Subject39_day_50.csv                |    0
+ .../BIOL314021_subject31_Day_55.csv                |    0
+ .../BIOL314021_subject35_day_57.csv                |  934 +++++-----
+ .../BIOL314021_subject35_night_57.csv              |  898 +++++-----
+ .../BIOL314021_subject37_day_49.csv                |    0
+ .../BIOL314021_subject37_night_49.csv              |    0
+ .../BIOL314021_subject38_day_75.csv                | 1780 +++++++++----------
+ .../BIOL314021_subject38_night_75.csv              | 1816 ++++++++++----------
+ .../BIOL314021_subject40_day_54.csv                |    0
+ .../BIOL314021_subject40_night_54.csv              |    0
+ Sarah_couch.csv                                    |   52 -
+ emma_Inactive.csv                                  |   53 -
+ 143 files changed, 3348 insertions(+), 3707 deletions(-)
+
+commit c91ddf4d56cb7f9cea2efd7ff629a9cafa3f2ead
+Merge: 164b961 749bd98
+Author: stlafever <89813862+stlafever@users.noreply.github.com>
+Date:   Fri Nov 19 10:11:40 2021 -0500
+
+    Merge pull request #1 from stlafever/stlafever-mod8-1
+    
+    Add files via upload
+
+commit 749bd988745f6d4a6d3254fee6ccb5834712bfa9
+Author: stlafever <89813862+stlafever@users.noreply.github.com>
+Date:   Fri Nov 19 10:11:16 2021 -0500
+
+    Add files via upload
+
+ 2_5_101.25_control.csv | 28 ++++++++++++++++++++++++++++
+ 2_5_101.25_fatigue.csv | 28 ++++++++++++++++++++++++++++
+ 2_5_112.5_control.csv  | 28 ++++++++++++++++++++++++++++
+ 2_5_112.5_fatigue.csv  | 28 ++++++++++++++++++++++++++++
+ 2_5_123.75_control.csv | 28 ++++++++++++++++++++++++++++
+ 2_5_123.75_fatigue.csv | 28 ++++++++++++++++++++++++++++
+ 2_5_135_control.csv    | 28 ++++++++++++++++++++++++++++
+ 2_5_135_fatigue.csv    | 28 ++++++++++++++++++++++++++++
+ 2_5_145.25_control.csv | 27 +++++++++++++++++++++++++++
+ 2_5_145.25_fatigue.csv | 27 +++++++++++++++++++++++++++
+ 2_5_157.5_control.csv  | 27 +++++++++++++++++++++++++++
+ 2_5_157.5_fatigue.csv  | 27 +++++++++++++++++++++++++++
+ 2_5_45_control.csv     | 27 +++++++++++++++++++++++++++
+ 2_5_45_fatigue.csv     | 27 +++++++++++++++++++++++++++
+ 2_5_56.25_control.csv  | 27 +++++++++++++++++++++++++++
+ 2_5_56.25_fatigue.csv  | 27 +++++++++++++++++++++++++++
+ 2_5_67.5_control.csv   | 28 ++++++++++++++++++++++++++++
+ 2_5_67.5_fatigue.csv   | 28 ++++++++++++++++++++++++++++
+ 2_5_78.75_control.csv  | 28 ++++++++++++++++++++++++++++
+ 2_5_78.75_fatigue.csv  | 28 ++++++++++++++++++++++++++++
+ 2_5_90_control.csv     | 28 ++++++++++++++++++++++++++++
+ 2_5_90_fatigue.csv     | 28 ++++++++++++++++++++++++++++
+ 2_6_101.25_control.csv | 28 ++++++++++++++++++++++++++++
+ 2_6_101.25_fatigue.csv | 28 ++++++++++++++++++++++++++++
+ 2_6_112.5_control.csv  | 28 ++++++++++++++++++++++++++++
+ 2_6_112.5_fatigue.csv  | 29 +++++++++++++++++++++++++++++
+ 2_6_123.75_control.csv | 28 ++++++++++++++++++++++++++++
+ 2_6_123.75_fatigue.csv | 36 ++++++++++++++++++++++++++++++++++++
+ 2_6_135_control.csv    | 28 ++++++++++++++++++++++++++++
+ 2_6_135_fatigue.csv    | 27 +++++++++++++++++++++++++++
+ 2_6_146.25_control.csv | 28 ++++++++++++++++++++++++++++
+ 2_6_146.25_fatigue.csv | 27 +++++++++++++++++++++++++++
+ 2_6_157.5_control.csv  | 27 +++++++++++++++++++++++++++
+ 2_6_157.5_fatigue.csv  | 27 +++++++++++++++++++++++++++
+ 2_6_45_control.csv     | 28 ++++++++++++++++++++++++++++
+ 2_6_45_fatigue.csv     | 27 +++++++++++++++++++++++++++
+ 2_6_56.25_control.csv  | 28 ++++++++++++++++++++++++++++
+ 2_6_56.25_fatigue.csv  | 27 +++++++++++++++++++++++++++
+ 2_6_67.5_control.csv   | 28 ++++++++++++++++++++++++++++
+ 2_6_67.5_fatigue.csv   | 27 +++++++++++++++++++++++++++
+ 2_6_78.75_control.csv  | 28 ++++++++++++++++++++++++++++
+ 2_6_78.75_fatigue.csv  | 27 +++++++++++++++++++++++++++
+ 2_6_90_control.csv     | 28 ++++++++++++++++++++++++++++
+ 2_6_90_fatigue.csv     | 27 +++++++++++++++++++++++++++
+ 2_7_101.25_control.csv | 27 +++++++++++++++++++++++++++
+ 2_7_101.25_fatigue.csv | 28 ++++++++++++++++++++++++++++
+ 2_7_112.5_control.csv  | 27 +++++++++++++++++++++++++++
+ 2_7_112.5_fatigue.csv  | 28 ++++++++++++++++++++++++++++
+ 2_7_123.75_control.csv | 27 +++++++++++++++++++++++++++
+ 2_7_123.75_fatigue.csv | 28 ++++++++++++++++++++++++++++
+ 2_7_135_control.csv    | 27 +++++++++++++++++++++++++++
+ 2_7_135_fatigue.csv    | 28 ++++++++++++++++++++++++++++
+ 2_7_145.25_fatigue.csv | 28 ++++++++++++++++++++++++++++
+ 2_7_146.25_control.csv | 27 +++++++++++++++++++++++++++
+ 2_7_157.5_control.csv  | 27 +++++++++++++++++++++++++++
+ 2_7_157.5_fatigue.csv  | 28 ++++++++++++++++++++++++++++
+ 2_7_45_control.csv     | 27 +++++++++++++++++++++++++++
+ 2_7_45_fatigue.csv     | 28 ++++++++++++++++++++++++++++
+ 2_7_56.25_control.csv  | 27 +++++++++++++++++++++++++++
+ 2_7_56.25_fatigue.csv  | 28 ++++++++++++++++++++++++++++
+ 2_7_67.5_control.csv   | 27 +++++++++++++++++++++++++++
+ 2_7_67.5_fatigue.csv   | 28 ++++++++++++++++++++++++++++
+ 2_7_78.75_control.csv  | 27 +++++++++++++++++++++++++++
+ 2_7_78.75_fatigue.csv  | 28 ++++++++++++++++++++++++++++
+ 2_7_90_control.csv     | 27 +++++++++++++++++++++++++++
+ 2_7_90_fatigue.csv     | 28 ++++++++++++++++++++++++++++
+ 66 files changed, 1829 insertions(+)
+
+commit 164b96142922e57973e9b21212e60a42c2923d46
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Fri Nov 19 10:02:10 2021 -0500
+
+    Project 8 Draft, needs discussion
+
+ Module8_Draft1_SL.Rmd | 141 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 141 insertions(+)
+
+commit fb1dfd0e3c50705b7f33aafd030b4cdd9744fa7c
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Wed Nov 17 10:42:10 2021 -0500
+
+    Methods update
+
+ M8_Draft_SF.Rmd | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit be5603af222f3e847f4d4ce778cda4c8822ee4c7
+Author: sarah figueroa <sarahfigueroa@sarahs-MacBook-Air-7.local>
+Date:   Mon Nov 8 11:24:18 2021 -0500
+
+    intro + edits
+
+ M8_Draft_SF.Rmd | 60 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 60 insertions(+)
+
+commit 210881749c7de2ee6a2f7d4c40805ca6112d121d
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Sun Nov 7 14:24:35 2021 -0500
+
+    Intro
+
+ M8_Draft_SF.Rmd | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+commit 9facddc86b95682fd17ba3b6a14f2f3e6aa9c721
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Sun Nov 7 14:24:17 2021 -0500
+
+    M8 Intro
+
+ BIOL3140.bib | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+commit 8e0f3eb6f0c139effb4f508cdcbbf326c8a32aca
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Tue Nov 2 23:33:24 2021 -0400
+
+    References to discussion
+
+ BIOL3140.bib      | 1 +
+ Module7_GitIn.Rmd | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+commit 68861d86edeff2ee2a9d6a4d5e9d0c1cbf02c2eb
+Merge: ef5aa97 035dcab
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Tue Nov 2 23:32:38 2021 -0400
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+
+commit ef5aa974ce3ad651dd1e34f579f5b8728fff2b24
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Tue Nov 2 23:32:09 2021 -0400
+
+    Reference for discussion
+
+ BIOL3140.bib        |   1 +
+ Module7_GitIn.Rmd   |   2 +-
+ Module7_GitIn.html  | 500 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Module_6_gitin.html | 396 +++++++++++++++++++++++++++++++++++++++++
+ Project7_draft.Rmd  |   7 +-
+ Project7_draft.html |  19 +-
+ 6 files changed, 912 insertions(+), 13 deletions(-)
+
+commit 53374d5aa62c00ac2cf2961c329f2639cd3863ce
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Tue Nov 2 23:27:54 2021 -0400
+
+    bib
+
+ BIOL3140.bib | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+commit 035dcab605642848950b0587819304daf88f0862
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Tue Nov 2 23:17:50 2021 -0400
+
+    Author Cont added
+
+ Module7_GitIn.Rmd | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 0fce456bf8e52cd5d1e0e4121b7c46df393fd2a1
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Tue Nov 2 22:46:56 2021 -0400
+
+    added a few lines
+
+ Module7_GitIn.Rmd | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 40229da6cf0725fcff63be804c752e870b30c263
+Author: emmaoss <osse@bc.edu>
+Date:   Tue Nov 2 22:26:20 2021 -0400
+
+    discussion
+
+ Module7_GitIn.Rmd | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 107c146168223dc49bca51b300142bac56b64f18
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Tue Nov 2 21:40:17 2021 -0400
+
+    Final Document (still needs discussion and author contributions)
+
+ Module7_GitIn.Rmd | 205 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 205 insertions(+)
+
+commit 51ebae0ff7bb016663a594cc1b3e0c092956466f
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Tue Nov 2 13:58:13 2021 -0400
+
+    updated draft html file
+
+ Project7_draft.html | 473 +++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 265 insertions(+), 208 deletions(-)
+
+commit 81d7ae91d813a82bfb7109be9a3057cf626adf55
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Tue Nov 2 13:57:50 2021 -0400
+
+    Updated Draft with Results and updated methods section
+
+ Project7_draft.Rmd | 172 ++++++++++++++++++++++++++++++++++++++++++-----------
+ 1 file changed, 136 insertions(+), 36 deletions(-)
+
+commit 57a052ce91efb263d1c4ebad0042e65b1998d127
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Tue Nov 2 12:47:54 2021 -0400
+
+    intro additions
+
+ M7_Draft_SF.Rmd | 54 +++++++++++++++++++++++++++++++++++-------------------
+ 1 file changed, 35 insertions(+), 19 deletions(-)
+
+commit 04f7bcf5938aa04ae692c4eb19121bb2beb95066
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Tue Nov 2 12:47:37 2021 -0400
+
+    M7 additions
+
+ BIOL3140.bib | 30 ++++++++++++++++++++++++++----
+ 1 file changed, 26 insertions(+), 4 deletions(-)
+
+commit 90ee29740365c27f6038d6f89aa797d9b2f3a6aa
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Mon Nov 1 20:46:10 2021 -0400
+
+    Additions
+
+ Project7_draft.Rmd  | 2 +-
+ Project7_draft.html | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 4b444d24f76b7750de85c5e48f98a338aee28c49
+Author: ckenaley <cpkenaley@gmail.com>
+Date:   Mon Nov 1 20:20:10 2021 -0400
+
+    proj6 feedback
+
+ .DS_Store                    |  Bin 0 -> 18436 bytes
+ Module_6_gitin_comments.Rmd  |  272 ++++++
+ Module_6_gitin_comments.html |  664 +++++++++++++++
+ gitin_Module_6_Feedback.html | 1910 ++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 2846 insertions(+)
+
+commit b42e80c857c2a251bf4d1a8b8e3169472f332112
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Mon Nov 1 13:43:50 2021 -0400
+
+    update
+
+ Project7_Steven_Draft2.Rmd | 192 ++++++++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 180 insertions(+), 12 deletions(-)
+
+commit c01a8db9bc6fde27f09a5788aaaad898a186d0af
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Mon Nov 1 13:39:58 2021 -0400
+
+    Project 7 results
+
+ Project7_Steven_Draft2.Rmd | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+commit 50150c17f9837b7946f9d7bec07c6667d5cbd3a2
+Author: sarah figueroa <sarahfigueroa@sarahs-MacBook-Air-7.local>
+Date:   Mon Nov 1 10:50:34 2021 -0400
+
+    combined stuff
+
+ M7_Draft_SF.Rmd | 190 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 190 insertions(+)
+
+commit d57f25b20495f0fc41c736c2db168bca33186766
+Author: sarah figueroa <sarahfigueroa@sarahs-MacBook-Air-7.local>
+Date:   Mon Nov 1 10:50:11 2021 -0400
+
+    M7 updates
+
+ BIOL3140.bib | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+commit 4040fee0d3d4be24e86c4c7ffdcac91b1214202b
+Author: emmaoss <osse@bc.edu>
+Date:   Mon Nov 1 10:29:26 2021 -0400
+
+    Drafts of writing
+
+ Project7_Steven_Draft.Rmd | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit fe0ae76fa861f9e44603454f53b772aa07be17a1
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Mon Nov 1 10:00:44 2021 -0400
+
+    commit
+
+ Project7_Steven_Draft.Rmd | 83 +++++++++++++++++++++++++++++------------------
+ 1 file changed, 51 insertions(+), 32 deletions(-)
+
+commit 34f9acd4ec66692588bbc2eaec391a517e40898c
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 31 21:44:26 2021 -0400
+
+    Minor changes
+
+ Project7_draft.Rmd  |   9 +-
+ Project7_draft.html | 436 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 441 insertions(+), 4 deletions(-)
+
+commit 7656c8a97c3ead696e3956148319e60e18d92dc1
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Fri Oct 29 10:55:17 2021 -0400
+
+    Draft of Project 7
+
+ Project7_Steven_Draft.Rmd | 159 ++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 159 insertions(+)
+
+commit c6dc70f6f10a7511c3491d9e9a57268ea2f34d24
+Author: emmaoss <osse@bc.edu>
+Date:   Fri Oct 29 10:39:53 2021 -0400
+
+    Phylogenetic tree
+
+ Project7_draft.Rmd | 80 +++++++++++++++++++++++++++++++++++++++++++-----------
+ 1 file changed, 64 insertions(+), 16 deletions(-)
+
+commit 311d5b75b744b608479690e2315c9bcda861d514
+Author: emmaoss <osse@bc.edu>
+Date:   Fri Oct 29 10:31:56 2021 -0400
+
+    Minor changes
+
+ Project_7_Draft_S.Rmd | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+commit 910810cfe39f6054c85acde37fb5865248c136ba
+Author: emmaoss <osse@bc.edu>
+Date:   Fri Oct 29 10:12:50 2021 -0400
+
+    Introduction and Methods rough draft
+
+ Project_7_Draft_S.Rmd | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit 79a64b7bc9132239df046baeb20b9f89392dcb77
+Merge: 3843d0a 6b259b8
+Author: emmaoss <osse@bc.edu>
+Date:   Fri Oct 29 10:01:53 2021 -0400
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+
+commit 6b259b819b44f3da0d79e231654a564128dcf0f2
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Wed Oct 27 10:48:31 2021 -0400
+
+    Project 7 Draft that runs Pagel's Lambda
+
+ Project_7_Draft_S.Rmd | 98 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 98 insertions(+)
+
+commit 3843d0a6fb6a4e3b3029cd860d9f3fdc0273fef8
+Author: emmaoss <osse@bc.edu>
+Date:   Tue Oct 26 10:57:54 2021 -0400
+
+    changes
+
+ Project7_draft.Rmd | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 45239e616ec71c7565bf8fe01c59858d1183fd74
+Author: emmaoss <osse@bc.edu>
+Date:   Tue Oct 26 10:49:21 2021 -0400
+
+    changes
+
+ Project7_draft.Rmd | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit e65e619e575c59df011eaa561375db361562fdd2
+Merge: 5018acb 4fc541c
+Author: emmaoss <osse@bc.edu>
+Date:   Tue Oct 26 10:45:29 2021 -0400
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+
+commit 5018acba193a74a1291457e7b88461b62c82f84e
+Author: emmaoss <osse@bc.edu>
+Date:   Tue Oct 26 10:45:25 2021 -0400
+
+    changes
+
+ mammal.temp2.csv       | 53 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ mammal.tree.pruned.txt |  1 +
+ 2 files changed, 54 insertions(+)
+
+commit c182ac7566cdcf768c7c1dd998381db5e236265d
+Author: emmaoss <osse@bc.edu>
+Date:   Tue Oct 26 10:44:42 2021 -0400
+
+    changes
+
+ Project7_draft.Rmd | 56 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 56 insertions(+)
+
+commit 4fc541c4a38a2aa5a40a8d82123eb02e56ea007f
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Mon Oct 25 10:36:58 2021 -0400
+
+    M7 additions
+
+ BIOL3140.bib | 16 +++++++++++++---
+ 1 file changed, 13 insertions(+), 3 deletions(-)
+
+commit 003235b7c2df6d1f67fd6d5d6de475f143cf39f9
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Mon Oct 25 10:25:20 2021 -0400
+
+    M7 data
+
+ mammal.tree.pruned.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 388007eb7e0243d033abe47991f18a94b9389323
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Mon Oct 25 10:25:12 2021 -0400
+
+    M7 Data
+
+ mammal.temp2.csv | 53 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+
+commit e4d8e611d2169c2c178d869e8b55afe2b8cb91d6
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Sun Oct 24 22:04:00 2021 -0400
+
+    Final
+
+ Module_6_gitin.Rmd | 181 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 181 insertions(+)
+
+commit ec9b07acc0d882b5fc49e09ac172d8330c7a5279
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Sun Oct 24 21:16:52 2021 -0400
+
+    discussion
+
+ Module 6 SF.Rmd | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b6d83f8c01f561ff228a98786e2fd2300f0f45a8
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Sun Oct 24 21:15:31 2021 -0400
+
+    discussion
+
+ Module 6 SF.Rmd | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 4e23a75806ea60f12e6319de69ff6f473dd54a41
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Sun Oct 24 21:01:09 2021 -0400
+
+    combined intro and discussion
+
+ Module 6 SF.Rmd | 178 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 178 insertions(+)
+
+commit 3b734e97176c8a76d2dfa9959aceb750db94f07d
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Sun Oct 24 21:00:37 2021 -0400
+
+    additions
+
+ BIOL3140.bib | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+commit 3cfe84b4a6e5e1ec2bc923b50e20ac9e97bfbb2d
+Merge: bda6fcd 5957b56
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sun Oct 24 19:48:42 2021 -0400
+
+    commit attempt
+    
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+    
+    # Conflicts:
+    #       Project6_Draft_Works.html
+
+commit bda6fcde479bde517c9b8e43f0b9decd1c3a4923
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sun Oct 24 18:16:43 2021 -0400
+
+    old file
+
+ Project6_Draft_Works.html | 354 ++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 354 insertions(+)
+
+commit 5957b56fb04754fcd55eab6df311127e6d487f6c
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 24 18:04:20 2021 -0400
+
+    Feel free to add/delete
+
+ Project6_Draft_Works.Rmd  | 1 +
+ Project6_Draft_Works.html | 6 +++---
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+commit f3a4e551001b59f3649e62d8de37c1f30b665a97
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 24 18:03:16 2021 -0400
+
+    Feel free to add/delete
+
+ BIOL3140_M6.bib           | 10 ++++++++++
+ Project6_Draft_Works.Rmd  | 14 +-------------
+ Project6_Draft_Works.html | 29 ++++++++++++++++++++++++++++-
+ 3 files changed, 39 insertions(+), 14 deletions(-)
+
+commit 0ce7b6fb67c279cc3c85763656923b57af802d57
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 24 17:47:13 2021 -0400
+
+    Reference
+
+ BIOL3140_M6.bib                         |   0
+ Project6_Draft_Works.Rmd                |  18 +-
+ Project6_Draft_Works.html               |   7 +-
+ SF-Module-4-Project-Draft_comments.html | 302 ++++++--------------------------
+ 4 files changed, 62 insertions(+), 265 deletions(-)
+
+commit a61f8f30f4b037656fb34a9eb249e530c803f093
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 24 17:00:06 2021 -0400
+
+    Introduction and reference added
+
+ Project6_Draft_Works.Rmd  | 24 ++++++++++++++++++++++++
+ Project6_Draft_Works.html |  8 +++++++-
+ 2 files changed, 31 insertions(+), 1 deletion(-)
+
+commit 1782e6f651c1c3e27dba6a59dc9c78f44b2fe9b8
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sat Oct 23 18:22:05 2021 -0400
+
+    Reference
+
+ Project6_Draft_Works.Rmd  |  11 +-
+ Project6_Draft_Works.html | 354 ++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 363 insertions(+), 2 deletions(-)
+
+commit 04e4dfc6d9c1ba48dfc6481ea6d2ae081ac1e9f7
+Merge: 68762f7 4b64c8e
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sat Oct 23 17:40:22 2021 -0400
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+
+commit 68762f7a6af0e0c7751886f64652ff16c66f2a17
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sat Oct 23 17:40:18 2021 -0400
+
+    references
+
+ Project6_Draft_S2.Rmd | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+commit 4b64c8e448d5382762a477564df8bce0265a1e76
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sat Oct 23 17:26:10 2021 -0400
+
+    project 6 report
+
+ Project6_Draft_Works.Rmd | 166 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 166 insertions(+)
+
+commit 12a1477cb7fdaa1b32cbe17301a67572a6802aa2
+Author: sarah figueroa <sarahfigueroa@sarahs-MacBook-Air-7.local>
+Date:   Sat Oct 23 16:38:31 2021 -0400
+
+    M6 Data
+
+ BIOL314021_subject37_night_49.csv | 468 ++++++++++++++++++++
+ BIOL314021_subject38_night_75.csv | 909 ++++++++++++++++++++++++++++++++++++++
+ BIOL314021_subject40_day_54.csv   | 474 ++++++++++++++++++++
+ BIOL314021_subject40_night_54.csv | 283 ++++++++++++
+ 4 files changed, 2134 insertions(+)
+
+commit 7623c9597be3646f8baf054a3488609bc8ae6d60
+Author: sarah figueroa <sarahfigueroa@sarahs-MacBook-Air-7.local>
+Date:   Sat Oct 23 16:38:09 2021 -0400
+
+    M6 Data
+
+ BIOL314020_subject22_day_82.csv    | 1872 ++++++++++++++++++++++++++++++++++++
+ BIOL314020_subject22_night_82.csv  | 1796 ++++++++++++++++++++++++++++++++++
+ BIOL314020_subject23_day_79.csv    | 1779 ++++++++++++++++++++++++++++++++++
+ BIOL314020_subject23_night_79.csv  | 1619 +++++++++++++++++++++++++++++++
+ BIOL314020_subject24_day_63.csv    |  588 +++++++++++
+ BIOL314020_subject24_night_63.csv  |  609 ++++++++++++
+ BIOL314020_subject25_day_49.csv    |  552 +++++++++++
+ BIOL314020_subject25_night_49.csv  |  527 ++++++++++
+ BIOL314020_subject26_day_75.csv    |  590 ++++++++++++
+ BIOL314020_subject26_night_75.csv  |  571 +++++++++++
+ BIOL314020_subject27_day_63.csv    | 1673 ++++++++++++++++++++++++++++++++
+ BIOL314020_subject27_night_63.csv  | 1801 ++++++++++++++++++++++++++++++++++
+ BIOL314020_subject28_day_65.csv    | 1762 +++++++++++++++++++++++++++++++++
+ BIOL314020_subject28_night_65.csv  | 1825 +++++++++++++++++++++++++++++++++++
+ BIOL314020_subject29_day_77.csv    |  179 ++++
+ BIOL314020_subject29_night_77.csv  |  173 ++++
+ BIOL314020_subject30_day_80.csv    | 1802 ++++++++++++++++++++++++++++++++++
+ BIOL314020_subject30_night_80.csv  | 1803 ++++++++++++++++++++++++++++++++++
+ BIOL314021_Subject31_Night_55.csv  |  465 +++++++++
+ BIOL314021_Subject32_day_82.csv    |  446 +++++++++
+ BIOL314021_Subject32_night_82.csv  |  446 +++++++++
+ BIOL314021_Subject33_Night_123.csv |  468 +++++++++
+ BIOL314021_Subject33_day_123.csv   |  928 ++++++++++++++++++
+ BIOL314021_Subject34_day_61.csv    |  446 +++++++++
+ BIOL314021_Subject34_night_61.csv  |  430 +++++++++
+ BIOL314021_Subject36_Day_60.csv    |  446 +++++++++
+ BIOL314021_Subject36_Night_60.csv  |  552 +++++++++++
+ BIOL314021_Subject39_Night_50.csv  |  453 +++++++++
+ BIOL314021_Subject39_day_50.csv    |  179 ++++
+ BIOL314021_subject31_Day_55.csv    |  299 ++++++
+ BIOL314021_subject35_day_57.csv    |  468 +++++++++
+ BIOL314021_subject35_night_57.csv  |  450 +++++++++
+ BIOL314021_subject37_day_49.csv    |  451 +++++++++
+ BIOL314021_subject38_day_75.csv    |  891 +++++++++++++++++
+ 34 files changed, 29339 insertions(+)
+
+commit d5b821198ebfc128980447c81351d961a5a5966f
+Author: sarah figueroa <sarahfigueroa@sarahs-MacBook-Air-7.local>
+Date:   Sat Oct 23 16:36:27 2021 -0400
+
+    M6 data
+
+ BIOL314020_subject01_night_52.csv   |  486 +++++
+ BIOL314020_subject02_day_73.csv     |  622 +++++++
+ BIOL314020_subject02_night_73.csv   |  619 +++++++
+ BIOL314020_subject03_day_59.csv     |  565 ++++++
+ BIOL314020_subject03_night_59.csv   |  601 +++++++
+ BIOL314020_subject04_day_72.csv     |  549 ++++++
+ BIOL314020_subject04_night_72.csv   |  567 ++++++
+ BIOL314020_subject05_day_64.csv     |  594 +++++++
+ BIOL314020_subject05_night_64.csv   |  531 ++++++
+ BIOL314020_subject06_day_61.csv     |  308 ++++
+ BIOL314020_subject06_night_61.csv   |  359 ++++
+ BIOL314020_subject07_day_52.csv     | 1763 ++++++++++++++++++
+ BIOL314020_subject07_night_52.csv   | 1784 +++++++++++++++++++
+ BIOL314020_subject08_day_93.csv     |  177 ++
+ BIOL314020_subject08_night_93.csv   |  166 ++
+ BIOL314020_subject09_day_52.csv     | 1687 ++++++++++++++++++
+ BIOL314020_subject09_night_52.csv   | 3344 +++++++++++++++++++++++++++++++++++
+ BIOL314020_subject10_day_63.5.csv   |  542 ++++++
+ BIOL314020_subject10_night_63.5.csv |  303 ++++
+ BIOL314020_subject11_day_95.csv     |  586 ++++++
+ BIOL314020_subject11_night_95.csv   |  594 +++++++
+ BIOL314020_subject12_day_86.csv     |  532 ++++++
+ BIOL314020_subject12_night_86.csv   |  573 ++++++
+ BIOL314020_subject13_day_80.csv     |  582 ++++++
+ BIOL314020_subject13_night_80.csv   |  595 +++++++
+ BIOL314020_subject14_day_65.csv     |  475 +++++
+ BIOL314020_subject14_night_65.csv   |  597 +++++++
+ BIOL314020_subject15_day_63.csv     | 1942 ++++++++++++++++++++
+ BIOL314020_subject15_night_63.csv   | 1942 ++++++++++++++++++++
+ BIOL314020_subject16_day_81.csv     | 1825 +++++++++++++++++++
+ BIOL314020_subject16_night_81.csv   | 1808 +++++++++++++++++++
+ BIOL314020_subject17_day_85.csv     | 1566 ++++++++++++++++
+ BIOL314020_subject17_night_85.csv   | 1782 +++++++++++++++++++
+ BIOL314020_subject18_day_53.csv     | 1298 ++++++++++++++
+ BIOL314020_subject19_day_56.csv     |  194 ++
+ BIOL314020_subject19_night_56.csv   |  118 ++
+ BIOL314020_subject20_day_84.csv     | 1741 ++++++++++++++++++
+ BIOL314020_subject20_night_84.csv   | 1692 ++++++++++++++++++
+ BIOL314020_subject21_day_55.csv     | 1803 +++++++++++++++++++
+ BIOL314020_subject21_night_55.csv   | 1802 +++++++++++++++++++
+ 40 files changed, 39614 insertions(+)
+
+commit 342895235d308b2b34755f0ba0e28777e02dd14c
+Author: emmaoss <osse@bc.edu>
+Date:   Sat Oct 23 16:06:42 2021 -0400
+
+    changes
+
+ Project6_Draft_S2.Rmd | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit eba9c32295a704af2c3dd9ecaeda546c111136f8
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Fri Oct 22 10:43:08 2021 -0400
+
+    intro
+
+ M6 Writing.Rmd | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+commit 91beb17ef6a42f2673c5b8bc00889337eb900514
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Fri Oct 22 10:42:55 2021 -0400
+
+    edits
+
+ BIOL3140.bib | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8986f7186f47da959bd1a1e177daa85b75b2df6b
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Fri Oct 22 10:36:37 2021 -0400
+
+    Intro
+
+ M6 Writing.Rmd | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+commit 6fdcf2b29e2aa23199a9476f72494e3ecb834269
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Fri Oct 22 10:36:22 2021 -0400
+
+    edits
+
+ BIOL3140.bib | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+commit ca3c75d3b8b7932597da6692c69e4acc0dca17db
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Thu Oct 21 18:54:42 2021 -0400
+
+    Draft 4
+
+ Draft4.Rmd | 102 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 102 insertions(+)
+
+commit 13215097b97e47414961c35c597a57b3cd388b5b
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Thu Oct 21 18:33:32 2021 -0400
+
+    draft that works
+
+ Project6_Draft_S2.Rmd | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit b1e67d381f558d6a60721c32200cccfc5b4b3555
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Thu Oct 21 17:49:05 2021 -0400
+
+    draft 2
+
+ BIOL314020_subject01_day_52.csv | 559 ++++++++++++++++++++++++++++++++++++++++
+ Project6_Draft_S2.Rmd           |  90 +++++++
+ 2 files changed, 649 insertions(+)
+
+commit 9fee0867dc190577ce9a3e72c4280bb443670fe7
+Merge: 0d7170d cf3681f
+Author: emmaoss <osse@bc.edu>
+Date:   Thu Oct 21 17:47:34 2021 -0400
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+
+commit 0d7170dd053e2a9776f4f5f7b21c664bcff7ca8e
+Author: emmaoss <osse@bc.edu>
+Date:   Thu Oct 21 17:47:26 2021 -0400
+
+    changes
+
+ BIOL3140_Subject37_Day_49.csv                      |  451 --------
+ BIOL3140_Subject37_Night_49.csv                    |  467 ---------
+ ..._123.csv => BIOL314021_Subject33_Night_123.csv} |    0
+ ...ay_123.csv => BIOL314021_Subject33_day_123.csv} |    0
+ ..._Day_60.csv => BIOL314021_Subject36_Day_60.csv} |  890 ++++++++--------
+ ...ht_60.csv => BIOL314021_Subject36_Night_60.csv} | 1102 ++++++++++----------
+ ...AM_50.csv => BIOL314021_Subject39_Night_50.csv} |    0
+ ..._1PM_50.csv => BIOL314021_Subject39_day_50.csv} |    0
+ .../BIOL3140_Subject37_Night_49.csv                |  467 ---------
+ 9 files changed, 996 insertions(+), 2381 deletions(-)
+
+commit 88351cd317909cb5a0a3a0e626f56a0e7df8c9c4
+Author: emmaoss <osse@bc.edu>
+Date:   Thu Oct 21 17:43:59 2021 -0400
+
+    changes
+
+ .../{BIOL314021_31_Night_55.csv => BIOL314021_Subject31_Night_55.csv}     | 0
+ .../{BIOL3140_31_Day_55.csv => BIOL314021_subject31_Day_55.csv}           | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit cf3681f8edacf5a6e30f35ae8fc70c29ed784428
+Author: sarah figueroa <sarahfigueroa@sarahs-MacBook-Air-7.local>
+Date:   Thu Oct 21 17:39:40 2021 -0400
+
+    bib
+
+ Project6_Draft_S.Rmd | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit ac61a5cef3af93a6d4ca1dafec734aa4e810a494
+Author: sarah figueroa <sarahfigueroa@sarahs-MacBook-Air-7.local>
+Date:   Thu Oct 21 17:38:05 2021 -0400
+
+    files
+
+ .../BIOL314020_subject01_night_52.csv              |  486 +++
+ .../BIOL314020_subject02_day_73.csv                |  622 ++++
+ .../BIOL314020_subject02_night_73.csv              |  619 ++++
+ .../BIOL314020_subject03_day_59.csv                |  565 ++++
+ .../BIOL314020_subject03_night_59.csv              |  601 ++++
+ .../BIOL314020_subject04_day_72.csv                |  549 ++++
+ .../BIOL314020_subject04_night_72.csv              |  567 ++++
+ .../BIOL314020_subject05_day_64.csv                |  594 ++++
+ .../BIOL314020_subject05_night_64.csv              |  531 ++++
+ .../BIOL314020_subject06_day_61.csv                |  308 ++
+ .../BIOL314020_subject06_night_61.csv              |  359 +++
+ .../BIOL314020_subject07_day_52.csv                | 1763 +++++++++++
+ .../BIOL314020_subject07_night_52.csv              | 1784 +++++++++++
+ .../BIOL314020_subject08_day_93.csv                |  177 ++
+ .../BIOL314020_subject08_night_93.csv              |  166 +
+ .../BIOL314020_subject09_day_52.csv                | 1687 ++++++++++
+ .../BIOL314020_subject09_night_52.csv              | 3344 ++++++++++++++++++++
+ .../BIOL314020_subject10_day_63.5.csv              |  542 ++++
+ .../BIOL314020_subject10_night_63.5.csv            |  303 ++
+ .../BIOL314020_subject11_day_95.csv                |  586 ++++
+ .../BIOL314020_subject11_night_95.csv              |  594 ++++
+ .../BIOL314020_subject12_day_86.csv                |  532 ++++
+ .../BIOL314020_subject12_night_86.csv              |  573 ++++
+ .../BIOL314020_subject13_day_80.csv                |  582 ++++
+ .../BIOL314020_subject13_night_80.csv              |  595 ++++
+ .../BIOL314020_subject14_day_65.csv                |  475 +++
+ .../BIOL314020_subject14_night_65.csv              |  597 ++++
+ .../BIOL314020_subject15_day_63.csv                | 1942 ++++++++++++
+ .../BIOL314020_subject15_night_63.csv              | 1942 ++++++++++++
+ .../BIOL314020_subject16_day_81.csv                | 1825 +++++++++++
+ .../BIOL314020_subject16_night_81.csv              | 1808 +++++++++++
+ .../BIOL314020_subject17_day_85.csv                | 1566 +++++++++
+ .../BIOL314020_subject17_night_85.csv              | 1782 +++++++++++
+ .../BIOL314020_subject18_day_53.csv                | 1298 ++++++++
+ .../BIOL314020_subject19_day_56.csv                |  194 ++
+ .../BIOL314020_subject19_night_56.csv              |  118 +
+ .../BIOL314020_subject20_day_84.csv                | 1741 ++++++++++
+ .../BIOL314020_subject20_night_84.csv              | 1692 ++++++++++
+ .../BIOL314020_subject21_day_55.csv                | 1803 +++++++++++
+ .../BIOL314020_subject21_night_55.csv              | 1802 +++++++++++
+ .../BIOL314020_subject22_day_82.csv                | 1872 +++++++++++
+ .../BIOL314020_subject22_night_82.csv              | 1796 +++++++++++
+ .../BIOL314020_subject23_day_79.csv                | 1779 +++++++++++
+ .../BIOL314020_subject23_night_79.csv              | 1619 ++++++++++
+ .../BIOL314020_subject24_day_63.csv                |  588 ++++
+ .../BIOL314020_subject24_night_63.csv              |  609 ++++
+ .../BIOL314020_subject25_day_49.csv                |  552 ++++
+ .../BIOL314020_subject25_night_49.csv              |  527 +++
+ .../BIOL314020_subject26_day_75.csv                |  590 ++++
+ .../BIOL314020_subject26_night_75.csv              |  571 ++++
+ .../BIOL314020_subject27_day_63.csv                | 1673 ++++++++++
+ .../BIOL314020_subject27_night_63.csv              | 1801 +++++++++++
+ .../BIOL314020_subject28_day_65.csv                | 1762 +++++++++++
+ .../BIOL314020_subject28_night_65.csv              | 1825 +++++++++++
+ .../BIOL314020_subject29_day_77.csv                |  179 ++
+ .../BIOL314020_subject29_night_77.csv              |  173 +
+ .../BIOL314020_subject30_day_80.csv                | 1802 +++++++++++
+ .../BIOL314020_subject30_night_80.csv              | 1803 +++++++++++
+ .../BIOL314021_31_Night_55.csv                     |  465 +++
+ .../BIOL314021_Subject32_day_82.csv                |  446 +++
+ .../BIOL314021_Subject32_night_82.csv              |  446 +++
+ .../BIOL314021_Subject34_day_61.csv                |  446 +++
+ .../BIOL314021_Subject34_night_61.csv              |  430 +++
+ .../BIOL314021_subject35_day_57.csv                |  468 +++
+ .../BIOL314021_subject35_night_57.csv              |  450 +++
+ .../BIOL314021_subject37_day_49.csv                |  451 +++
+ .../BIOL314021_subject37_night_49.csv              |  468 +++
+ .../BIOL314021_subject38_day_75.csv                |  891 ++++++
+ .../BIOL314021_subject38_night_75.csv              |  909 ++++++
+ .../BIOL314021_subject40_day_54.csv                |  474 +++
+ .../BIOL314021_subject40_night_54.csv              |  283 ++
+ .../BIOL3140_31_Day_55.csv                         |  299 ++
+ .../BIOL3140_Subject#39_4AM_50.csv                 |  453 +++
+ .../BIOL3140_Subject33_Night_123.csv               |  468 +++
+ .../BIOL3140_Subject33_day_123.csv                 |  928 ++++++
+ .../BIOL3140_Subject36_Day_60.csv                  |  446 +++
+ .../BIOL3140_Subject36_Night_60.csv                |  552 ++++
+ .../BIOL3140_Subject37_Night_49.csv                |  467 +++
+ .../BIOL3140_Subject39_1PM_50.csv                  |  179 ++
+ 79 files changed, 71554 insertions(+)
+
+commit 9e73f6f40613fdd7f20d9f33fc4ce027432f21d5
+Author: emmaoss <osse@bc.edu>
+Date:   Thu Oct 21 17:22:53 2021 -0400
+
+    mammal temp
+
+ mammal.temp.csv | 52 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
+
+commit 7690bf6a2e24a655843af4dd4319060abe376aa7
+Author: sarah figueroa <sarahfigueroa@sarahs-MacBook-Air-7.local>
+Date:   Thu Oct 21 17:10:54 2021 -0400
+
+    edits
+
+ BIOL3140.bib | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+commit 0128dd8278b2390fe4bfb092342f7aa556c0b68f
+Author: ckenaley <cpkenaley@gmail.com>
+Date:   Thu Oct 21 10:08:14 2021 -0400
+
+    proj5 comments
+
+ Module 5 Project.Rmd          | 27 +++++++++++++
+ Module 5 Project_comments.Rmd | 88 +++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 115 insertions(+)
+
+commit f62a16ad8221e70e5097ec7a5e829e616b661cbd
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Wed Oct 20 10:52:48 2021 -0400
+
+    Project 6 Draft
+
+ Project6_Draft_S.Rmd | 72 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 72 insertions(+)
+
+commit ebcb9d8ead1a3b87405fd6117ac211527a8bb53f
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Tue Oct 19 19:34:55 2021 -0400
+
+    Night
+
+ BIOL3140_Subject37_Night_49.csv | 467 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 467 insertions(+)
+
+commit 37e62a3537b24dcb0048fb6e1f977767d5000b7a
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Tue Oct 19 19:34:35 2021 -0400
+
+    Delete BIOL3140_Subject37_Night_49.csv
+
+ BIOL3140_Subject37_Night_49.csv | 467 ----------------------------------------
+ 1 file changed, 467 deletions(-)
+
+commit 0d6f6d8ae6646175d9971034de8c17180da9a736
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Tue Oct 19 19:34:23 2021 -0400
+
+    Day
+
+ BIOL3140_Subject37_Day_49.csv | 451 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 451 insertions(+)
+
+commit 2125eaf86523e8124f6ad6a142116a232bc378ef
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Tue Oct 19 17:24:49 2021 -0400
+
+    Add files via upload
+
+ BIOL3140_Subject37_Night_49.csv | 467 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 467 insertions(+)
+
+commit 8240bc4919427a5549e18709b0c7ff5c6af8ec0c
+Author: emmaoss <osse@bc.edu>
+Date:   Sun Oct 17 23:19:25 2021 -0400
+
+    changes
+
+ Module 5 Project.Rmd  | 6 +++---
+ Module-5-Project.html | 5 +++--
+ 2 files changed, 6 insertions(+), 5 deletions(-)
+
+commit c0b24299f5d38dfea08cf7e999b3f5658e5a3e82
+Author: emmaoss <osse@bc.edu>
+Date:   Sun Oct 17 22:42:28 2021 -0400
+
+    c
+
+ Module 5 Project.Rmd | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+commit 825af72c38530c355812b87890c1c294151e9bef
+Author: emmaoss <osse@bc.edu>
+Date:   Sun Oct 17 22:12:31 2021 -0400
+
+    changes
+
+ Module 5 Project.Rmd  | 2 ++
+ Module-5-Project.html | 1 +
+ 2 files changed, 3 insertions(+)
+
+commit 14872acc39d22f49325c97da3f0c7955c3ce84ec
+Author: emmaoss <osse@bc.edu>
+Date:   Sun Oct 17 21:57:50 2021 -0400
+
+    changes
+
+ Module 5 Project.Rmd | 11 +++--------
+ 1 file changed, 3 insertions(+), 8 deletions(-)
+
+commit 9fdd2160d142c2476ef3900b927e22d7eb7f2c05
+Author: emmaoss <osse@bc.edu>
+Date:   Sun Oct 17 21:57:12 2021 -0400
+
+    changes
+
+ Module-5-Project.html | 152 +++++++++++++++++++++++++-------------------------
+ 1 file changed, 75 insertions(+), 77 deletions(-)
+
+commit 43b9e83c114355e78297b2d91d0d57297a6db066
+Author: emmaoss <osse@bc.edu>
+Date:   Sun Oct 17 19:29:12 2021 -0400
+
+    changes
+
+ Module 5 Project.Rmd  | 2 ++
+ Module-5-Project.html | 1 +
+ 2 files changed, 3 insertions(+)
+
+commit a6701186bd00e6010a57baa2a77ba4846e702e02
+Author: emmaoss <osse@bc.edu>
+Date:   Sun Oct 17 19:17:30 2021 -0400
+
+    changes
+
+ Module-5-Project.html | 179 ++++++++++++++++++++++++++++++--------------------
+ 1 file changed, 108 insertions(+), 71 deletions(-)
+
+commit 1ccb2f26f2bae389b1dcfb9d3183969eb268be71
+Author: emmaoss <osse@bc.edu>
+Date:   Sun Oct 17 19:14:52 2021 -0400
+
+    changes
+
+ Sarah_Active.csv | 102 +++++++++++++++++++++++++++----------------------------
+ 1 file changed, 51 insertions(+), 51 deletions(-)
+
+commit b65958b6f767de3ffb3abc78de598f3efeb12bb9
+Author: emmaoss <osse@bc.edu>
+Date:   Sun Oct 17 19:07:36 2021 -0400
+
+    changes
+
+ Belinda_active.csv | 52 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
+
+commit ccb243a3d4fc31ba970d567363f405507e23e08c
+Author: emmaoss <osse@bc.edu>
+Date:   Sun Oct 17 19:02:44 2021 -0400
+
+    Changes
+
+ Belinda_Active.csv | 51 ---------------------------------------------------
+ 1 file changed, 51 deletions(-)
+
+commit 2948c4cb772c510b4c4f008093a61e6dfb24020f
+Author: emmaoss <osse@bc.edu>
+Date:   Sun Oct 17 19:00:21 2021 -0400
+
+    Changed the name
+
+ Belinda_couch.csv | 52 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Emma_couch.csv    | 53 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Sarah_couch.csv   | 52 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 157 insertions(+)
+
+commit f655fef180e2d0566365faffa3e56b71b61247f0
+Author: emmaoss <osse@bc.edu>
+Date:   Sun Oct 17 18:57:05 2021 -0400
+
+    changes
+
+ Module-5-Project.html | 377 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 377 insertions(+)
+
+commit 7c5891630802d91dfce94efa037121b239073e44
+Author: emmaoss <osse@bc.edu>
+Date:   Sun Oct 17 18:51:28 2021 -0400
+
+    Data
+
+ Belinda_Active.csv   | 51 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ Belinda_Inactive.csv | 52 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ Emma_Active.csv      | 52 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ Sarah_Active.csv     | 52 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ Sarah_Inactive.csv   | 52 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ emma_Inactive.csv    | 53 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 6 files changed, 312 insertions(+)
+
+commit c3816c74078b5b4dfecf777b544d61199e650f70
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sun Oct 17 16:10:50 2021 -0400
+
+    Steven data
+
+ steven_active.csv | 51 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ steven_couch.csv  | 51 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 102 insertions(+)
+
+commit 99d2faca01ee299c4f0a1a3dcf517cdd563725b3
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Sun Oct 17 10:17:45 2021 -0400
+
+    Delete Module-5-Project.html
+
+ Module-5-Project.html | 242 --------------------------------------------------
+ 1 file changed, 242 deletions(-)
+
+commit b0d50e805705658119e66d6cac9eb31fe32deb70
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 17 10:17:02 2021 -0400
+
+    Project 5 (Add data here)
+
+ Module 5 Project.Rmd | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit e732ad639cae580325d9d954b639f9cba8ccfcdd
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 17 10:13:47 2021 -0400
+
+    Project 5 (Add data here)
+
+ Module 5 Project.Rmd | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+commit 8162103076e02e36630d779ac88eec90b633e7a7
+Merge: e7c0090 9814194
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 17 10:13:25 2021 -0400
+
+    Delete/ignore
+    
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+    
+    # Conflicts:
+    #       Module-5-Project.html
+
+commit e7c0090c50f3833050e5a9445f2435b6f9696891
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 17 02:55:14 2021 -0400
+
+    Project 5 (insert data here)
+
+ Module 5 Project.Rmd  | 2 +-
+ Module-5-Project.html | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit abd2a9a1f90c57fb553f9aa407b8f2199c4ef456
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 17 02:54:00 2021 -0400
+
+    Project 5 (insert data here)
+
+ Module 5 Project.Rmd | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+commit 9814194d89694a830f61e4f7cc0c739f3ff41290
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Sun Oct 17 02:51:30 2021 -0400
+
+    Delete Module4Example.tex
+
+ Module4Example.tex | 162 -----------------------------------------------------
+ 1 file changed, 162 deletions(-)
+
+commit d9f75c330686edb94915e9c9feedb9be83b8926b
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Sun Oct 17 02:51:13 2021 -0400
+
+    Delete Module4Example.log
+
+ Module4Example.log | 2 --
+ 1 file changed, 2 deletions(-)
+
+commit 9b5e5a4fbef985e8eaa769a80370ba9ea2f77db3
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Sun Oct 17 02:51:03 2021 -0400
+
+    Delete Module4Example.html
+
+ Module4Example.html | 250 ----------------------------------------------------
+ 1 file changed, 250 deletions(-)
+
+commit 2439cd301ea512b6bc873cb6b9338bc5d500bbf2
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Sun Oct 17 02:50:54 2021 -0400
+
+    Delete Module4Example.Rmd
+
+ Module4Example.Rmd | 43 -------------------------------------------
+ 1 file changed, 43 deletions(-)
+
+commit cc02b8c2887734a53d01e948a67313245df9bae2
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Sun Oct 17 02:50:39 2021 -0400
+
+    Delete Module-5-Project.html
+
+ Module-5-Project.html | 242 --------------------------------------------------
+ 1 file changed, 242 deletions(-)
+
+commit 569d1d90cf7308ab70d3bdd99dc413c3a3d91c84
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Sun Oct 17 02:50:21 2021 -0400
+
+    Delete GITIN_Module4.html
+
+ GITIN_Module4.html | 243 -----------------------------------------------------
+ 1 file changed, 243 deletions(-)
+
+commit 5897c7e2dc0737a36e893e9989770af1e9f3df23
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Sun Oct 17 02:50:10 2021 -0400
+
+    Delete GITIN_Module4.Rmd
+
+ GITIN_Module4.Rmd | 99 -------------------------------------------------------
+ 1 file changed, 99 deletions(-)
+
+commit b54c73420ebe7f60579c2e8202ce4c42735ac877
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Sun Oct 17 02:49:59 2021 -0400
+
+    Delete .DS_Store
+
+ .DS_Store | Bin 6148 -> 0 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f72bc6d7dceb08caee5a369362a070eca7762463
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 17 02:48:04 2021 -0400
+
+    Project 5 (insert data here)
+
+ Module 5 Project.Rmd | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit b127967c39f9d018007aca338e58c297cfdaca19
+Merge: f947f93 9d07e66
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 17 02:47:01 2021 -0400
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+
+commit f947f934f770ac33cd9d9609b584024636cb15ba
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 17 02:46:36 2021 -0400
+
+    Ignore
+
+ .DS_Store             | Bin 6148 -> 6148 bytes
+ GITIN_Module4.Rmd     |  99 ++++++++++++++++++++
+ GITIN_Module4.html    | 243 ++++++++++++++++++++++++++++++++++++++++++++++++
+ Module-5-Project.html |   2 +-
+ Module4Example.Rmd    |  43 +++++++++
+ Module4Example.html   | 250 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ Module4Example.log    |   2 +
+ Module4Example.tex    | 162 ++++++++++++++++++++++++++++++++
+ 8 files changed, 800 insertions(+), 1 deletion(-)
+
+commit 44c4d1b779e81f3614c61abf1e5f244b5c4bf082
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 17 02:37:49 2021 -0400
+
+    Project 5 (insert data here)
+
+ Module 5 Project.Rmd | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit f6e43141e3946c1f07f409f85433259cac74a52d
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 17 02:21:02 2021 -0400
+
+    Project 5 (insert data here)
+
+ Module 5 Project.Rmd | 2 --
+ 1 file changed, 2 deletions(-)
+
+commit 98c6c2e87e600a278aa5f6c227d80240fbe32298
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Oct 17 02:20:03 2021 -0400
+
+    Project 5 (insert data here)
+
+ Module 5 Project.Rmd  |  29 ++++++
+ Module-5-Project.html | 242 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 271 insertions(+)
+
+commit 9d07e66e4658536c6e786cccee348f168f231c7b
+Merge: 5121a4e ed5d600
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Fri Oct 15 10:43:58 2021 -0400
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+
+commit 5121a4e52411b944fb80b4030925940323cf49c0
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Fri Oct 15 10:43:49 2021 -0400
+
+    commiting
+
+ Project5DraftS.Rmd | 40 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+
+commit ed5d600458fcda3e05446bd20af22da6158fba23
+Author: ckenaley <cpkenaley@gmail.com>
+Date:   Thu Oct 14 11:55:51 2021 -0400
+
+    Proj4 comments
+
+ SF Module 4 Project Draft.Rmd           |   1 +
+ SF Module 4 Project Draft_comments.Rmd  | 115 +++++++
+ SF-Module-4-Project-Draft_comments.html | 569 ++++++++++++++++++++++++++++++++
+ 3 files changed, 685 insertions(+)
+
+commit f09d4b5ed216ea25c5c410557fa7640f7a1b97fb
+Author: ckenaley <cpkenaley@gmail.com>
+Date:   Thu Oct 7 11:44:36 2021 -0400
+
+    proj3 comments
+
+ .DS_Store                    | Bin 6148 -> 6148 bytes
+ GitIn_Module3Final_comment.R | 111 +++++++++++++++++++++++++++++++++++++++++++
+ anole.dat.csv                |  75 +----------------------------
+ 3 files changed, 112 insertions(+), 74 deletions(-)
+
+commit 1b7601463d8f6c24cf05e9b415e6f7d8ee189309
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Sun Oct 3 20:03:15 2021 -0400
+
+    Final edits w author cont
+
+ SF Module 4 Project Draft.Rmd | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 1de07387dd5e4570a155f22244cf83c4e2d0cb9f
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Fri Oct 1 10:14:18 2021 -0400
+
+    edits
+
+ SF Module 4 Project Draft.Rmd | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit f23a209c49ae4f38bf270ac9adeef02ebc389f86
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Wed Sep 29 10:51:21 2021 -0400
+
+    M4 Proj
+
+ SF Module 4 Project Draft.Rmd | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit a634e39892f31c78320e485f2172ec0865f3ecb3
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Wed Sep 29 10:34:36 2021 -0400
+
+    M4 proj
+
+ SF Module 4 Project Draft.Rmd | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+commit ca6f8f0adc4181c29cc43a7275362228edcd7050
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Wed Sep 29 10:15:40 2021 -0400
+
+    bib
+
+ BIOL3140.bib | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+commit e21ddfb35e15924d5e545ce7a1b29b52ed1eb65e
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Wed Sep 29 00:21:51 2021 -0400
+
+    M4 edits
+
+ SF Module 4 Project Draft.Rmd | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit 3f6b52c9f9a2d29970ea7a0264f953ea3a1cde9e
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Tue Sep 28 23:37:04 2021 -0400
+
+    M4 edits
+
+ SF Module 4 Project Draft.Rmd | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit a0684528795caf8b857e0d982e0073909fa1e000
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Tue Sep 28 23:15:26 2021 -0400
+
+    M4 SF
+
+ SF Module 4 Project Draft.Rmd | 99 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 99 insertions(+)
+
+commit ebb7a0266a7184ca2e5ce909e4e1980e8c39dad2
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sun Sep 26 15:50:15 2021 -0400
+
+    Project 3 Report
+
+ GitIn_Module3Final.R | 84 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 84 insertions(+)
+
+commit b929b0bcd5db022b4f95a75c317028212c12f93e
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sun Sep 26 15:48:53 2021 -0400
+
+    no print
+
+ Module3S.R | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 2f11469ac24f2d672ac3b85bc4e274812812211a
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Sep 26 15:37:18 2021 -0400
+
+    Module 3 Final Version
+
+ Module3S.R | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 7c089aff8e6ef4308a03fc49b779e828fc16670b
+Merge: 52a86e8 7ab2f32
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Sep 26 15:36:50 2021 -0400
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+    
+    # Conflicts:
+    #       anole.dat.csv
+
+commit 52a86e8eb58222bd1dffde09977bdfcbacd0ca47
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Sep 26 15:33:21 2021 -0400
+
+    commit files
+
+ Module2S.R             | 31 ++++++-------------
+ Module2_concise.R      | 83 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ SF_Module2proj_draft.R | 36 ++++++++++------------
+ anole.dat.csv          | 71 ++++++++++++++++++++++++++++++++++++++++++
+ anole.eco.csv          | 71 ++++++++++++++++++++++++++++++++++++++++++
+ anole.tre              |  1 +
+ 6 files changed, 252 insertions(+), 41 deletions(-)
+
+commit 9c61bd43de2b9cf40020d3c2f48ac1524b1a1614
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Sep 26 15:32:09 2021 -0400
+
+    Module 3 Final Version
+
+ Module3S.R | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7ab2f32bc236fabd19630bde77b42b7ece22d0a9
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sun Sep 26 15:28:05 2021 -0400
+
+    commit files
+
+ anole.dat.csv | 71 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ anole.tre     |  1 +
+ 2 files changed, 72 insertions(+)
+
+commit ca14126b20058f04fc1b755feb0070e8ba634ee2
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Sep 26 15:27:19 2021 -0400
+
+    Module 3 Final Version
+
+ Module3S.R | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8d646e4138c2179615b2b4e4f6aff192f39ed35f
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Sep 26 15:26:12 2021 -0400
+
+    Module 3 Final Version
+
+ Module3S.R | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit f4ea0d85cdc72f3383df692727ccd270984d5c6e
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sun Sep 26 15:25:35 2021 -0400
+
+    commit file
+
+ anole.eco.csv | 71 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 71 insertions(+)
+
+commit efd808bb49c8ef88fd76b3cfdaa3b2008b687159
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sun Sep 26 14:59:22 2021 -0400
+
+    took out something extra
+
+ Module3S.R | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+commit 1627567b23b5bfa964e20de2b6e8580dc8c1467b
+Merge: ae5c1b0 cd68e99
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sun Sep 26 14:54:56 2021 -0400
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+
+commit ae5c1b018b6061cea50afb075d765f8d1fe06025
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sun Sep 26 14:54:53 2021 -0400
+
+    updates, think it's done
+
+ Module3S.R | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+commit cd68e99420dc55730074a6db6905019d676da092
+Merge: b6fd4ee 89484c8
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Sep 26 01:58:12 2021 -0400
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+
+commit b6fd4ee64cf31c217693792d86479ef793a701ef
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Sep 26 01:58:03 2021 -0400
+
+    Belinda Project 3 Draft
+
+ Module3draft.R | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 76c6f8e6a96cf92a11168c4305850e6de749861d
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Sep 26 01:55:59 2021 -0400
+
+    Belinda Project 3 Draft
+
+ Module3draft.R | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 89484c8eb4546fa2285c29cce54c4d3706515b60
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Sun Sep 26 01:53:59 2021 -0400
+
+    Delete gitin_module2.R
+
+ gitin_module2.R | 147 --------------------------------------------------------
+ 1 file changed, 147 deletions(-)
+
+commit a9d53245d6c9ae8e23aa504274e6fda8807c0436
+Merge: 0484f81 8082803
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Sep 26 01:46:52 2021 -0400
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+
+commit 0484f81f58033c1203dc4e5d449ebe3d54009112
+Merge: 6140d02 2ce9062
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Sun Sep 26 01:46:28 2021 -0400
+
+    proj.3 draft
+    
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+    
+    # Conflicts:
+    #       gitin_module2.R
+
+commit 80828030817c8fc7970b79b6a25cbb8d299c0855
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sat Sep 25 19:37:13 2021 -0400
+
+    Updates
+
+ Module3S.R | 23 +++++++++--------------
+ 1 file changed, 9 insertions(+), 14 deletions(-)
+
+commit 224ec62fd9f2971be9a845051465e77003b35d5f
+Author: ckenaley <cpkenaley@gmail.com>
+Date:   Sat Sep 25 13:05:43 2021 -0400
+
+    comments update
+
+ Module2_concise_comments.R | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 978bca11a111dbef7cd31ae76de18355d6dc49a8
+Author: ckenaley <cpkenaley@gmail.com>
+Date:   Fri Sep 24 11:26:20 2021 -0400
+
+    proj2 feedback
+
+ Module2_concise_comments.R | 102 +++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 102 insertions(+)
+
+commit 2eeedb540ef4859cb88c8ea330713e7c9e4ef053
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Fri Sep 24 10:46:57 2021 -0400
+
+    Project 3 Draft
+
+ Module3S.R | 24 ++++++++++++++++++++----
+ 1 file changed, 20 insertions(+), 4 deletions(-)
+
+commit bfc577944e28849a82f7cc89cc40f0f542a6cb79
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Thu Sep 23 10:49:05 2021 -0400
+
+    Module 3 Draft
+
+ Module3S.R | 73 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 73 insertions(+)
+
+commit 2ce9062446372db3c236bc9f67faef400c921c6e
+Author: sarah figueroa <sarahfigueroa@sarahs-MacBook-Air-7.local>
+Date:   Tue Sep 21 20:57:28 2021 -0400
+
+    M3 data
+
+ anole.dat.csv | 71 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ anole.eco.csv | 71 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ anole.tre     |  1 +
+ 3 files changed, 143 insertions(+)
+
+commit 89cd0087fe19b1c9abe05ac3c9ec584e5257202c
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sun Sep 19 17:58:12 2021 -0400
+
+    removed f1/f2 stuff
+
+ gitin_module2.R | 9 ---------
+ 1 file changed, 9 deletions(-)
+
+commit df8b5684fe9bcd858a4ab53220b1c1ce9be02c23
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sun Sep 19 15:58:56 2021 -0400
+
+    new update
+
+ gitin_module2.R | 123 ++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 62 insertions(+), 61 deletions(-)
+
+commit e3cf976117bb543304f435dd91f1811fd40f21d9
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sun Sep 19 13:47:35 2021 -0400
+
+    most up-to-date version
+
+ Module2S.R | 31 ++++++++++---------------------
+ 1 file changed, 10 insertions(+), 21 deletions(-)
+
+commit 969220b32ce441ca4bac96153e914f969a589d07
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Fri Sep 17 14:15:27 2021 -0400
+
+    M2 concise
+
+ Module2_concise.R | 83 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 83 insertions(+)
+
+commit 6efc0634c34227e691ee1f3794c94cb95c8ec571
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Fri Sep 17 14:10:58 2021 -0400
+
+    Sarah M2 draft
+
+ SF_Module2proj_draft.R | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 77ac0a79e9072ac5e086a6594df97fdc959ce3de
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Fri Sep 17 13:44:58 2021 -0400
+
+    Sarah Module 2 edits
+
+ SF_Module2proj_draft.R | 36 ++++++++++++++++--------------------
+ 1 file changed, 16 insertions(+), 20 deletions(-)
+
+commit 22b212f9fee014338ecbfd75ee0fc0ebb221a4ed
+Merge: abdc925 f35fa3d
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Fri Sep 17 13:44:22 2021 -0400
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+
+commit abdc925e89cbd304b45f2c727b4208d163ecf8e1
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Fri Sep 17 13:44:00 2021 -0400
+
+    Rproj
+
+ biol3140_gitin.Rproj | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+commit dd92aa455bb8b81e206e9806c0410097720dba74
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Fri Sep 17 13:24:28 2021 -0400
+
+    gitignore?
+
+ .gitignore | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit 6140d02018d202ab596a3dba30d20b32158034fd
+Merge: 4d6690f f35fa3d
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Fri Sep 17 10:45:39 2021 -0400
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+
+commit 4d6690ff361591de4ef9c30f32ef88ddd4571e0a
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Fri Sep 17 10:40:23 2021 -0400
+
+    test
+
+ bwangSeed copy/.DS_Store => .DS_Store |   Bin 6148 -> 6148 bytes
+ .Rapp.history                         |     0
+ .gitignore                            |     4 +
+ Module2Project.R                      |    83 -
+ bwangSeed copy/Rplot.pdf              |   Bin 8729 -> 0 bytes
+ bwangSeed copy/pseed.calibration.csv  |   120 -
+ bwangSeed copy/pseed.fin.amps.csv     | 73353 --------------------------------
+ bwangSeed copy/pseed.lengths.csv      |     4 -
+ gitin_module2.R                       |    16 +
+ 9 files changed, 20 insertions(+), 73560 deletions(-)
+
+commit f35fa3d558317b58f0bbc6e177e5cc2e96ab91cf
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Fri Sep 17 10:36:54 2021 -0400
+
+    commit files necessary for Project 2
+
+commit d1963ac2dc100239a68949c7f085b3f892533a50
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Fri Sep 17 10:32:16 2021 -0400
+
+    commit files necessary for Project 2
+
+commit 54349b095cfcf0d84c61af52166e6a490deb6bd9
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Fri Sep 17 10:27:42 2021 -0400
+
+    pseed data
+
+ pseed.calibration.csv | 238 +++++++++++++++++++++++++-------------------------
+ 1 file changed, 119 insertions(+), 119 deletions(-)
+
+commit c90bc0ca20bc8e7adbba1c9a6359dc319cf290a5
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Fri Sep 17 10:25:09 2021 -0400
+
+    commit files necessary for Project 2
+
+ pseed.calibration.csv |   120 +
+ pseed.fin.amps.csv    | 73353 ++++++++++++++++++++++++++++++++++++++++++++++++
+ pseed.lengths.csv     |     4 +
+ pseed.met.rate.csv    |    51 +
+ 4 files changed, 73528 insertions(+)
+
+commit c4d599db35a701ba6f5f1f2fb598c49603538cf6
+Merge: d0012f8 efb93fb
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Fri Sep 17 10:18:13 2021 -0400
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+
+commit d0012f83080c598f554858611cd2a6707b0115e6
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Fri Sep 17 10:18:02 2021 -0400
+
+    gitignore
+
+ .gitignore | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit ba34e7c9cdabce41ad15e6d8bfc2925f0e168ef8
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Fri Sep 17 10:15:37 2021 -0400
+
+    Steven Project 2 Draft
+
+ Module2S.R | 95 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 95 insertions(+)
+
+commit 7f6e0135f6d5b83ba0b493b1854360bfd7571c9d
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Fri Sep 17 10:07:36 2021 -0400
+
+    seed data
+
+ {bwangSeed => bwangSeed copy}/.DS_Store             | Bin
+ {bwangSeed => bwangSeed copy}/Rplot.pdf             | Bin
+ {bwangSeed => bwangSeed copy}/pseed.calibration.csv |   0
+ {bwangSeed => bwangSeed copy}/pseed.fin.amps.csv    |   0
+ {bwangSeed => bwangSeed copy}/pseed.lengths.csv     |   0
+ 5 files changed, 0 insertions(+), 0 deletions(-)
+
+commit bc71b62f3b36e3cd44ee2bed7975fe0ef5b04e6f
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Fri Sep 17 09:56:04 2021 -0400
+
+    Seed
+
+ bwangSeed/.DS_Store             |   Bin 0 -> 6148 bytes
+ bwangSeed/Rplot.pdf             |   Bin 0 -> 8729 bytes
+ bwangSeed/pseed.calibration.csv |   120 +
+ bwangSeed/pseed.fin.amps.csv    | 73353 ++++++++++++++++++++++++++++++++++++++
+ bwangSeed/pseed.lengths.csv     |     4 +
+ 5 files changed, 73477 insertions(+)
+
+commit efb93fbb809ff5851c8156dae7d01314461365ea
+Author: ckenaley <cpkenaley@gmail.com>
+Date:   Fri Sep 17 08:11:19 2021 -0400
+
+    proj1 feedback
+
+ .gitignore                |  4 ++++
+ Module1Project_comments.R | 42 ++++++++++++++++++++++++++++++++++++++++++
+ biol3140_gitin.Rproj      | 13 +++++++++++++
+ 3 files changed, 59 insertions(+)
+
+commit 334618952f7bd6f156cb5fb13e4e762ead400d54
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Thu Sep 16 19:10:40 2021 -0400
+
+    edit 2
+
+ SF_Module2proj_draft.R | 28 ++++++++++++++++------------
+ 1 file changed, 16 insertions(+), 12 deletions(-)
+
+commit 9409a048a0382b24b40c70110530a6151d70be97
+Author: sarah figueroa <sarahfigueroa@sarahs-MacBook-Air-7.local>
+Date:   Thu Sep 16 13:44:38 2021 -0400
+
+    Edit 1
+
+ SF_Module2proj_draft.R | 59 +++++++++++++++++++++++++++++++++++++-------------
+ 1 file changed, 44 insertions(+), 15 deletions(-)
+
+commit e22a6e2311930506fc570f392db353ed6365151f
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Wed Sep 15 11:25:18 2021 -0400
+
+    Module 2 draft
+
+ SF_Module2proj_draft.R | 114 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 114 insertions(+)
+
+commit 44e6425697138aeb14413f502ed7b8bb5ed60164
+Author: Belinda Wang <89792063+belindawang117@users.noreply.github.com>
+Date:   Wed Sep 15 10:42:24 2021 -0400
+
+    Delete biol3140_gitin.Rproj
+
+ biol3140_gitin.Rproj | 13 -------------
+ 1 file changed, 13 deletions(-)
+
+commit 4a20440614e0009d816327b58b5f50b355bc1bb1
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Wed Sep 15 10:42:23 2021 -0400
+
+    Proj2
+
+ gitin_module2.R | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit 411b2e16cc5114e79ab326dd0ecea2a7b153f1ee
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Wed Sep 15 10:40:16 2021 -0400
+
+    Project 2
+
+ biol3140_gitin.Rproj | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+commit 46a35c307010b65e09e951a1fdbe12027492a150
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Wed Sep 15 10:23:22 2021 -0400
+
+    Project2
+
+ gitin_module2.R | 83 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 83 insertions(+)
+
+commit d3e2622af59d76d11bb23dff140b184865cd6346
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Wed Sep 15 01:21:15 2021 -0400
+
+    Project2
+
+ Module2Project.R | 61 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
+
+commit 98d71b360b3e3c31e2aa2fb79ec6dd5109a1ceb1
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Mon Sep 13 00:48:32 2021 -0400
+
+    Project2
+
+ Module2Project.R | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+commit 7fd1386da497c015c4b54f85539e14b2559d9611
+Merge: 3e9b9c7 ac0632c
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Mon Sep 13 00:45:01 2021 -0400
+
+    Merge branch 'master' of https://github.com/stlafever/biol3140_gitin
+
+commit 3e9b9c75999485f6363ab1ca9758759ef72b21e2
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Mon Sep 13 00:44:44 2021 -0400
+
+    Module2
+
+ Module2Project.R | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit ac0632cf9fa33d16aaa33a1a69c08db25b7aa307
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Fri Sep 10 10:17:42 2021 -0400
+
+    Project1
+
+ Module1Project.R | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 328bd08f31c26b7657ab927a5e455eaaff3cb0ff
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Fri Sep 10 10:07:15 2021 -0400
+
+    pdf file
+
+ species.quadrant.pdf | Bin 0 -> 11513 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7e3b80fe4e0de37b811cfc8ea33c9b51f016b633
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Thu Sep 9 14:05:34 2021 -0400
+
+    new title
+
+ Module1Project.R | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+commit 9ee645813bcc3944d169abad6fec5453af701031
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Thu Sep 9 14:04:52 2021 -0400
+
+    new title
+
+ Module1DraftS.R | 33 ---------------------------------
+ 1 file changed, 33 deletions(-)
+
+commit 6231f085629b361118250675902fade5aa400005
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Wed Sep 8 20:34:43 2021 -0400
+
+    test
+
+ collab_test.R | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 8489129c493f127ee24ea01934231d6c3f913266
+Author: sarah figueroa <sarahfigueroa@sarahs-air-7.bc.edu>
+Date:   Wed Sep 8 10:51:36 2021 -0400
+
+    Test edit
+
+ collab_test.R | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 7d67ac0c0aea9d23fc4866c11ba44e42d7fa7e52
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Wed Sep 8 10:48:52 2021 -0400
+
+    test file
+
+ collab_test.R | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 1200a89e6b1653fd7bb83e99cbb9f37bb5d56b10
+Author: Belinda Wang <belindawang@belindasmacbook.bc.edu>
+Date:   Wed Sep 8 10:39:26 2021 -0400
+
+    test
+
+ TestBelinda.R | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit ea9a4d790afb801dbd1bb5a9ba5d08ee9e30793a
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Wed Sep 8 10:04:23 2021 -0400
+
+    Draft of Module 1 Project
+
+ Module1DraftS.R | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+commit f1aff9288f8c26ef977b229befe3c2dca664b799
+Author: Steven LaFever <lafever@bc.edu>
+Date:   Sun Sep 5 12:25:40 2021 -0400
+
+    commit1
+
+ TestSteven.R | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 34fbb20eb69e80d7d529d006cae93bdd4d723691
+Author: sarah figueroa <sarahfigueroa@sarahs-MacBook-Air-7.local>
+Date:   Fri Sep 3 10:37:49 2021 -0400
+
+    Test
+
+ Test.SarahFig.R | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
