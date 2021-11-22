@@ -1,6 +1,6 @@
 ---
 title: "M8_Draft_SF"
-author: "Sarah Figueroa"
+author: "Git In"
 date: "11/3/2021"
 output: html_document
 bibliography: BIOL3140.bib
@@ -18,9 +18,14 @@ It has been experimentally shown that with increasing lengths, isometric force i
 
 
 ## Methods
-In order to assess the affect of eccentric fatigue of elbow flexor muscles, the measurements of isometric force over the range of motion of the forearm produced by maximum voluntary contractions (MVCs) were taken with DAQ and analyzed. 
-An Arduino-based force-data aquisition system was set up and a ganiometer was constructed to carry out the experiment. 
-The isometric force data from MVCs were collected over 12 arm angles before and after fatiguing the forearm muscles. Isometric force-angle curves were produced to analyze at what angle maximum isometric force (Fmax) occurs (θmax). The values were normalized by dividing the maximum force across all angles for each experiment by Fmax. The angle of non-fatigued and eccentrically fatigued forearm flexors at their maximum isometric force were compared in order to determine the shift of θmax between the two conditions. 
+In order to assess the affect of eccentric fatigue of elbow flexor muscles, the measurements of isometric force over the range of motion of the forearm produced by maximum voluntary contractions (MVCs) were taken with DAQ and analyzed. The isometric force data from MVCs were collected over 12 arm angles before and after fatiguing the forearm muscles. Isometric force-angle curves were produced to analyze at what angle maximum isometric force (Fmax) occurs (θmax). The angle of non-fatigued and eccesntrically fatigued forearm flexors at their maximum isometric force were compared in order to determine the shift of θmax between the two conditions.
+
+Data was first made useable by changing angle values to one of the eleven that we were supposed to measure. We then filtered out data that was incomplete, either because there were only control or fatigue data, or because force was not measured at eleven angles. Force values were then normalized so that data could be compared and to eliminate error due to not calibrating the force sensor before using.
+
+To determine if the class-wide force-angle data for isometric MVC accorded to a typical FL relationship both under control and fatigued conditions, the mean values force values for each angle and experimental condition were plotted (Figure 1). The data follow the typical FL relationship for the most part. There is a decrease in force at angles 112.5 and 123.75 that is unexpected but overall, the data do show the relationship we expected. 
+
+To determine the effect of fatigue on theta max, we created models for each subject and experimental condition using second-, third-, and fourth-order polynomials. We perfomed an AIC analysis on each model to determine which model fit best. We then predicted force based on the models for a thousand different angle measurements between 45 deg and 157.5 deg. We determined which theta value corresponded to the max force (theta max). We performed an ANOVA analysis on theta max and experimental condition to determine if the experimental condition had a statistically significant effect on theta max (Table 1). We then calculated the average difference between theta max for the control and fatigued condition (Tables 2&3). We also plotted the class-wide data and added a blue dot that was mean theta max for control condition and a red dot that corresponded to theta max for the fatigued condition (Figure 2). 
+
 
 ## Results
 ```{r setup, include=FALSE}
@@ -33,59 +38,88 @@ require(broom)
 library(features)
 ```
 
-```{r}
-dat.f <- list.files(pattern = "control|fatigue") #find the files
-print(dat.f)
-dat.l <- list() #make an empty list
-mass.l <- list() #make list for masses
-for(i in dat.f){
-  met.dat<- unlist(strsplit(i,"_"))
-  team <- met.dat[1]
-  subject <- met.dat[2]
-  angle <- met.dat[3]
-  cond <- as.double(gsub(".csv","",met.dat[4])) #dropping .csv with gsub
-  dat.l[[i]]<- read_csv(i)%>%
-    mutate(team=team,subject=subject,angle=angle, cond=cond)
-}
-dat <- do.call(rbind,dat.l) #combine the list into table
+```{r tables,echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+f <- list.files(pattern = "control.csv|fatigue.csv") 
+f.l <- list()
+ang <- seq(45,157.5,length.out = 11)
+
+dat.file <- readRDS("Module8Data.RDS")
+dat <- dat.file%>% group_by(exp, angle, subject) %>% summarise(max_ang_force=max(force)) %>% ungroup()
+dat <- dat %>% group_by(exp, subject) %>% mutate(max_force=max(max_ang_force)) %>% mutate(normF = max_ang_force/max_force) 
+dat.means <- dat %>% ungroup() %>% group_by(exp, angle) %>% mutate(meanF = mean(normF))
+
+```
+```{r plot1, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE, fig.cap="Figure 1. Mean Force Values by Angle and Experimental Condition"}
+dat.means%>%
+  ggplot(aes(angle,meanF, col=exp))+geom_point()
 ```
 
-```{r}
-#find maximum force for each recording
-#idk what the label is for force?
-dat.max <- dat%>%
-  group_by(cond, subject, angle)%>%
-  summarize(maxf=max(f))
+The ANOVA analysis showed that the relationship between experimental condition and theta max was not statistically significant (P > 0.05). 
 
-#find maximum force over all angles for each person and condition
-dat.max2 <- dat.max%>%
-  group_by(cond, subject) %>%
-  summarize(maxf2=max(maxf))
+```{r analysis, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
 
-#normalize data to where max force is 1
-dat.normF%>%
-  left_join(dat.max2)%>%
-  mutate(normF=maxf/maxf2)
-  
 
-#find the angle of maximum force for each subject and type
-#this is just copy&paste - might have to change variables but this is general idea
-poly.m2 <- lm(normF~poly(ang,2)) #second order
-poly.m3 <- lm(normF~poly(ang,3)) #third order
-poly.m4 <- lm(normF~poly(ang,4)) #fourth order
+AICs <- dat%>%
+  group_by(subject,exp)%>%
+  filter(length(normF)==11)%>%
+  summarize(
+    m2=AICc(lm(normF~poly(ang,2))), #second order
+    m3=AICc(lm(normF~poly(ang,3))), #third order
+    m4=AICc(lm(normF~poly(ang,4))) #fourth order
+  )%>%
+  pivot_longer(m2:m4,names_to="model",values_to="AICc")
 
-AICc(poly.m2,poly.m3,poly.m4)
 
-#use the best fitting model to find max value
-x.pred <- seq(45,157.5,length.out = 1000) #define 1000 angles from our range
+x.pred <- seq(45,157.5,length.out = 1000)
 
-# use this but replace poly.m4 with whatever is best fit: normF.pred <- predict(poly.m4,newdata = data.frame(angle=x.pred)) #predict the force using 1000 angles
+fits <- dat%>%
+  group_by(subject,exp)%>%
+  filter(length(normF)==11)%>%
+  summarize(
+    m2=predict(lm(normF~poly(ang,2)),newdata=data.frame(ang=x.pred)), #second order
+    m3=predict(lm(normF~poly(ang,3)),newdata=data.frame(ang=x.pred)), #third order
+    m4=predict(lm(normF~poly(ang,4)),newdata=data.frame(ang=x.pred)) #fourth order
+  )%>%
+  pivot_longer(m2:m4,names_to="model")%>%
+  group_by(subject,exp,model)%>%
+  summarize(theta_max=x.pred[which.max(value)])
 
-#qplot(angle,normF)+geom_point(aes(x=x.pred,y=normF.pred),col="red")+geom_point(aes(x=x.pred[which.max(normF.pred)],y=normF.pred[which.max(normF.pred)]),size=5,col="blue")
+best.models <- fits%>%
+  left_join(AICs)%>%
+  group_by(subject,exp)%>%
+  mutate(best=AICc==min(AICc))%>%
+  filter(best==TRUE)%>%
+  select(-best)
+
+anova(lm(theta_max~exp,best.models)) %>% tidy %>% knitr::kable(caption="Table 1: ANOVA analysis of best models")
+```
+
+While the ANOVA test did not find a significant relationship between experimental condition and force, there was an increase of 16.75 degrees in theta max between the control and fatigue condition.
+
+```{r plot, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+best.models <- best.models%>%
+  pivot_wider(id_cols=subject,names_from = exp,values_from=theta_max)%>%
+  filter(is.na(fatigue)!= TRUE|| is.na(control)!=TRUE)%>%
+  mutate(shift=fatigue-control)%>%
+  filter(shift!=0||is.na(shift)!=TRUE)%>%
+  ungroup()
+
+c.mean <- mean(best.models$control)
+f.mean <- mean(best.models$fatigue)
+first.col <- c("Control", "Fatigue")
+second.col <- c(c.mean, f.mean)
+mean.data <- data.frame(first.col, second.col)
+mean.data %>% knitr::kable(caption="Table 2: Theta Max for Control and Fatigue Conditions",col.names=c('Condition', 'Theta Max'))
+best.models%>%
+  summarise(mean.shift=mean(shift),se.shift=sd(shift)/sqrt(length(shift)))%>%
+  as.data.frame() %>% knitr::kable(caption="Table 3: Shift of Theta Max and Standard Error")
+```
+
+```{r plot2, echo=FALSE, message=FALSE, warning=FALSE,error=FALSE, fig.cap="Figure 2. Class-wide Force vs Angle Data Plot. Blue dot is mean theta max for control condition. Red dot is mean theta max for fatigued condition."}
+dat%>%
+  ggplot(aes(angle,normF,col=exp))+geom_point()+geom_point(aes(x=c.mean,y=1.0),size=5,col="blue")+geom_point(aes(x=f.mean,y=1.0),size=5,col="red")+geom_smooth(method="lm", formula=y~poly(x,2))
 ```
 
 ## Discussion
-
-## Author Contributions
 
 ## References
