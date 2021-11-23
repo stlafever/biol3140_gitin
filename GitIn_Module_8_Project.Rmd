@@ -1,0 +1,145 @@
+---
+title: "Module 8 Project"
+author: "Git In"
+date: "11/23/2021"
+output: html_document
+bibliography: BIOL3140.bib
+---
+
+## Introduction
+
+The force that a vertebrae muscle can produce is governed by both length and velocity. This study will focus on the force-length relationship. 
+
+In order to produce muscle contractions, cross bridges in the actin-myosin overlap region of a sarcomere produce the force necessary for these actin and myosin filaments to slide past each other [@Rassier1999]. So, the overall force that a skeletal muscle can produce is related to the number of cross bridges present. Because cross bridges are only present in the actin-myosin overlap region, the maximum isometric force that can be produced is in turn related to the amount of actin-myosin overlap. 
+
+Another factor that affects the maximum isometric force produced by a muscle is the arrangement of the lever system of the muscle. In this experiment we will study the human upper limb. It has been shown that the the force measured at the hand as the muscle produces isometric force at various lengths reflects the force-length relationship at the fiber level relatively accurately, regardless of effective inlever changes during movement [@Rassier1999]. So, this factor can be reasonably ignored in this study. 
+
+It has been experimentally shown that with increasing lengths, isometric force increases, reaches a plateau, and then decreases [@Rassier1999]. This study will attempt to reproduce this result and further test whether eccentric fatigue has an effect on the force length relationship. In previous studies, researchers showed that eccentric exercises produced changes in the muscle that shifted the angle-torque relationship to longer muscle lengths without a significant decrease in maximum force [@Yeung2008]. 
+
+
+## Methods
+In order to assess the affect of eccentric fatigue of elbow flexor muscles, the measurements of isometric force over the range of motion of the forearm produced by maximum voluntary contractions (MVCs) were taken with DAQ and analyzed. The isometric force data from MVCs were collected over 12 arm angles before and after fatiguing the forearm muscles. Isometric force-angle curves were produced to analyze at what angle maximum isometric force (Fmax) occurs (θmax). The angle of non-fatigued and eccesntrically fatigued forearm flexors at their maximum isometric force were compared in order to determine the shift of θmax between the two conditions.
+
+Data was first made useable by changing angle values to one of the eleven that we were supposed to measure. We then filtered out data that was incomplete, either because there were only control or fatigue data, or because force was not measured at eleven angles. Force values were then normalized so that data could be compared and to eliminate error due to not calibrating the force sensor before using.
+
+To determine if the class-wide force-angle data for isometric MVC accorded to a typical FL relationship both under control and fatigued conditions, the mean values force values for each angle and experimental condition were plotted along with a second-order polynomial curve (Figure 1). The data follow the typical FL relationship for the most part. There is a decrease in force at angles 112.5 and 123.75 that is unexpected but overall, the data do show the relationship we expected. 
+
+To determine the effect of fatigue on theta max, we created models for each subject and experimental condition using second-, third-, and fourth-order polynomials. We perfomed an AIC analysis on each model to determine which model fit best. We then predicted force based on the models for a thousand different angle measurements between 45 deg and 157.5 deg. We determined which theta value corresponded to the max force (theta max). We performed an ANOVA analysis on theta max and experimental condition to determine if the experimental condition had a statistically significant effect on theta max (Table 1). We then calculated the average difference between theta max for the control and fatigued condition (Tables 2&3). We also plotted the class-wide data and added a red dot that was mean theta max for control condition and a green dot that corresponded to theta max for the fatigued condition (Figure 2). We also made a box-plot of shift values across all subjects (Figure 3).
+
+
+## Results
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse) #always
+library(nlme) #ditto
+library(MuMIn)
+library(knitr) #for knitting options
+require(broom)
+library(features)
+```
+
+```{r tables,echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+
+ang <- seq(45,157.5,length.out = 11)
+
+dat.file <- readRDS("Module8Data.RDS")
+dat <- dat.file %>% group_by(exp, angle, subject) %>% summarise(max_ang_force=max(force)) %>% ungroup()
+dat <- dat %>% group_by(exp, subject) %>% mutate(max_force=max(max_ang_force)) %>%mutate(normF = max_ang_force/max_force) 
+dat.means <- dat %>% ungroup() %>% group_by(exp, angle) %>% mutate(meanF = mean(normF))
+
+```
+```{r plot1, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE, fig.cap="Figure 1. Mean Force Values by Angle and Experimental Condition"}
+x <- dat.means$angle
+y <- dat.means$meanF
+
+dat.means%>%
+  ggplot(aes(angle,meanF, col=exp))+geom_point()+
+  stat_smooth(method='lm', formula = y~poly(x,2))
+
+
+```
+
+The ANOVA analysis showed that the relationship between experimental condition and theta max was not statistically significant (P > 0.05). 
+
+```{r analysis, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+
+
+AICs <- dat%>%
+  group_by(subject,exp)%>%
+  filter(length(normF)==11)%>%
+  summarize(
+    m2=AICc(lm(normF~poly(angle,2))), #second order
+    m3=AICc(lm(normF~poly(angle,3))), #third order
+    m4=AICc(lm(normF~poly(angle,4))) #fourth order
+  )%>%
+  pivot_longer(m2:m4,names_to="model",values_to="AICc")
+
+
+x.pred <- seq(45,157.5,length.out = 1000)
+
+fits <- dat%>%
+  group_by(subject,exp)%>%
+  filter(length(normF)==11)%>%
+  summarize(
+    m2=predict(lm(normF~poly(ang,2)),newdata=data.frame(ang=x.pred)), #second order
+    m3=predict(lm(normF~poly(ang,3)),newdata=data.frame(ang=x.pred)), #third order
+    m4=predict(lm(normF~poly(ang,4)),newdata=data.frame(ang=x.pred)) #fourth order
+  )%>%
+  pivot_longer(m2:m4,names_to="model")%>%
+  group_by(subject,exp,model)%>%
+  summarize(theta_max=x.pred[which.max(value)])
+
+best.models <- fits%>%
+  left_join(AICs)%>%
+  group_by(subject,exp)%>%
+  mutate(best=AICc==min(AICc))%>%
+  filter(best==TRUE)%>%
+  select(-best)
+
+anova(lm(theta_max~exp,best.models)) %>% tidy %>% knitr::kable(caption="Table 1: ANOVA analysis of best models")
+```
+
+While the ANOVA test did not find a significant relationship between experimental condition and force, there was an increase of 16.75 degrees in theta max between the control and fatigue condition.
+
+```{r plot, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+best.models <- best.models%>%
+  pivot_wider(id_cols=subject,names_from = exp,values_from=theta_max)%>%
+  filter(is.na(fatigue)!= TRUE|| is.na(control)!=TRUE)%>%
+  mutate(shift=fatigue-control)%>%
+  filter(shift!=0||is.na(shift)!=TRUE)%>%
+  ungroup()
+
+c.mean <- mean(best.models$control)
+f.mean <- mean(best.models$fatigue)
+first.col <- c("Control", "Fatigue")
+second.col <- c(c.mean, f.mean)
+mean.data <- data.frame(first.col, second.col)
+mean.data %>% knitr::kable(caption="Table 2: Theta Max for Control and Fatigue Conditions",col.names=c('Condition', 'Theta Max'))
+best.models%>%
+  summarise(mean.shift=mean(shift),se.shift=sd(shift)/sqrt(length(shift)))%>%
+  as.data.frame() %>% knitr::kable(caption="Table 3: Shift of Theta Max and Standard Error")
+
+```
+
+The graph below (Fig 2) shows the class-wide data along with a second-order polynomial fit. It can be seen that the two curves are similar with the fatigue curve shifted in the positive direction. The dots corresponding to theta max values also demonstrate this shift.
+
+
+```{r plot2, echo=FALSE, message=FALSE, warning=FALSE,error=FALSE, fig.cap="Figure 2. Class-wide Force vs Angle Data Plot. Red dot is mean theta max for control condition. Green dot is mean theta max for fatigued condition."}
+dat%>%
+  ggplot(aes(angle,normF,col=exp))+geom_point()+geom_point(aes(x=c.mean,y=1.0),size=5,col="red")+geom_point(aes(x=f.mean,y=1.0),size=5,col="green")+
+  stat_smooth(method='lm', formula = y~poly(x,2))
+
+```
+
+
+The box-plot of the shift data for each person and shows that the majority of the shift data was positive (i.e., fatigue theta max > control theta max) and that the net shift for the class was to a longer theta max.
+
+```{r plot3, echo=FALSE, message=FALSE, warning=FALSE,error=FALSE, fig.cap="Figure 3. Shift (Fatigue Theta Max - Control Theta Max)."}
+
+best.models %>%
+  ggplot(aes(x = "", y = shift)) + 
+  geom_boxplot()
+```
+## Discussion
+
+## References
