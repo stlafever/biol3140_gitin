@@ -117,7 +117,7 @@ hm.pred <- hm%>%
   left_join(hm%>%select(j.day,date)) ## add date back to tibble
 ```
 
-```{r actually important stuff}
+```{r arrival proportions}
 
 arrivals<- dat%>%
   group_by(species, year)%>%
@@ -139,5 +139,39 @@ arrivals.pred <- arrivals%>%
 arrivals%>%
   ggplot(aes(j.day,prop, col=species))+geom_point(aes=0.3)+geom_line(data=arrivals.pred,aes(x=j.day,y=pred),size=2)+facet_wrap(year~.)
 
+```
+
+```{r weather data}
+
+arrival.date <-arrivals.pred%>%
+  group_by(species, year)%>%
+  filter(j.day==j.day[which.min(abs(pred-0.25))])
+
+weather.d <- weather.d%>%
+  dplyr::mutate(year=as.integer(str_sub(date,1,4)), #add year
+         date=as.Date(date))%>%
+  group_by(year)%>% #group by year so we can compute julian day
+  dplyr::mutate(j.day=julian(date,origin=as.Date(paste0(unique(year),"-01-01"))), #add julian day
+  date2=date,
+  wdir.rad=(180-abs(wdf2-180))*pi/180, #radians so we can use a trig function to compute wind vector, scale degrees first to 180 scale to 2x pi and subtract from 180 (wind comes out of a direction)
+  wvec=cos(wdir.rad)*-1*awnd # we want a negative value for positive value for 2x pi
+  )%>% #store day in new column
+  select(id,year,date2,j.day,tmin,tmax,wvec)%>% #select the rows we need
+  left_join(sta.d%>%select(id,name,migr.day))%>% #add the station id info (ie. name)
+  mutate(j.day=j.day+migr.day)#make j.day ahead of BOS according to the migration days away so we can join weather along path
+
+arrival.weath <- arrival.date%>%
+  left_join(weather.d)%>%
+  left_join(arrivals%>%select(year,date,j.day))
+
+weather.wk <-weather.d %>% 
+  group_by(year,name) %>% 
+  mutate(wk.tmin = frollmean(tmin, n=14,align="right"),
+         wk.tmax = frollmean(tmax, n=14,align="right"),
+         wk.wvec = frollmean(wvec, n=14,align="right")
+         )%>%
+  select(j.day,date2,name,wk.tmin,wk.tmax,wk.wvec)
+arrivals.weath2 <- arrival.date%>%
+  left_join(weather.wk)
 ```
 
