@@ -31,7 +31,7 @@ library(data.table) #for frollmean function (and others)
 
 ```{r load data, cache=TRUE, include=FALSE}
 
-dat <- readRDS("massbird.data.RDS")
+dat <- readRDS("massbird1.data.RDS")
 ```
 
 ```{r just to visualize can remove later}
