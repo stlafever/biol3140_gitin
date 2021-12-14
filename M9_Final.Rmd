@@ -1,6 +1,6 @@
 ---
 title: "M9/Final"
-author: "Sarah Figueroa"
+author: "Gitin"
 date: "12/11/2021"
 output: html_document
 ---
@@ -14,6 +14,7 @@ library(rnoaa)
 library(data.table)
 library(ggmap)
 library(usmap)
+library(rgdal)
 library(magick)#for examples
 library(cowplot)#for examples
 library(lme4) #for linear mixed effect models
@@ -186,4 +187,3 @@ bos <- ncdc_stations(stationid = "GHCND:USW00014739")
 
 print(bos)
 ```
-
