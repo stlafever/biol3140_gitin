@@ -1,9 +1,14 @@
 ---
 title: "M9/Final"
-author: "Sarah Figueroa"
+author: "Git In"
 date: "12/11/2021"
 output: html_document
+bibliography: BIOL3140.bib
+
 ---
+## Introduction
+Trans-Gulf migrants (TGMs) travel long distances to forage and breed. These birds migrate from Central and South America every spring to more temperate regions between Texas and Florida. Their time of arrival to the breeding grounds have differing tradeoffs and can affect the fitness of the migrants. 
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
