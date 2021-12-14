@@ -49,7 +49,7 @@ head(dat)
 saveRDS(data,"massbird.data.RDS")
 ```
 
-```{r}
+```{r just to visualize can remove later}
 dat%>%
   group_by(year,species)%>%
   summarise(count=sum(individualCount,na.rm = T))%>%
