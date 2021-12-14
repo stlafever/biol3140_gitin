@@ -9,6 +9,9 @@ bibliography: BIOL3140.bib
 ## Introduction
 Trans-Gulf migrants (TGMs) travel long distances to forage and breed. These birds migrate from Central and South America every spring to more temperate regions between Texas and Florida. Their time of arrival to the breeding grounds have differing tradeoffs and can affect the fitness of the migrants. 
 
+## Methods
+In order to study the effect of local weather conditions on the arrival time of TGMs in Massachusetts, the meteorological data from Mobible AL, Charlotte NC, and Boston MA were acquired from NOAA’s National Climatic Data Center’s API to examine five species of birds (Hylocichla mustelina, Archilochus colubris, Seiurus aurocapilla, Progne subis, and Icterus galbula) from eBird.
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
