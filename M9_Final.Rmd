@@ -30,31 +30,8 @@ library(data.table) #for frollmean function (and others)
 ```
 
 ```{r load data, cache=TRUE, include=FALSE}
-species <- c("Hylocichla mustelina","Archilochus colubris","Seiurus aurocapilla","Progne subis","Icterus galbula")
 
-y <- paste0("1990",",","2019")
-m <- paste0("3",",","6")
-
-dat.l <- list()
-for(s in species){
-  n.obs <-  occ_data(scientificName = s,year=y,month=m,limit=0,country="US",basisOfRecord = "HUMAN_OBSERVATION",stateProvince="Massachusetts")$meta$count 
-
-print(n.obs)
-
-
-dat.l[[paste0(s)]] <- occ_data(scientificName = s,year=y,month=m,
-                               limit=n.obs,country="US",
-                               basisOfRecord = "HUMAN_OBSERVATION",
-                               stateProvince="Massachusetts")[[2]]
-
-
-}
-
-dat <- rbindlist(dat.l,fill=T)
-
-head(dat)
-
-saveRDS(data,"massbird.data.RDS")
+dat <- readRDS("massbird.data.RDS")
 ```
 
 ```{r just to visualize can remove later}
