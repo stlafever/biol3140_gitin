@@ -20,3 +20,8 @@ Matrix
 lme4
 carData
 car
+<<<<<<< HEAD
+=======
+sp
+rgdal
+>>>>>>> a31f419ffdc8e1478e0dfd622d3824437e523751
