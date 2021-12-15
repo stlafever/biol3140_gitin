@@ -59,7 +59,7 @@ saveRDS(dat,"bird.data.RDS")
 dat <- readRDS("bird.data.RDS")
 ```
 
-```{r station and weather data, cache=TRUE,echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+```{r station and weather data,cache=TRUE,echo=FALSE,warning=FALSE, error=FALSE,message=FALSE,fig.cap= "Figure 1: Map of the weather stations used along the migration route"}
 options(noaakey = "lZNaAwTFydsOADUFQmqpKIIbVZejiypt")
 
 sts <- c(
@@ -85,8 +85,9 @@ weather.d <- meteo_pull_monitors(sta.d$id,date_min = "2000-01-01")
 
 ```
 
-```{r arrival proportions,echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+Weather data from three stations, Mobile AL, Charlotte NC, and Boston MA were used to estimate weather conditions along the migration route to Massachusetts. Weather parameters assessed include maximum temperature, minimum temperature, and the wind vector. 
 
+```{r arrival proportions,echo=FALSE,warning=FALSE,error=FALSE, message=FALSE,fig.cap="Figure 2: logistic models representing the proportion of birds of each species arriving in Massachusetts each year."}
 arrivals<- dat%>%
   group_by(species, year)%>%
   mutate(date=as.Date(paste0(year,"-",month,"-",day)), j.day=julian(date,origin=as.Date(paste0(unique(year),"-01-01"))))%>%
@@ -108,6 +109,8 @@ arrivals%>%
   ggplot(aes(j.day,prop, col=species))+geom_point(aes=0.1)+geom_line(data=arrivals.pred,aes(x=j.day,y=pred),size=0.5)+facet_wrap(year~.)+geom_line(col="black",aes(y=0.25))
 
 ```
+
+The proportion of birds arriving in Massachusetts in a given year was modelled using a logistic curve. 
 
 ```{r weather data, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
 
