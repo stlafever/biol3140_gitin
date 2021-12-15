@@ -1,10 +1,6 @@
 ---
 title: "M9/Final"
-<<<<<<< HEAD
-author: "Gitin"
-=======
 author: "Git In"
->>>>>>> 3ef6b30de01ddb4ea15090cba3bb69e3cfe57230
 date: "12/11/2021"
 output: html_document
 bibliography: BIOL3140.bib
