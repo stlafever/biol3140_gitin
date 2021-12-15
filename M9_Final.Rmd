@@ -52,7 +52,7 @@ options(noaakey = "lZNaAwTFydsOADUFQmqpKIIbVZejiypt")
 
 
 sts <- c(
-  "GHCND:USW00013894", #Mobible, AL 2k away about 10 days away @200 km/day
+  "GHCND:USW00013894", #Mobile, AL 2k away about 10 days away @200 km/day
   "GHCND:USW00013881", #Charlotte, NC 1000 km away about 6 days away @200 km/day
   "GHCND:USW00014739" #Boston
 )
