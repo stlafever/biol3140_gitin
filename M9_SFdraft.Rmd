@@ -7,7 +7,7 @@ bibliography: BIOL3140.bib
 ---
 
 ## Introduction
-Trans-Gulf migrants (TGMs) travel long distances to forage and breed. These birds migrate from Central and South America every spring to more temperate regions between Texas and Florida. Their time of arrival to the breeding grounds have differing tradeoffs and can affect the fitness of the migrants. Early arrivals correlate with higher chances of mating and breeding while later arrivals benefit from surplus food availablility (@smith2005arrival). One study that studied migration patterns from 1828-2010, found a uniform trend of earlier arrivals correlated with higher temperatures from 1978 to 2010 (@kolavrova2017changes). 
+Trans-Gulf migrants (TGMs) travel long distances to forage and breed. These birds migrate from Central and South America every spring to more temperate regions between Texas and Florida. Their time of arrival to the breeding grounds have differing tradeoffs and can affect the fitness of the migrants. Early arrivals correlate with higher chances of mating and breeding while later arrivals benefit from surplus food availiblility (@smith2005arrival). One study that studied migration patterns from 1828-2010, found a uniform trend of earlier arrivals correlated with higher temperatures from 1978 to 2010 (@kolavrova2017changes). 
 
 In the face of climate change, populations of TGMs may decline if there is a failure to shift arrival dates in response to warmer temperatures (@both2006climate). 
 
@@ -149,4 +149,7 @@ arr.kb <- kable(arr.aic[1:4],caption = "Fit values for nested models of the most
 
 Global warming has become a steady issue in the news, especially with conservationists. The trans-Gulf migrants are a specific group that have been at the center of studies because of their long distances traveled to forage and breed. Weather data was collected from Mobile, AL; Charlotte, NC; and Boston, MA to determine the weather conditions. It was found that the maximum temperature and the minimum temperature both increased. When the proportion of birds arriving early in Massachusetts was studied on a logistic curve, it was determined that more birds were arriving earlier than in previous years.
 
+##Author Contributions
 
+
+##References
