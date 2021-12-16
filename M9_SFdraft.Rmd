@@ -143,6 +143,10 @@ arr.aic <- dredge(lmer2,fixed = c("wk.tmin","wk.tmax","wk.wvec"),)
 
 arr.kb <- kable(arr.aic[1:4],caption = "Fit values for nested models of the most complicated lme model")
 
+best.lmer <-  lmer(j.day~wk.tmin+wk.tmax+wk.wvec+(1|name),arrival.weath2,na.action = "na.fail")
+
+Anova(best.lmer)
+
 ```
 
 ## Discussion
