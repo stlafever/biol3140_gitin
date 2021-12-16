@@ -48,7 +48,7 @@ options(noaakey = "lZNaAwTFydsOADUFQmqpKIIbVZejiypt")
 
 
 sts <- c(
-  "GHCND:USW00013894", #Mobible, AL 2k away about 10 days away @200 km/day
+  "GHCND:USW00013894", #Mobile, AL 2k away about 10 days away @200 km/day
   "GHCND:USW00013881", #Charlotte, NC 1000 km away about 6 days away @200 km/day
   "GHCND:USW00014739" #Boston
 )
@@ -172,3 +172,7 @@ bos <- ncdc_stations(stationid = "GHCND:USW00014739")
 
 print(bos)
 ```
+
+##Discussion
+
+Global warming has become a steady issue in the news, especially with conservationists. The trans-Gulf migrants are a specific group that have been at the center of studies because of their long distances traveled to forage and breed. Weather data was collected from Mobile, AL; Charlotte, NC; and Boston, MA to determine the weather conditions. It was found that the maximum temperature and the minimum temperature both increased. When the proportion of birds arriving early in Massachusetts was studied on a logistic curve, it was determined that more birds were arriving earlier than in previous years.
