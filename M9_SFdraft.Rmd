@@ -7,9 +7,11 @@ bibliography: BIOL3140.bib
 ---
 
 ## Introduction
-Trans-Gulf migrants (TGMs) travel long distances to forage and breed. These birds migrate from Central and South America every spring to more temperate regions between Texas and Florida. Their time of arrival to the breeding grounds have differing tradeoffs and can affect the fitness of the migrants. Early arrivals correlate with higher chances of mating and breeding while later arrivals benefit from surplus food availablility (@smith2005arrival). One study that studied migration patterns from 1828-2010, found a uniform trend of earlier arrivals correlated with higher temperatures from 1978 to 2010 (@kolavrova2017changes). In the face of climate change, populations of TGMs may decline if there is a failure to shift arrival dates in response to warmer temperatures (@both2006climate). 
-With an increase in species conservation among the public in the recent decades, many online programs are available for researchers to access and study. The Cornell Laboratory of Ornithology and the National Audubon Society have established the program eBird, a compilation of over a hundred million bird observations from thousands of contributors.
+Trans-Gulf migrants (TGMs) travel long distances to forage and breed. These birds migrate from Central and South America every spring to more temperate regions between Texas and Florida. Their time of arrival to the breeding grounds have differing tradeoffs and can affect the fitness of the migrants. Early arrivals correlate with higher chances of mating and breeding while later arrivals benefit from surplus food availablility (@smith2005arrival). One study that studied migration patterns from 1828-2010, found a uniform trend of earlier arrivals correlated with higher temperatures from 1978 to 2010 (@kolavrova2017changes). 
 
+In the face of climate change, populations of TGMs may decline if there is a failure to shift arrival dates in response to warmer temperatures (@both2006climate). 
+
+With an increase in species conservation among the public in the recent decades, many online programs are available for researchers to access and study. The Cornell Laboratory of Ornithology and the National Audubon Society have established the program eBird, a compilation of over a hundred million bird observations from thousands of contributors.
 
 
 ## Methods
