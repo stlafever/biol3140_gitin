@@ -145,7 +145,7 @@ arr.kb <- kable(arr.aic[1:4],caption = "Fit values for nested models of the most
 
 ```
 
-##Discussion
+## Discussion
 
 Global warming has become a steady issue in the news, especially with conservationists. The trans-Gulf migrants are a specific group that have been at the center of studies because of their long distances traveled to forage and breed. Weather data was collected from Mobile, AL; Charlotte, NC; and Boston, MA to determine the weather conditions. It was found that the maximum temperature and the minimum temperature both increased. When the proportion of birds arriving early in Massachusetts was studied on a logistic curve, it was determined that more birds were arriving earlier than in previous years.
 
