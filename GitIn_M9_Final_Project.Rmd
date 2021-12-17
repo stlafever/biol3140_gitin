@@ -37,11 +37,7 @@ library(magick)#for examples
 library(cowplot)#for examples
 library(lme4) #for linear mixed effect models
 library(car) #for LME anova testing
-library(data.table) #for frollmean function (and others)
-library(tidyverse) #always
-library(nlme) #ditto
-library(MuMIn)
-library(knitr) #for knitting options
+library(nlme) 
 require(broom)
 library(features)
 ```
