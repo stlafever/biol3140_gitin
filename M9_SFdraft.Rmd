@@ -36,6 +36,12 @@ library(cowplot)#for examples
 library(lme4) #for linear mixed effect models
 library(car) #for LME anova testing
 library(data.table) #for frollmean function (and others)
+library(tidyverse) #always
+library(nlme) #ditto
+library(MuMIn)
+library(knitr) #for knitting options
+require(broom)
+library(features)
 ```
 
 ```{r load data, cache=TRUE, include=FALSE}
@@ -129,23 +135,38 @@ arrival.weath2 <- arrival.date%>%
   left_join(weather.wk)
 ```
 
+Our ANOVA analysis revealed a significant relationship between minimum temperature as well as the interaction between maximum temperature and wind vector on a single day and the date of arrival.
+
 ```{r linear mixed-effect modeling, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
 lmer <- lmer(j.day~tmin*tmax*wvec+(1|name),arrival.weath,na.action = "na.fail")
 
-Anova(lmer) #Anova from the car package
+Anova(lmer) %>% tidy %>% knitr::kable(caption="ANOVA Analysis on Arrival Date and Single Day Sample weather data") #Anova from the car package
+```
+
+Our ANOVA analysis on the two-week average weather data revealed a significant relationship between the following variables and arrival date: minimum temperature, wind vector, and the interaction between minimum and maximum temperature.
+
+```{r linear mixed-effect modeling2, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
 
 #0Mean two week weather preceding arrival
 lmer2 <- lmer(j.day~wk.tmin*wk.tmax*wk.wvec+(1|name),arrival.weath2,na.action = "na.fail")
 
-Anova(lmer2) 
+Anova(lmer2) %>% tidy %>% knitr::kable(caption="ANOVA Analysis on Arrival Date and Two-week average weather data")
+```
 
+Our analysis using the dredge() function returned NA results for the interactions models. Therefore, the best fit model was one that included minimum temperature, maximum temperature, and wind vector. This model was then analyzed using ANOVA and it was found that minimum temperature and wind vector were significant predictors of arrival date.
+
+
+```{r linear mixed-effect modeling3, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
 arr.aic <- dredge(lmer2,fixed = c("wk.tmin","wk.tmax","wk.wvec"),)
 
-arr.kb <- kable(arr.aic[1:4],caption = "Fit values for nested models of the most complicated lme model")
+arr.kb <- kable(arr.aic[1:4],caption = "Fit values for nested models of the most complicated lme model") 
+
+arr.aic[1:4] %>% knitr::kable(caption="Fit values for nested models of the most complicated lme model")
+
 
 best.lmer <-  lmer(j.day~wk.tmin+wk.tmax+wk.wvec+(1|name),arrival.weath2,na.action = "na.fail")
 
-Anova(best.lmer)
+Anova(best.lmer) %>% tidy %>% knitr::kable(caption="ANOVA Analysis on Best Fit Model")
 
 ```
 
