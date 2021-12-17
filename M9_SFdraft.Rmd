@@ -19,7 +19,9 @@ In order to study the effect of local weather conditions on the arrival time of 
 
 The arrival time for each species was considered to be the julian day when 25% of birds had arrived in a given year according to a logistic model. The birds were estimated to be in Mobile and Charlotte 10 and 5 days before the arrival in Boston, respectively. Using this, a rolling mean of temperature and wind data was taken over a two week period surrounding the dates that the birds were estimated to be passing through each location. 
 
-ANOVA analysis on maximum temperature, minimum temperature, and wind was performed to determine the effect these variables have on arrival date. 
+Linear Mixed-Effect Modeling was used to evaluate the effect of multiple covariates and their individual and combined effect on arrival date. We ranked our nested models using the dredge() function in order to determine what was included in our best fit model. We then performed an ANOVA analysis on the best fit model to determine which variables had a significant effect on arrival date.
+
+We also performed ANOVA analysis on maximum temperature, minimum temperature, and wind using a single day sample and two week average to determine the effect these variables have on arrival date. 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
