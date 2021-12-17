@@ -174,7 +174,11 @@ Anova(best.lmer) %>% tidy %>% knitr::kable(caption="ANOVA Analysis on Best Fit M
 
 ## Discussion
 
-Global warming has become a steady issue in the news, especially with conservationists. The trans-Gulf migrants are a specific group that have been at the center of studies because of their long distances traveled to forage and breed. Weather data was collected from Mobile, AL; Charlotte, NC; and Boston, MA to determine the weather conditions. It was found that the maximum temperature and the minimum temperature both increased. When the proportion of birds arriving early in Massachusetts was studied on a logistic curve, it was determined that more birds were arriving earlier than in previous years.
+Global warming is usually considered in the context of how it will affect humans in the future, but this analysis clearly shows how it also causes major ripple effects in animals. Across the world, studies have shown that birds use temperature to cue when they will leave to migrate (@Burnside2021). These patterns are seen in not only these species, but also in others all over the globe.
+
+The trans-Gulf migrants are a specific group that have been at the center of studies because of their long distances traveled to forage and breed. Weather data was collected from Mobile, AL; Charlotte, NC; and Boston, MA to determine the weather conditions. It was found that the maximum temperature and the minimum temperature both increased. When the proportion of birds arriving early in Massachusetts was studied on a logistic curve, it was determined that more birds were arriving earlier than in previous years. This is consistent with other studies that show that birds migrate earlier during warmer years and later during colder ones (@Marra2004).
+These analyses prove that global warming should be taken more seriously with the implications it has on other species in the world. 
+
 
 ## Author Contributions
 
